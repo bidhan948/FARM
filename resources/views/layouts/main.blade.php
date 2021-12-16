@@ -38,7 +38,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
     {{-- @livewireStyles --}}
     <div class="wrapper">
 
@@ -110,7 +110,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview  @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>
                                 <p class="px-2 font-weight-bold">
@@ -118,11 +118,11 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" style="display: none;">
+                            <ul class="nav nav-treeview " style="display: @yield('s_child')">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link @yield('setting_active')">
+                                    <a href="{{route('gender.index')}}" class="nav-link @yield('setting_gender')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('वैवाहिक स्थिती') }}</p>
+                                        <p class="px-2">{{ __('लिङ्ग') }}</p>
                                     </a>
                                 </li>
                             </ul>
