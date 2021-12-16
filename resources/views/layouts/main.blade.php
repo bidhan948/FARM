@@ -81,7 +81,7 @@
                 <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span
-                    class="brand-text font-weight-light">hdfjkh</span>
+                    class="brand-text font-weight-light">{{auth()->user()->name}}</span>
             </a>
 
             <!-- Sidebar -->
@@ -94,7 +94,7 @@
                     </div>
                     <div class="info">
                         <a href="#"
-                            class="d-block">jfgvkfdj</a>
+                            class="d-block">{{auth()->user()->name}}</a>
                     </div>
                 </div>
 
@@ -135,6 +135,12 @@
                                     <a href="{{route('marital-status.index')}}" class="nav-link @yield('setting_marital_status')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बैवाहिक स्थिति ') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('business.index')}}" class="nav-link @yield('setting_business')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('व्यबसाय') }}</p>
                                     </a>
                                 </li>
                             </ul>
