@@ -1,20 +1,20 @@
 @extends('layouts.main')
-@section('title', 'लिङ्ग')
+@section('title', 'बैवाहिक स्थिति ')
 @section('menu_open', 'menu-open')
 @section('s_child', 'block')
-@section('setting_gender', 'active')
+@section('setting_marital_status', 'active')
 @section('main_content')
 
     <div class="card text-sm ">
         <div class="card-header my-2">
             <div class="row my-1">
                 <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('लिङ्गको सुचिहरु') }}</p>
+                    <p class="">{{ __('बैवाहिक स्थितिको सुचिहरु') }}</p>
                 </div>
                 <div class="
                         col-md-6 text-right">
                     <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('लिङ्ग थप्नुहोस') }}</a>
+                        {{ __('बैवाहिक स्थिति थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
@@ -24,32 +24,32 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('लिङ्ग') }}</th>
+                        <th class="text-center">{{ __('बैवाहिक स्थिति ') }}</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($genders as $key => $gender)
+                    @foreach ($marital_statuss as $key => $marital_status)
                         <tr>
                             <td class="text-center">{{ Nepali($key + 1) }}</td>
-                            <td class="text-center">{{ $gender->name }}
+                            <td class="text-center">{{ $marital_status->name }}
                             </td>
                             <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
                                     data-target="#modal-lg{{$key+1}}" style="cursor: pointer;"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
 
-                                {{-- modal for adding gender status --}}
+                                {{-- modal for adding marital_status status --}}
                                 <div class="modal fade text-sm" id="modal-lg{{$key+1}}">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="">{{ __('लिङ्ग सच्याउनुहोस् ') }}</h5>
+                                                <h5 class="">{{ __('बैवाहिक स्थिति  सच्याउनुहोस् ') }}</h5>
                                                 <button type=" button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form method="post" action="{{ route('gender.update',$gender) }}">
+                                                <form method="post" action="{{ route('marital-status.update',$marital_status) }}">
                                                     @method('PUT')
                                                     @csrf
                                                     <div class="row">
@@ -57,15 +57,15 @@
                                                             <div class="input-group input-group-sm">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        {{ __('लिङ्ग') }} <span
+                                                                        {{ __('बैवाहिक स्थिति ') }} <span
                                                                             class="text-danger px-1 font-weight-bold">*</span>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" value="{{ $gender->name }}" name="name"
+                                                                <input type="text" value="{{ $marital_status->name }}" name="name"
                                                                     class="form-control  @error('name') is-invalid @enderror">
                                                                 @error('name')
                                                                     <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                                                        {{ __('लिङ्गको फिल्ड खाली छ ') }}
+                                                                        {{ __('बैवाहिक स्थिति को फिल्ड खाली छ ') }}
                                                                     </p>
                                                                 @enderror
                                                             </div>
@@ -87,7 +87,7 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>
-                                {{-- end of modal for adding gender status --}}
+                                {{-- end of modal for adding marital_status status --}}
                             </td>
                         </tr>
                     @endforeach
@@ -96,32 +96,32 @@
         <!-- /.card-body -->
     </div>
 
-    {{-- modal for adding gender status --}}
+    {{-- modal for adding marital_status status --}}
     <div class="modal fade text-sm" id="modal-lg">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="">{{ __('लिङ्ग थप्नुहोस') }}</h5>
+                    <h5 class="">{{ __('बैवाहिक स्थिति  थप्नुहोस') }}</h5>
                     <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('gender.store') }}">
+                    <form method="post" action="{{ route('marital-status.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('लिङ्ग') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('बैवाहिक स्थिति ') }} <span class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
                                     <input type="text" value="{{ old('name') }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                            {{ __('लिङ्गको फिल्ड खाली छ ') }}
+                                            {{ __('बैवाहिक स्थिति को फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -142,7 +142,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    {{-- end of modal for adding gender status --}}
+    {{-- end of modal for adding marital_status status --}}
 @endsection
 
 @section('scripts')

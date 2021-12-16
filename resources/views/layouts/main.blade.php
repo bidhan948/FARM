@@ -125,6 +125,18 @@
                                         <p class="px-2">{{ __('लिङ्ग') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('citizenship-type.index')}}" class="nav-link @yield('setting_citizenship_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('नागरिकताको किसिम') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('marital-status.index')}}" class="nav-link @yield('setting_marital_status')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बैवाहिक स्थिति ') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
