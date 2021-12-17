@@ -9,6 +9,7 @@ use App\Http\Controllers\setting\GenderController;
 use App\Http\Controllers\setting\IrrigationTypeController;
 use App\Http\Controllers\setting\MarketingSystemController;
 use App\Http\Controllers\setting\OrganizationTypeController;
+use App\Http\Controllers\setting\RegionController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -27,5 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('organization-type',OrganizationTypeController::class);
         Route::resource('marketing-system',MarketingSystemController::class);
         Route::resource('ethnic-group',EthnicGroupController::class);
+        Route::resource('region',RegionController::class);
     });
 });
