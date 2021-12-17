@@ -4,6 +4,7 @@ use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\saetting\CitizenShipController;
 use App\Http\Controllers\setting\BusinessController;
 use App\Http\Controllers\setting\EducationQualificationController;
+use App\Http\Controllers\setting\EthnicGroupController;
 use App\Http\Controllers\setting\GenderController;
 use App\Http\Controllers\setting\IrrigationTypeController;
 use App\Http\Controllers\setting\MarketingSystemController;
@@ -25,5 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('irrigation-type',IrrigationTypeController::class);
         Route::resource('organization-type',OrganizationTypeController::class);
         Route::resource('marketing-system',MarketingSystemController::class);
+        Route::resource('ethnic-group',EthnicGroupController::class);
     });
 });

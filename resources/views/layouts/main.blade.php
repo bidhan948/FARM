@@ -167,6 +167,12 @@
                                         <p class="px-2">{{ __('बजारीकरण प्रणाली') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('ethnic-group.index')}}" class="nav-link @yield('setting_ethnic_group')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('जातीय समूह') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
