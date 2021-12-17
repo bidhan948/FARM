@@ -6,6 +6,8 @@ use App\Http\Controllers\setting\BusinessController;
 use App\Http\Controllers\setting\EducationQualificationController;
 use App\Http\Controllers\setting\GenderController;
 use App\Http\Controllers\setting\IrrigationTypeController;
+use App\Http\Controllers\setting\MarketingSystemController;
+use App\Http\Controllers\setting\OrganizationTypeController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -21,5 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('business',BusinessController::class);
         Route::resource('education-qualification',EducationQualificationController::class);
         Route::resource('irrigation-type',IrrigationTypeController::class);
+        Route::resource('organization-type',OrganizationTypeController::class);
+        Route::resource('marketing-system',MarketingSystemController::class);
     });
 });

@@ -155,6 +155,18 @@
                                         <p class="px-2">{{ __('सिचाईको प्रकार') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('organization-type.index')}}" class="nav-link @yield('setting_organization_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('संस्थाको प्रकार ') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('marketing-system.index')}}" class="nav-link @yield('setting_marketing_system')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बजारीकरण प्रणाली') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
