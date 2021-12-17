@@ -143,6 +143,18 @@
                                         <p class="px-2">{{ __('व्यबसाय') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('education-qualification.index')}}" class="nav-link @yield('setting_education_qualification')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('शैक्षिक योग्यता') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('irrigation-type.index')}}" class="nav-link @yield('setting_irrigation_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('सिचाईको प्रकार') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
