@@ -29,67 +29,100 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($crops as $key => $crop)
-                        <tr>
-                            <td class="text-center">{{ Nepali($key + 1) }}</td>
-                            <td class="text-center">{{ $crop->name }}
-                            </td>
-                            <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
-                                    data-target="#modal-lg{{$key+1}}" style="cursor: pointer;"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($crop_types as $crop_type)
+                        @foreach ($crop_type->Crop as $crop)
+                            <tr>
+                                <td class="text-center">{{ Nepali($i++) }}</td>
+                                <td class="text-center">{{ $crop->name }} / {{ $crop_type->name }}
+                                </td>
+                                <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
+                                        data-target="#modal-lg{{ $i }}" style="cursor: pointer;"><i
+                                            class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
 
-                                {{-- modal for adding crop status --}}
-                                <div class="modal fade text-sm" id="modal-lg{{$key+1}}">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="">{{ __('बाली सच्याउनुहोस् ') }}</h5>
-                                                <button type=" button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="post" action="{{ route('crop.update',$crop) }}">
-                                                    @method('PUT')
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        {{ __('बाली') }} <span
-                                                                            class="text-danger px-1 font-weight-bold">*</span>
-                                                                    </span>
+                                    {{-- modal for adding crop status --}}
+                                    <div class="modal fade text-sm" id="modal-lg{{ $i }}">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="">{{ __('बाली सच्याउनुहोस् ') }}</h5>
+                                                    <button type=" button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post" action="{{ route('crop.update', $crop) }}">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            {{ __('बाली') }} <span
+                                                                                class="text-danger px-1 font-weight-bold">*</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" value="{{ $crop->name }}"
+                                                                        name="name"
+                                                                        class="form-control  @error('name') is-invalid @enderror">
+                                                                    @error('name')
+                                                                        <p class="invalid-feedback mb-0"
+                                                                            style="font-size: 0.9rem">
+                                                                            {{ __('बालीको फिल्ड खाली छ ') }}
+                                                                        </p>
+                                                                    @enderror
                                                                 </div>
-                                                                <input type="text" value="{{ $crop->name }}" name="name"
-                                                                    class="form-control  @error('name') is-invalid @enderror">
-                                                                @error('name')
-                                                                    <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                                                        {{ __('बालीको फिल्ड खाली छ ') }}
-                                                                    </p>
-                                                                @enderror
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            {{ __('वालिको प्रकार') }}
+                                                                            <span
+                                                                                class="text-danger px-1 font-weight-bold">*</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <select name="crop_type_id"
+                                                                        class="custom-select select2 @error('crop_type_id') is-invalid @enderror">
+                                                                        @foreach ($crop_types as $crop_type)
+                                                                            <option value="{{ $crop_type->id }}" {{$crop_type->id == $crop->crop_type_id ? "selected" : ""}}>
+                                                                                {{ $crop_type->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('crop_type_id')
+                                                                        <p class="invalid-feedback" style="font-size: 0.9rem">
+                                                                            {{ __('वालिको प्रकार फिल्ड खाली छ |') }}
+                                                                        </p>
+                                                                    @enderror
+                                                                </div>
+                                                                <!-- /input-group -->
+                                                            </div>
+                                                            <div class="col-4 mt-2">
+                                                                <button type="submit" style="margin-left: -155px;"
+                                                                    class="btn btn-primary">पेश
+                                                                    गर्नुहोस्</button>
                                                             </div>
                                                         </div>
-                                                        <div class="col-4">
-                                                            <button type="submit" class="btn btn-primary">पेश
-                                                                गर्नुहोस्</button>
-                                                        </div>
-                                                    </div>
 
-                                                </form>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
                                             </div>
-                                            <div class="modal-footer justify-content-between">
-                                                <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Close</button>
-                                            </div>
+                                            <!-- /.modal-content -->
                                         </div>
-                                        <!-- /.modal-content -->
+                                        <!-- /.modal-dialog -->
                                     </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
-                                {{-- end of modal for adding crop status --}}
-                            </td>
-                        </tr>
+                                    {{-- end of modal for adding crop status --}}
+                                </td>
+                            </tr>
+                        @endforeach
                     @endforeach
             </table>
         </div>
@@ -126,7 +159,30 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('वालिको प्रकार') }}
+                                            <span class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <select name="crop_type_id"
+                                        class="custom-select select2 @error('crop_type_id') is-invalid @enderror">
+                                        <option value="">{{ __('वालिको प्रकार ') }}</option>
+                                        @foreach ($crop_types as $crop_type)
+                                            <option value="{{ $crop_type->id }}">{{ $crop_type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('crop_type_id')
+                                        <p class="invalid-feedback" style="font-size: 0.9rem">
+                                            {{ __('वालिको प्रकार फिल्ड खाली छ |') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                                <!-- /input-group -->
+                            </div>
+                            <div class="col-4 mt-2">
                                 <button type="submit" class="btn btn-primary">पेश
                                     गर्नुहोस्</button>
                             </div>
@@ -156,7 +212,7 @@
     </script>
     <script>
         window.onload = function() {
-            if ({{ $errors->any() }}) {
+            if ({{$errors->any()}}) {
                 $('#modal-lg').modal('show');
             }
         }

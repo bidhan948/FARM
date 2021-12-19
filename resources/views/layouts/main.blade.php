@@ -192,6 +192,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('crop-type.index')}}" class="nav-link @yield('setting_crop_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बालीको प्रकार') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('crop.index')}}" class="nav-link @yield('setting_crop')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बाली') }}</p>
