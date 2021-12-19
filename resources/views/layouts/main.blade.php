@@ -204,6 +204,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('crop-area.index')}}" class="nav-link @yield('setting_crop_area')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बाली छेत्रफल') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('facility.index')}}" class="nav-link @yield('setting_facility')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('सुबिधा') }}</p>

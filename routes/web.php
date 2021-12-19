@@ -6,6 +6,7 @@ use App\Http\Controllers\setting\{
     AnimalController,
     AreaController,
     BusinessController,
+    CropAreaController,
     CropController,
     CropTypeController,
     EducationQualificationController,
@@ -43,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('area', AreaController::class);
         Route::resource('land-type', LandTypeController::class);
         Route::resource('crop-type', CropTypeController::class);
+        Route::resource('crop-area', CropAreaController::class);
         Route::resource('crop', CropController::class);
         Route::resource('facility', GovNonGovFacilityController::class);
         Route::resource('helping-organization', HelpingOrganizationController::class);
