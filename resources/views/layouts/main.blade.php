@@ -197,6 +197,12 @@
                                         <p class="px-2">{{ __('बाली') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('facility.index')}}" class="nav-link @yield('setting_facility')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('सुबिधा') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
