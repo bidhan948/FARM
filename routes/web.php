@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\saetting\CitizenShipController;
+use App\Http\Controllers\setting\AreaController;
 use App\Http\Controllers\setting\BusinessController;
 use App\Http\Controllers\setting\EducationQualificationController;
 use App\Http\Controllers\setting\EthnicGroupController;
@@ -29,5 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('marketing-system',MarketingSystemController::class);
         Route::resource('ethnic-group',EthnicGroupController::class);
         Route::resource('region',RegionController::class);
+        Route::resource('area',AreaController::class);
     });
 });

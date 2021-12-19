@@ -179,6 +179,12 @@
                                         <p class="px-2">{{ __('क्षेत्र') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('area.index')}}" class="nav-link @yield('setting_area')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('क्षेत्रफल') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
