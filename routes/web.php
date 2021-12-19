@@ -16,6 +16,8 @@ use App\Http\Controllers\setting\LandTypeController;
 use App\Http\Controllers\setting\MarketingSystemController;
 use App\Http\Controllers\setting\OrganizationTypeController;
 use App\Http\Controllers\setting\RegionController;
+use App\Http\Controllers\setting\SeedSourceController;
+use App\Http\Controllers\setting\SeedSupplierController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -41,5 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('facility',GovNonGovFacilityController::class);
         Route::resource('helping-organization',HelpingOrganizationController::class);
         Route::resource('animal',AnimalController::class);
+        Route::resource('seed-source',SeedSourceController::class);
+        Route::resource('seed-supplier',SeedSupplierController::class);
     });
 });

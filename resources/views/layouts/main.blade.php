@@ -210,9 +210,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('animal.index')}}" class="nav-link @yield('setting_animal')">
+                                    <a href="{{route('seed-source.index')}}" class="nav-link @yield('setting_seed_source')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('पशु') }}</p>
+                                        <p class="px-2">{{ __('बीउबिजनको स्रोत') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('seed-supplier.index')}}" class="nav-link @yield('setting_seed_supplier')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बीउबिजनको प्रदायक') }}</p>
                                     </a>
                                 </li>
                             </ul>
