@@ -192,6 +192,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('animal.index')}}" class="nav-link @yield('setting_animal')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('पशु') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('production-animal.index')}}" class="nav-link @yield('setting_production_animal')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('पशुजन्य उत्पादन') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('crop-type.index')}}" class="nav-link @yield('setting_crop_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बालीको प्रकार') }}</p>
@@ -231,6 +243,12 @@
                                     <a href="{{route('seed-supplier.index')}}" class="nav-link @yield('setting_seed_supplier')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बीउबिजनको प्रदायक') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('unit.index')}}" class="nav-link @yield('setting_unit')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('एकाई') }}</p>
                                     </a>
                                 </li>
                             </ul>
