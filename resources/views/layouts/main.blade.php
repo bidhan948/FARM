@@ -185,6 +185,18 @@
                                         <p class="px-2">{{ __('क्षेत्रफल') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('land-type.index')}}" class="nav-link @yield('setting_land_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('जग्गा') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('crop.index')}}" class="nav-link @yield('setting_crop')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बाली') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
