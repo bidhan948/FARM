@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\saetting;
+namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\setting\citizenship_type;

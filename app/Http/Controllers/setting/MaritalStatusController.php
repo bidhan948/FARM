@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\setting;
 
+use App\Http\Controllers\Controller;
 use App\Models\setting\marital_status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,17 +24,17 @@ class MaritalStatusController extends Controller
         toast("बैवाहिक स्थिति थप्न सफल भयो ", "success");
         return redirect()->back();
     }
-    
+
     public function update(marital_status $marital_status, Request $request): RedirectResponse
     {
         $validate = $request->validate([
             'name' => [
                 'required',
                 Rule::unique('marital_statuses')
-                ->ignore($marital_status)
-                ]
-            ]);
-            
+                    ->ignore($marital_status)
+            ]
+        ]);
+
         $marital_status->update($validate);
         toast("बैवाहिक स्थिति सच्याउन सफल भयो ", "success");
         return redirect()->back();
