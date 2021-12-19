@@ -246,6 +246,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('main-market.index')}}" class="nav-link @yield('setting_main_market')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('मुख्य बजार') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('unit.index')}}" class="nav-link @yield('setting_unit')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('एकाई') }}</p>

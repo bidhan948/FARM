@@ -16,6 +16,7 @@ use App\Http\Controllers\setting\{
     HelpingOrganizationController,
     IrrigationTypeController,
     LandTypeController,
+    MainMarketController,
     MarketingSystemController,
     OrganizationTypeController,
     ProductionAnimalController,
@@ -54,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('production-animal', ProductionAnimalController::class);
         Route::resource('seed-source', SeedSourceController::class);
         Route::resource('seed-supplier', SeedSupplierController::class);
+        Route::resource('main-market', MainMarketController::class);
         Route::resource('unit', UnitController::class);
     });
 });
