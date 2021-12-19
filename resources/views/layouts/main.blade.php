@@ -203,6 +203,18 @@
                                         <p class="px-2">{{ __('सुबिधा') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('helping-organization.index')}}" class="nav-link @yield('setting_helping_organization')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('सहयोगी संस्था') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('animal.index')}}" class="nav-link @yield('setting_animal')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('पशु') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

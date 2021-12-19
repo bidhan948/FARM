@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\saetting\CitizenShipController;
+use App\Http\Controllers\setting\AnimalController;
 use App\Http\Controllers\setting\AreaController;
 use App\Http\Controllers\setting\BusinessController;
 use App\Http\Controllers\setting\CropController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\setting\EducationQualificationController;
 use App\Http\Controllers\setting\EthnicGroupController;
 use App\Http\Controllers\setting\GenderController;
 use App\Http\Controllers\setting\GovNonGovFacilityController;
+use App\Http\Controllers\setting\HelpingOrganizationController;
 use App\Http\Controllers\setting\IrrigationTypeController;
 use App\Http\Controllers\setting\LandTypeController;
 use App\Http\Controllers\setting\MarketingSystemController;
@@ -37,5 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('land-type',LandTypeController::class);
         Route::resource('crop',CropController::class);
         Route::resource('facility',GovNonGovFacilityController::class);
+        Route::resource('helping-organization',HelpingOrganizationController::class);
+        Route::resource('animal',AnimalController::class);
     });
 });
