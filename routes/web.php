@@ -9,7 +9,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     /****************** below route is all for setting****************************/
     Route::prefix('settings')->group(function () {
-
         Route::resources([
             'gender' => config("constant.ROUTE_STRING") . '\GenderController',
             'marital-status' => config("constant.ROUTE_STRING") . '\MaritalStatusController',
