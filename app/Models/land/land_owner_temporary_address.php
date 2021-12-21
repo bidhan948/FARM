@@ -11,7 +11,7 @@ class land_owner_temporary_address extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $ungaurded = TRUE;
+    protected $guarded = [];   
 
     public function landOwner(): BelongsTo
     {

@@ -11,7 +11,7 @@ class land_owner_bank_detail extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $ungaurded = true;
+    protected $guarded = [];  
 
     public function landOwner(): BelongsTo
     {

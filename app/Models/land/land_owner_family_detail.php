@@ -12,7 +12,7 @@ class land_owner_family_detail extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $ungaurded = true;
+    protected $guarded = [];  
 
     public function landOwner(): BelongsTo
     {

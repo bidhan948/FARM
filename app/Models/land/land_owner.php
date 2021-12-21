@@ -18,7 +18,12 @@ class land_owner extends Model
 {
     use HasFactory,SoftDeletes;
 
-   protected $ungaurded = TRUE;
+    protected $guarded = [];  
+
+   public function setAgeAttribute($value)
+   {
+       $this->attributes['age'] = English($value);
+   }
 
    public function landOwnerPermanentAddress(): HasOne
    {

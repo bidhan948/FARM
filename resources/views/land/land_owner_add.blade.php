@@ -6,6 +6,15 @@
             <div class="row my-1">
                 <div class="col-md-12" style="margin-bottom:-5px;">
                     <p class="text-danger text-center">{{ __('कृपया  * चिन्न भएको ठाउँ खाली नछोड्नु होला |') }}</p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -155,7 +164,7 @@
                             @enderror
                         </div>
                     </div>
-                    <input type="hidden" name="issue_dateAd" id="issue_dateAd">
+                    <input type="hidden" name="issue_dateAd" id="issue_dateAd" value="{{old('issue_dateAd')}}">
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -206,7 +215,7 @@
                             @enderror
                         </div>
                     </div>
-                    <input type="hidden" name="birth_dateAd" id="birth_dateAd">
+                    <input type="hidden" name="birth_dateAd" id="birth_dateAd" value="{{old('birth_dateAd')}}">
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -266,7 +275,8 @@
                                                 class="form-control-sm form-control" name="below_18[{{ $gender->id }}]">
                                         </td>
                                         <td class="text-center"><input type="number"
-                                                class="form-control-sm form-control" name="18_to_59[{{ $gender->id }}]">
+                                                class="form-control-sm form-control"
+                                                name="eighteen_to_fiftynine[{{ $gender->id }}]">
                                         </td>
                                         <td class="text-center"><input type="number"
                                                 class="form-control-sm form-control" name="above_60[{{ $gender->id }}]">
@@ -279,21 +289,30 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-4 col-6">
+                    <div class="col-6 mt-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    {{ __('बैवाहिक स्थिति') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                    {{ __('बैवाहिक स्थिति') }}
+                                    <span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('marital_status_id') }}" name="marital_status_id"
-                                class="form-control  @error('marital_status_id') is-invalid @enderror">
+                            <select name="marital_status_id"
+                                class="custom-select select2 @error('marital_status_id') is-invalid @enderror">
+                                <option value="">
+                                    {{ __('----बैवाहिक स्थिति छान्नुहोस् ----') }}
+                                </option>
+                                @foreach ($marital_statuses as $marital_status)
+                                    <option value="{{ $marital_status->id }}">{{ $marital_status->name }}</option>
+                                @endforeach
+                            </select>
                             @error('marital_status_id')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
-                                    {{ __('सम्पर्क / मोबाईलन नंको फिल्ड खाली छ ') }}
+                                    {{ __('बैवाहिक स्थितिको फिल्ड खाली छ |') }}
                                 </p>
                             @enderror
                         </div>
+                        <!-- /input-group -->
                     </div>
                     <div class="mt-4 col-6">
                         <div class="input-group input-group-sm">
@@ -455,21 +474,29 @@
                     {{-- this is for address dropdown component --}}
                     <x-address-dropdown />
 
-                    <div class="mt-3 col-6">
+                    <div class="col-6 mt-3">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    {{ __('वडा नं') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                    {{ __('वार्ड नं ') }}
+                                    <span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('permanent_ward') }}" name="permanent_ward"
-                                class="form-control  @error('permanent_ward') is-invalid @enderror">
+                            <select name="permanent_ward" class="custom-select select2 @error('permanent_ward') is-invalid @enderror">
+                                <option value="">
+                                    {{ __('----छान्नुहोस् ----') }}
+                                </option>
+                                @for ($i = 1; $i <=19; $i++)
+                                    <option value="{{$i}}">{{Nepali($i)}}</option>
+                                @endfor
+                            </select>
                             @error('permanent_ward')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
-                                    {{ __('वडा नंको फिल्ड खाली छ ') }}
+                                    {{ __('वार्ड नं फिल्ड खाली छ |') }}
                                 </p>
                             @enderror
                         </div>
+                        <!-- /input-group -->
                     </div>
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
@@ -530,21 +557,29 @@
                     {{-- this is for address dropdown component --}}
                     <x-permanentaddress-dropdown />
 
-                    <div class="mt-3 col-6">
+                    <div class="col-6 mt-3">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    {{ __('वडा नं') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                    {{ __('वार्ड नं ') }}
+                                    <span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('temporary_ward') }}" name="temporary_ward"
-                                class="form-control  @error('temporary_ward') is-invalid @enderror">
+                            <select name="temporary_ward" class="custom-select select2 @error('temporary_ward') is-invalid @enderror">
+                                <option value="">
+                                    {{ __('----छान्नुहोस् ----') }}
+                                </option>
+                                @for ($i = 1; $i <=19; $i++)
+                                    <option value="{{$i}}">{{Nepali($i)}}</option>
+                                @endfor
+                            </select>
                             @error('temporary_ward')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
-                                    {{ __('वडा नंको फिल्ड खाली छ ') }}
+                                    {{ __('वार्ड नं फिल्ड खाली छ |') }}
                                 </p>
                             @enderror
                         </div>
+                        <!-- /input-group -->
                     </div>
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
@@ -695,9 +730,9 @@
             var mainInput = document.getElementById("nepali_datepicker");
             var mainInput1 = document.getElementById("birth_dateBs");
             mainInput.nepaliDatePicker({
-                ndpYear: true,
+                ndpYear: 200,
                 ndpMonth: true,
-                disableDaysBefore: 0,
+                ndpYearCount: 10,
                 onChange: function() {
                     var dateString = mainInput.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
@@ -707,9 +742,9 @@
                 }
             });
             mainInput1.nepaliDatePicker({
-                ndpYear: true,
+                ndpYear: 200,
                 ndpMonth: true,
-                disableDaysBefore: 0,
+                ndpYearCount: 200,
                 onChange: function() {
                     var dateString = mainInput1.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions

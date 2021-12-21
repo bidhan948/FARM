@@ -14,7 +14,7 @@ class land_owner_permanent_address extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $ungaurded = TRUE;
+    protected $guarded = [];  
 
     public function landOwner(): BelongsTo
     {
