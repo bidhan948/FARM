@@ -155,6 +155,7 @@
                             @enderror
                         </div>
                     </div>
+                    <input type="hidden" name="issue_dateAd" id="issue_dateAd">
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -205,6 +206,7 @@
                             @enderror
                         </div>
                     </div>
+                    <input type="hidden" name="birth_dateAd" id="birth_dateAd">
                     <div class="mt-3 col-6">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -270,7 +272,7 @@
                                                 class="form-control-sm form-control" name="above_60[{{ $gender->id }}]">
                                         </td>
                                         <td class="text-center"><input type="text" class="form-control-sm form-control"
-                                                name="remark[{ $gender->id }}]">
+                                                name="remark[{{ $gender->id }}]">
                                         </td>
                                     </tr>
                                 @endforeach
@@ -432,7 +434,8 @@
                                 </option>
                                 @foreach ($education_qualifications as $education_qualification)
                                     <option value="{{ $education_qualification->id }}">
-                                        {{ $education_qualification->name }}</option>
+                                        {{ $education_qualification->name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('education_qualification_id')
@@ -695,29 +698,44 @@
                 ndpYear: true,
                 ndpMonth: true,
                 disableDaysBefore: 0,
+                onChange: function() {
+                    var dateString = mainInput.value;
+                    var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
+                        .ConvertToDateObject(dateString, "YYYY-MM-DD")), "YYYY-MM-DD");
+                    var issueDateAd = document.getElementById("issue_dateAd");
+                    issueDateAd.setAttribute('value', dateAd);
+                }
             });
             mainInput1.nepaliDatePicker({
                 ndpYear: true,
                 ndpMonth: true,
                 disableDaysBefore: 0,
+                onChange: function() {
+                    var dateString = mainInput1.value;
+                    var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
+                        .ConvertToDateObject(dateString, "YYYY-MM-DD")), "YYYY-MM-DD");
+                    var birth_dateAd = document.getElementById("birth_dateAd");
+                    birth_dateAd.setAttribute('value', dateAd);
+                }
             });
         };
     </script>
     <script>
-          $(document).ready(function() {
+        $(document).ready(function() {
             let i = 2;
             let j = 2;
             $('#addBank').on("click", function() {
-                var html = '<tr id="rem_bank'+i+'">'
-                            +'<td class="text-center">'+i+'</td>'
-                            +'<td class="text-center">'
-                            +'<input name="name[]" id="" class="form-control-sm form-control">'
-                            +'</td>'
-                            +'<td class="text-center">'
-                            +'<input name="account_no[]" id="" class="form-control-sm form-control">'
-                            +'</td>'
-                            +'<td><i class="fas fa-trash-alt text-danger" onclick="removeBank('+i+')"></i></td>'
-                            +'</tr>';
+                var html = '<tr id="rem_bank' + i + '">' +
+                    '<td class="text-center">' + i + '</td>' +
+                    '<td class="text-center">' +
+                    '<input name="name[]" id="" class="form-control-sm form-control">' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<input name="account_no[]" id="" class="form-control-sm form-control">' +
+                    '</td>' +
+                    '<td><i class="fas fa-trash-alt text-danger" onclick="removeBank(' + i +
+                    ')"></i></td>' +
+                    '</tr>';
                 i++;
                 $("#banks").append(html);
             });
@@ -733,8 +751,9 @@
             $("#country_name").css("display", "none");
             $("#foreign_member").css("display", "none");
         }
-        function removeBank(i){
-          $("#rem_bank"+i).html("");
+
+        function removeBank(i) {
+            $("#rem_bank" + i).html("");
         }
     </script>
 @endsection

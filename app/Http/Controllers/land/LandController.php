@@ -4,6 +4,7 @@ namespace App\Http\Controllers\land;
 
 use App\Helper\SettingHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\setting\LandOWnwerRequest;
 use App\Models\land\land_owner;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -47,5 +48,10 @@ class LandController extends Controller
             'bussinesses' => $data['business'],
             'education_qualifications' => $data['education_qualification'],
         ]);
+    }
+
+    public function store(LandOWnwerRequest $request): RedirectResponse
+    {
+        dd($request->all());
     }
 }
