@@ -10,7 +10,7 @@
             </div>
         </div>
         <!-- /.card-header -->
-        <div class="card-body" id="app">
+        <div class="card-body">
             <form method="post" action="{{ route('land-owner.store') }}">
                 @csrf
                 <div class="row">
@@ -196,7 +196,8 @@
                                 </span>
                             </div>
                             <input type="text" value="{{ old('birth_dateBs') }}" name="birth_dateBs"
-                                class="form-control  @error('birth_dateBs') is-invalid @enderror" id="birth_dateBs" readonly>
+                                class="form-control  @error('birth_dateBs') is-invalid @enderror" id="birth_dateBs"
+                                readonly>
                             @error('birth_dateBs')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
                                     {{ __('जन्म मितिको फिल्ड खाली छ ') }}
@@ -208,8 +209,7 @@
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    {{ __('मातृभाषा') }}<span
-                                        class="text-danger px-1 font-weight-bold">*</span>
+                                    {{ __('मातृभाषा') }}<span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
                             <input type="text" value="{{ old('mother_tongue') }}" name="mother_tongue"
@@ -234,6 +234,445 @@
                             @error('contact_no')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
                                     {{ __('सम्पर्क / मोबाईलन नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <hr class="my-2" style="width: 100%">
+                    </div>
+                    <div class="col-12 mt-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">{{ __('परिबारको संख्या') }}</th>
+                                    <th class="text-center">{{ __('१८ बर्ष मुनिका') }} <span
+                                            class="text-danger px-1">*</span></th>
+                                    <th class="text-center">{{ __('१८ देखि ५९ सम्मको') }} <span
+                                            class="text-danger px-1">*</span></th>
+                                    <th class="text-center">{{ __('६० देखि देखि माथिको') }} <span
+                                            class="text-danger px-1">*</span></th>
+                                    <th class="text-center">{{ __('कैफियत (अपाङ्ग / असक्त)') }} <span
+                                            class="text-danger px-1">*</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($genders as $gender)
+                                    <tr>
+                                        <td class="text-center">{{ $gender->name }}</td>
+                                        <td class="text-center"><input type="number"
+                                                class="form-control-sm form-control" name="below_18[{{ $gender->id }}]">
+                                        </td>
+                                        <td class="text-center"><input type="number"
+                                                class="form-control-sm form-control" name="18_to_59[{{ $gender->id }}]">
+                                        </td>
+                                        <td class="text-center"><input type="number"
+                                                class="form-control-sm form-control" name="above_60[{{ $gender->id }}]">
+                                        </td>
+                                        <td class="text-center"><input type="text" class="form-control-sm form-control"
+                                                name="remark[{ $gender->id }}]">
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('बैवाहिक स्थिति') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('marital_status_id') }}" name="marital_status_id"
+                                class="form-control  @error('marital_status_id') is-invalid @enderror">
+                            @error('marital_status_id')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('सम्पर्क / मोबाईलन नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-4 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('दम्पतिको नाम ') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('couple_name') }}" name="couple_name"
+                                class="form-control  @error('couple_name') is-invalid @enderror">
+                            @error('couple_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('दम्पतिको नामको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('दम्पतिको नागरिकता नं ') }}<span
+                                        class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('couple_cit_no') }}" name="couple_cit_no"
+                                class="form-control  @error('couple_cit_no') is-invalid @enderror">
+                            @error('couple_cit_no')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('दम्पतिको नागरिकता नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('बाबुको नाम थर') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('father_name') }}" name="father_name"
+                                class="form-control  @error('father_name') is-invalid @enderror">
+                            @error('father_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('बाबुको नाम थरको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('आमाको नाम थर') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('mother_name') }}" name="mother_name"
+                                class="form-control  @error('mother_name') is-invalid @enderror">
+                            @error('mother_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('आमाको नाम थरको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('बाबुको नागरिकता नं') }}<span
+                                        class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('father_cit_no') }}" name="father_cit_no"
+                                class="form-control  @error('father_cit_no') is-invalid @enderror">
+                            @error('father_cit_no')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('बाबुको नागरिकता नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('आमाको नागरिकता नं') }}<span
+                                        class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('mother_cit_no') }}" name="mother_cit_no"
+                                class="form-control  @error('mother_cit_no') is-invalid @enderror">
+                            @error('mother_cit_no')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('आमाको नागरिकता नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('ब्यबसाय') }}
+                                    <span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <select name="bussiness_id"
+                                class="custom-select select2 @error('bussiness_id') is-invalid @enderror">
+                                <option value="">
+                                    {{ __('----ब्यबसाय छान्नुहोस् ----') }}
+                                </option>
+                                @foreach ($bussinesses as $bussiness)
+                                    <option value="{{ $bussiness->id }}">{{ $bussiness->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('bussiness_id')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('ब्यबसायको फिल्ड खाली छ |') }}
+                                </p>
+                            @enderror
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('शैक्षिक योग्यता') }}
+                                    <span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <select name="education_qualification_id"
+                                class="custom-select select2 @error('education_qualification_id') is-invalid @enderror">
+                                <option value="">
+                                    {{ __('----शैक्षिक योग्यता छान्नुहोस् ----') }}
+                                </option>
+                                @foreach ($education_qualifications as $education_qualification)
+                                    <option value="{{ $education_qualification->id }}">
+                                        {{ $education_qualification->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('education_qualification_id')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('शैक्षिक योग्यताको फिल्ड खाली छ |') }}
+                                </p>
+                            @enderror
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!------------------------------------------- start of permanent address------------------------------------------->
+                    <div class="col-md-12 mt-5">
+                        <p class="text-center font-weight-bold" style="font-size: 1.5rem;">{{ __('स्थायी ठेगाना') }}</p>
+                        <hr class="w-100">
+                    </div>
+
+                    {{-- this is for address dropdown component --}}
+                    <x-address-dropdown />
+
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('वडा नं') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('permanent_ward') }}" name="permanent_ward"
+                                class="form-control  @error('permanent_ward') is-invalid @enderror">
+                            @error('permanent_ward')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('वडा नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('टोल') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('permanent_tole') }}" name="permanent_tole"
+                                class="form-control  @error('permanent_tole') is-invalid @enderror">
+                            @error('permanent_tole')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('टोलको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('बिदेशिको हकमा देश') }}
+                            </div>
+                            <input type="text" value="{{ old('permanent_country_name') }}" name="permanent_country_name"
+                                class="form-control  @error('permanent_country_name') is-invalid @enderror">
+                            @error('permanent_country_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('बिदेशिको हकमा फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('राहदानी नं ') }}
+                            </div>
+                            <input type="text" value="{{ old('permanent_passport_no') }}" name="permanent_passport_no"
+                                class="form-control  @error('permanent_passport_no') is-invalid @enderror">
+                            @error('permanent_passport_no')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('राहदानी नं फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <!------------------------------------------- end of permanent address------------------------------------------->
+
+
+                    <!------------------------------------------- start of Temporary address------------------------------------------->
+                    <div class="col-md-12 mt-5">
+                        <p class="text-center font-weight-bold" style="font-size: 1.5rem;">{{ __('अस्थायी ठेगाना') }}
+                        </p>
+                        <hr class="w-100">
+                    </div>
+
+                    {{-- this is for address dropdown component --}}
+                    <x-permanentaddress-dropdown />
+
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('वडा नं') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('temporary_ward') }}" name="temporary_ward"
+                                class="form-control  @error('temporary_ward') is-invalid @enderror">
+                            @error('temporary_ward')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('वडा नंको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('टोल') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('temporary_tole') }}" name="temporary_tole"
+                                class="form-control  @error('temporary_tole') is-invalid @enderror">
+                            @error('temporary_tole')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('टोलको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('बिदेशिको हकमा देश') }}
+                            </div>
+                            <input type="text" value="{{ old('temporary_country_name') }}" name="temporary_country_name"
+                                class="form-control  @error('temporary_country_name') is-invalid @enderror">
+                            @error('temporary_country_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('बिदेशिको हकमा फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 col-6">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('राहदानी नं ') }}
+                            </div>
+                            <input type="text" value="{{ old('temporary_passport_no') }}" name="temporary_passport_no"
+                                class="form-control  @error('temporary_passport_no') is-invalid @enderror">
+                            @error('temporary_passport_no')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('राहदानी नं फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <!------------------------------------------- end of temporary address------------------------------------------->
+                    <!------------------------------------------- start of Bank detail------------------------------------------->
+                    <div class="col-md-12 mt-5">
+                        <p class="text-center font-weight-bold" style="font-size: 1.5rem;">{{ __('बैंक विवरण ') }}
+                        </p>
+                        <hr class="w-100">
+                        <a class="btn btn-sm btn-primary text-white mb-0" id="addBank">
+                            <i class="fas fa-plus-circle px-1"></i>{{ __('बैंक विवरण थप्नुहोस') }}</a>
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">{{ __('क्र. स.') }}</th>
+                                    <th class="text-center">{{ __('बैंक नाम') }}</th>
+                                    <th class="text-center">{{ __('खाता नं') }}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="banks">
+                                <tr class="addPrposal">
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">
+                                        <input name="name[]" id="" class="form-control-sm form-control">
+                                    </td>
+                                    <td class="text-center">
+                                        <input name="account_no[]" id="" class="form-control-sm form-control">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!------------------------------------------- end of Bank detail------------------------------------------->
+
+                    <div class=" col-12">
+                        <div class="form-group clearfix mt-3">
+                            <div class="icheck-success d-inline">
+                                <label for="radioSuccess3" style="margin-left:-25px;">
+                                    {{ __('परिवारको सदस्य बैदेशिक रोजगारमा') }}
+                                </label>
+                            </div>
+                            <div class=" px-3 icheck-success d-inline">
+                                <input type="radio" name="is_foreign" id="radioSuccess1" value="1"
+                                    onclick="assignForeign(1)">
+                                <label for="radioSuccess1">
+                                    {{ __('रहेको') }}
+                                </label>
+                            </div>
+                            <div class="icheck-success d-inline">
+                                <input type="radio" name="is_foreign" id="radioSuccess2" value="0"
+                                    onclick="removeForeign(0)">
+                                <label for="radioSuccess2">
+                                    {{ __('नरहेको') }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-2 col-6" id="country_name" style="display: none;">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('देशको नाम') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('country_name') }}" name="country_name"
+                                class="form-control  @error('country_name') is-invalid @enderror">
+                            @error('country_name')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('देशको नामको फिल्ड खाली छ ') }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="my-2 col-6" id="foreign_member" style="display: none;">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('कति जना ?') }}<span class="text-danger px-1 font-weight-bold">*</span>
+                                </span>
+                            </div>
+                            <input type="text" value="{{ old('foreign_member') }}" name="foreign_member"
+                                class="form-control  @error('foreign_member') is-invalid @enderror">
+                            @error('foreign_member')
+                                <p class="invalid-feedback" style="font-size: 0.9rem">
+                                    {{ __('कति जनाको फिल्ड खाली छ ') }}
                                 </p>
                             @enderror
                         </div>
@@ -263,5 +702,39 @@
                 disableDaysBefore: 0,
             });
         };
+    </script>
+    <script>
+          $(document).ready(function() {
+            let i = 2;
+            let j = 2;
+            $('#addBank').on("click", function() {
+                var html = '<tr id="rem_bank'+i+'">'
+                            +'<td class="text-center">'+i+'</td>'
+                            +'<td class="text-center">'
+                            +'<input name="name[]" id="" class="form-control-sm form-control">'
+                            +'</td>'
+                            +'<td class="text-center">'
+                            +'<input name="account_no[]" id="" class="form-control-sm form-control">'
+                            +'</td>'
+                            +'<td><i class="fas fa-trash-alt text-danger" onclick="removeBank('+i+')"></i></td>'
+                            +'</tr>';
+                i++;
+                $("#banks").append(html);
+            });
+        });
+    </script>
+    <script>
+        function assignForeign(i) {
+            $("#country_name").css("display", "block");
+            $("#foreign_member").css("display", "block");
+        }
+
+        function removeForeign(i) {
+            $("#country_name").css("display", "none");
+            $("#foreign_member").css("display", "none");
+        }
+        function removeBank(i){
+          $("#rem_bank"+i).html("");
+        }
     </script>
 @endsection

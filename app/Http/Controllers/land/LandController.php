@@ -2,28 +2,15 @@
 
 namespace App\Http\Controllers\land;
 
+use App\Helper\SettingHelper;
 use App\Http\Controllers\Controller;
 use App\Models\land\land_owner;
-use App\Models\setting\citizenship_type;
-use App\Models\setting\ethnic_group;
-use App\Models\setting\gender;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LandController extends Controller
 {
-    public $genders;
-    public $ethnic_groups;
-    public $citizenship_types;
-
-    public function __construct()
-    {
-        $this->genders = gender::query()->get();
-        $this->ethnic_groups = ethnic_group::query()->get();
-        $this->citizenship_types = citizenship_type::query()->get();
-    }
-
     public function index(): View
     {
         $land_owner_details = land_owner::query()
@@ -43,10 +30,22 @@ class LandController extends Controller
 
     public function create(): View
     {
+        $data = (new SettingHelper())->getSetting(
+            [
+                'gender',
+                'ethnic_group',
+                'citizenship_type',
+                'business',
+                'education_qualification'
+            ]
+        );
+
         return view('land.land_owner_add', [
-            'genders' => $this->genders,
-            'ethnic_groups' => $this->ethnic_groups,
-            'citizenship_types' => $this->citizenship_types
+            'genders' => $data['gender'],
+            'ethnic_groups' => $data['ethnic_group'],
+            'citizenship_types' => $data['citizenship_type'],
+            'bussinesses' => $data['business'],
+            'education_qualifications' => $data['education_qualification'],
         ]);
     }
 }
