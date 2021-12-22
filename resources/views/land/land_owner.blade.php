@@ -20,18 +20,42 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('MEETING ID') }}</th>
-                        <th class="text-center">{{ __('मिति') }}</th>
-                        <th class="text-center">{{ __('बिषय') }}</th>
-                        <th class="text-center">{{ __('समिति') }}</th>
-                        <th class="text-center">{{ __('अवस्था') }}</th>
-                        <th class="text-center">{{ __('कार्य') }}</th>
+                        <th class="text-center">{{ __('ID') }}</th>
+                        <th class="text-center">{{ __('नाम') }}</th>
+                        <th class="text-center">{{ __('नाम (अंग्रेजी)') }}</th>
+                        <th class="text-center">{{ __('सम्पर्क नं') }}</th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($land_owner_details as $key => $land_owner_detail)
+                        <tr>
+                            <td class="text-center">{{ Nepali($key+1) }}</td>
+                            <td class="text-center alert alert-success">{{Nepali($land_owner_detail->reg_id)}}</td>
+                            <td class="text-center">{{$land_owner_detail->name_nepali}}</td>
+                            <td class="text-center">{{$land_owner_detail->name_english}}</td>
+                            <td class="text-center">{{Nepali($land_owner_detail->contact_no)}}</td>
+                            <td class="text-center">
+                                @if ($land_owner_detail->land_detail_status)
+                                @else
+                                    <a href="{{route('land_detail_add',$land_owner_detail)}}" class="btn btn-primary">{{__('जग्गा विवरण भर्नुहोस्')}}</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
 @endsection

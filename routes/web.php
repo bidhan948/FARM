@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\land\LandController;
+use App\Http\Controllers\land_detail\LandDetailController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -9,6 +10,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /****************** below route is all for Land****************************/
     Route::resource('land-owner', LandController::class);
+    Route::get('land-detail-add/{land_owner}',[LandDetailController::class,'create'])->name('land_detail_add');
     /****************** end of land route***************************************/
 
     /****************** below route is all for setting****************************/

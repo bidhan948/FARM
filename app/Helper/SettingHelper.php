@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use Illuminate\Http\Request;
+use App\Models\land\land_owner;
 
 class SettingHelper
 {
@@ -16,6 +16,16 @@ class SettingHelper
             }
         }
         return collect($data);
+    }
+
+    public function generateUniqueId()
+    {
+        $randomInt = random_int(999999, 100000000);
+
+        if (land_owner::where('reg_id', $randomInt)->count() > 0) {
+            $randomInt = random_int(999999, 100000000);
+        }
+        return $randomInt;
     }
 
     public function getAddressFromRequest($attr = [], $type = "permanent")
@@ -69,6 +79,7 @@ class SettingHelper
         $data['country_name'] = $attr['country_name'];
         $data['foreign_member'] = $attr['foreign_member'];
         $data['age'] = $attr['age'];
+        $data['reg_id'] = $this->generateUniqueId();
 
         return $data;
     }

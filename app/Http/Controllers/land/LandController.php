@@ -5,7 +5,6 @@ namespace App\Http\Controllers\land;
 use App\Helper\SettingHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\setting\LandOwnerRequest;
-use App\Http\Requests\setting\LandOWnwerRequest;
 use App\Models\land\land_owner;
 use App\Models\land\land_owner_bank_detail;
 use App\Models\land\land_owner_family_detail;
@@ -20,16 +19,8 @@ class LandController extends Controller
     public function index(): View
     {
         $land_owner_details = land_owner::query()
-            ->with(
-                'landOwnerPermanentAddress',
-                'landOwnerTemporaryAddress',
-                'Bank',
-                'Gender',
-                'ethnicGroup',
-                'maritalStatus',
-                'Business',
-                'educationQualification'
-            )->get();
+            ->select('id', 'name_nepali', 'name_english', 'contact_no', 'reg_id','land_detail_status')
+            ->get();
 
         return view('land.land_owner', ['land_owner_details' => $land_owner_details]);
     }

@@ -6,15 +6,6 @@
             <div class="row my-1">
                 <div class="col-md-12" style="margin-bottom:-5px;">
                     <p class="text-danger text-center">{{ __('कृपया  * चिन्न भएको ठाउँ खाली नछोड्नु होला |') }}</p>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -716,7 +707,7 @@
                         </div>
                     </div>
                     <div class="col-4 my-2">
-                        <button type="submit" class="btn btn-sm btn-primary">{{ __('सम्पादन गर्नुहोस्') }}</button>
+                        <button type="submit" class="btn btn-sm btn-primary" >{{ __('सम्पादन गर्नुहोस्') }}</button>
                     </div>
                 </div>
             </form>

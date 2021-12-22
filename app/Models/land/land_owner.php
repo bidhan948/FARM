@@ -57,7 +57,7 @@ class land_owner extends Model
 
    public function Business(): BelongsTo
    {
-       return $this->belongsTo(business::class);
+       return $this->belongsTo(business::class,'bussiness_id');
    }
   
    public function educationQualification(): BelongsTo
