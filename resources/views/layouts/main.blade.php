@@ -38,7 +38,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
     @include('sweetalert::alert')
-    {{-- @livewireStyles --}}
+    @livewireStyles
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -274,7 +274,7 @@
         </div>
     </div>
     <!-- ./wrapper -->
-    {{-- @livewireScripts --}}
+    @livewireScripts
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -317,6 +317,7 @@
     <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/land.js') }}"></script>
     @yield('scripts')
 </body>
 
