@@ -10,5 +10,6 @@ class land_detail extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $unguarded = true;
+    protected $guarded = [];  
+
 }

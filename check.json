@@ -45,3 +45,79 @@
   "country_name" => "Nepal"
   "foreign_member" => "10"
 
+// this is a structure of jagga bibaran
+"region_id" => "1"
+"land_type_id" => array:3 [▼
+  1 => array:2 [▼
+    0 => "नम्बरी जग्गा"
+    1 => "नम्बरी जग्गा"
+  ]
+  2 => array:2 [▼
+    0 => "ऐलानी जग्गा"
+    1 => "ऐलानी जग्गा"
+  ]
+  3 => array:2 [▼
+    0 => "सरकारी जग्गा"
+    1 => "सरकारी जग्गा"
+  ]
+]
+"kitta_no" => array:3 [▼
+  1 => array:2 [▼
+    0 => null
+    1 => "4"
+  ]
+  2 => array:2 [▼
+    0 => "10"
+    1 => "100"
+  ]
+  3 => array:2 [▼
+    0 => null
+    1 => null
+  ]
+]
+"area1" => array:3 [▼
+  1 => array:2 [▼
+    0 => "10"
+    1 => null
+  ]
+  2 => array:1 [▼
+    0 => null
+  ]
+  3 => array:2 [▼
+    0 => null
+    1 => null
+  ]
+]
+"area2" => array:3 [▶]
+"area3" => array:3 [▶]
+"bargha_area" => array:3 [▼
+  1 => array:2 [▼
+    0 => "69418.892"
+    1 => "3724.9156999999996"
+  ]
+  2 => array:2 [▶]
+  3 => array:2 [▶]
+]
+"is_bajho" => array:2 [▶]
+"remark" => array:3 [▼
+  1 => array:2 [▼
+    0 => null
+    1 => null
+  ]
+  2 => array:2 [▼
+    0 => null
+    1 => null
+  ]
+  3 => array:2 [▼
+    0 => null
+    1 => null
+  ]
+]
+"cultivable_area" => "78900.4871"
+"cultivated_area" => "78800"
+"total_area" => "197420.5406"
+"irrigation_facility" => "1"
+"irrigation_area" => "123"
+"unirrigation_area" => "145"
+"irrigation_type_id" => "1"
+"road_facility" => "1"

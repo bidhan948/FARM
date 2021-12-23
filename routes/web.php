@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth'], function () {
     /****************** below route is all for Land****************************/
     Route::resource('land-owner', LandController::class);
     Route::get('land-detail-add/{land_owner}',[LandDetailController::class,'create'])->name('land_detail_add');
+    Route::post('land-detail-add/{land_owner}',[LandDetailController::class,'store'])->name('land_detail_store');
     /****************** end of land route***************************************/
 
     /****************** below route is all for setting****************************/
