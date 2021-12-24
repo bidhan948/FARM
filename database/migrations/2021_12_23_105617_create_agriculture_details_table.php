@@ -25,6 +25,7 @@ class CreateAgricultureDetailsTable extends Migration
             $table->integer('seed_source_id');
             $table->integer('seed_supplier_id');
             $table->float('total_area')->nullable();
+            $table->float('total_production')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

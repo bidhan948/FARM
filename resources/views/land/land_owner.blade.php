@@ -36,12 +36,21 @@
                             <td class="text-center">{{ $land_owner_detail->name_english }}</td>
                             <td class="text-center">{{ Nepali($land_owner_detail->contact_no) }}</td>
                             <td class="text-center">
-                                <a class="btn btn-sm text-white btn-primary"><i class="fas fa-map px-1"></i>{{ __('जग्गा धनीको विवरण हेर्नुहोस') }}</a>
+                                <a class="btn btn-sm text-white btn-primary"><i
+                                        class="fas fa-map px-1"></i>{{ __('जग्गा धनीको विवरण हेर्नुहोस') }}</a>
                                 @if ($land_owner_detail->landDetail == null)
                                     <a href="{{ route('land_detail_add', $land_owner_detail) }}"
                                         class="btn btn-primary">{{ __('जग्गा विवरण भर्नुहोस्') }}</a>
                                 @else
-                                    <a class="btn btn-sm text-white btn-primary"><i class="fas fa-map px-1"></i>{{ __('जग्गा विवरण हेर्नुहोस') }}</a>
+                                    <a class="btn btn-sm text-white btn-primary"><i
+                                            class="fas fa-map px-1"></i>{{ __('जग्गा विवरण हेर्नुहोस') }}</a>
+                                @endif
+                                @if ($land_owner_detail->agricultureDetail->count() == 0)
+                                    <a href="{{ route('agriculture_detail', $land_owner_detail) }}"
+                                        class="btn btn-primary"><i class="fas fa-plus-circle px-1"></i> {{ __('कृषि विवरण भर्नुहोस्') }}</a>
+                                @else
+                                    <a class="btn btn-sm text-white btn-primary"><i
+                                            class="fas fa-map px-1"></i>{{ __('कृषि विवरण हेर्नुहोस') }}</a>
                                 @endif
                             </td>
                         </tr>

@@ -8,8 +8,6 @@ use App\Http\Requests\LandDetailRequest;
 use App\Models\land\land_owner;
 use App\Models\land_detail\land_detail;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LandDetailController extends Controller

@@ -121,3 +121,50 @@
 "unirrigation_area" => "145"
 "irrigation_type_id" => "1"
 "road_facility" => "1"
+
+// the given data is for agricul;ture
+
+"crop_id" => array:4 [▼
+  1 => array:1 [▼
+    0 => "1"
+  ]
+  2 => array:2 [▼
+    0 => "6"
+    1 => "1"
+  ]
+  3 => array:1 [▶]
+  4 => array:1 [▶]
+]
+"area1" => array:4 [▼
+  1 => array:1 [▼
+    0 => "14"
+  ]
+  2 => array:2 [▼
+    0 => "10"
+    1 => "10"
+  ]
+  3 => array:1 [▼
+    0 => null
+  ]
+  4 => array:1 [▼
+    0 => null
+  ]
+]
+"area2" => array:4 [▶]
+"area3" => array:4 [▶]
+"area4" => array:4 [▶]
+"total_production" => array:4 [▼
+  1 => array:1 [▼
+    0 => "7"
+  ]
+  2 => array:2 [▼
+    0 => "2"
+    1 => "4"
+  ]
+  3 => array:1 [▼
+    0 => null
+  ]
+  4 => array:1 [▶]
+]
+"seed_source_id" => "1"
+"seed_supplier_id" => "1"

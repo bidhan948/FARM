@@ -19,8 +19,9 @@ class LandController extends Controller
     {
         $land_owner_details = land_owner::query()
             ->select('id', 'name_nepali', 'name_english', 'contact_no', 'reg_id', 'land_detail_status')
-            ->with('landDetail')
+            ->with('landDetail','agricultureDetail')
             ->get();
+        
         return view('land.land_owner', ['land_owner_details' => $land_owner_details]);
     }
 
