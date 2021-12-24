@@ -12,16 +12,15 @@ use App\Models\land\land_owner_permanent_address;
 use App\Models\land\land_owner_temporary_address;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class LandController extends Controller
 {
     public function index(): View
     {
         $land_owner_details = land_owner::query()
-            ->select('id', 'name_nepali', 'name_english', 'contact_no', 'reg_id','land_detail_status')
+            ->select('id', 'name_nepali', 'name_english', 'contact_no', 'reg_id', 'land_detail_status')
+            ->with('landDetail')
             ->get();
-
         return view('land.land_owner', ['land_owner_details' => $land_owner_details]);
     }
 

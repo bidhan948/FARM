@@ -14,7 +14,7 @@
                     </label>
                 </div>
                 <div class="icheck-success d-inline">
-                    <input type="radio" wire:model="is_foreign" name="is_foreign" id="radioSuccess2" >
+                    <input type="radio" wire:model="is_foreign" name="is_foreign" id="radioSuccess2" value="0" >
                     <label for="radioSuccess2">
                         {{ __('पहाड प्रचलित') }}
                     </label>
@@ -27,7 +27,7 @@
         @if ($showTerai || $showPahad)
             <div class="row">
                 <div class="col-6">
-                    <a class="btn btn-sm btn-primary text-white mb-2" onclick="addLandDetail({{ $is_foreign }})">
+                    <a class="btn btn-sm btn-primary text-white mb-2" onclick="addLandDetail({{$is_foreign}})">
                         <i class="fas fa-plus-circle px-1"></i>{{ __('जग्गा विवरण थप्नुहोस') }}</a>
                 </div>
                 <div class="col-6 ">

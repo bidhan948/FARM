@@ -2,6 +2,7 @@
 
 namespace App\Models\land;
 
+use App\Models\land_detail\land_detail;
 use App\Models\setting\business;
 use App\Models\setting\education_qualification;
 use App\Models\setting\ethnic_group;
@@ -25,6 +26,10 @@ class land_owner extends Model
        $this->attributes['age'] = English($value);
    }
 
+   public function landDetail(): HasMany
+   {
+       return $this->hasMany(land_detail::class);
+   }
    public function landOwnerPermanentAddress(): HasOne
    {
         return $this->hasOne(land_owner_permanent_address::class);

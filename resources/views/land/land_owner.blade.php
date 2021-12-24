@@ -30,15 +30,18 @@
                 <tbody>
                     @foreach ($land_owner_details as $key => $land_owner_detail)
                         <tr>
-                            <td class="text-center">{{ Nepali($key+1) }}</td>
-                            <td class="text-center alert alert-success">{{Nepali($land_owner_detail->reg_id)}}</td>
-                            <td class="text-center">{{$land_owner_detail->name_nepali}}</td>
-                            <td class="text-center">{{$land_owner_detail->name_english}}</td>
-                            <td class="text-center">{{Nepali($land_owner_detail->contact_no)}}</td>
+                            <td class="text-center">{{ Nepali($key + 1) }}</td>
+                            <td class="text-center alert alert-success">{{ Nepali($land_owner_detail->reg_id) }}</td>
+                            <td class="text-center">{{ $land_owner_detail->name_nepali }}</td>
+                            <td class="text-center">{{ $land_owner_detail->name_english }}</td>
+                            <td class="text-center">{{ Nepali($land_owner_detail->contact_no) }}</td>
                             <td class="text-center">
-                                @if ($land_owner_detail->land_detail_status)
+                                <a class="btn btn-sm text-white btn-primary"><i class="fas fa-map px-1"></i>{{ __('जग्गा धनीको विवरण हेर्नुहोस') }}</a>
+                                @if ($land_owner_detail->landDetail == null)
+                                    <a href="{{ route('land_detail_add', $land_owner_detail) }}"
+                                        class="btn btn-primary">{{ __('जग्गा विवरण भर्नुहोस्') }}</a>
                                 @else
-                                    <a href="{{route('land_detail_add',$land_owner_detail)}}" class="btn btn-primary">{{__('जग्गा विवरण भर्नुहोस्')}}</a>
+                                    <a class="btn btn-sm text-white btn-primary"><i class="fas fa-map px-1"></i>{{ __('जग्गा विवरण हेर्नुहोस') }}</a>
                                 @endif
                             </td>
                         </tr>

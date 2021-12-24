@@ -8,7 +8,7 @@ use Livewire\Component;
 class LandDetail extends Component
 {
     public $land_types;
-    public $is_foreign = '';
+    public $is_foreign;
     public $showTerai = false;
     public $showPahad = false;
     public $checkBox = true;
