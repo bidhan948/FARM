@@ -8,14 +8,14 @@ use App\Http\Requests\AgricultureDetailRequest;
 use App\Models\agriculture\agriculture_detail;
 use App\Models\agriculture\seed_detail;
 use App\Models\land\land_owner;
-use App\Models\setting\crop_type;
+use App\Models\setting\crop_type;  
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class AgricultureDetailController extends Controller
 {
     public function create(land_owner $land_owner, SettingHelper $helper): View
     {
+        abort_if(land_owner::where('id', $land_owner->id)->has('agricultureDetail')->get()  != null, 403);
         $data = $helper->getSetting(['crop_area', 'crop', 'seed_supplier', 'seed_source']);
         $crop_types = crop_type::query()->with('Crop')->get();
 
@@ -31,6 +31,7 @@ class AgricultureDetailController extends Controller
 
     public function store(AgricultureDetailRequest $request, land_owner $land_owner)
     {
+        abort_if(land_owner::where('id', $land_owner->id)->has('agricultureDetail')->get()  != null, 403);
         foreach ($request->crop_id as $crop_type_id => $crop_arr) {
             foreach ($crop_arr as $key => $crop) {
 
@@ -68,5 +69,26 @@ class AgricultureDetailController extends Controller
 
         toast("कृषि बिबरण हाल्न सफल भयो ", "success");
         return redirect()->route('land-owner.index');
+    }
+
+    public function show(land_owner $land_owner, SettingHelper $helper): View
+    {
+        abort_if(land_owner::where('id', $land_owner->id)->has('agricultureDetail')->get() == null, 403);
+
+        $data = $helper->getSetting(['crop_area']);
+        $crop_types = crop_type::query()->whereHas('agricultureDetail')->with('agricultureDetail')->get();
+        $agriculture_details = agriculture_detail::query()->with('cropType', 'crop')->get();
+        $seed_details = seed_detail::query()->with('seedSource', 'seedSupplier')->get();
+
+        return view(
+            'agriculture.agriculture_show',
+            [
+                'land_owner' => $land_owner,
+                'crop_areas' => $data['crop_area'],
+                'crop_types' => $crop_types,
+                'agriculture_details' => $agriculture_details,
+                'seed_details' => $seed_details,
+            ]
+        );
     }
 }

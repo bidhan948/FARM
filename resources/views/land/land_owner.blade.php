@@ -49,8 +49,8 @@
                                     <a href="{{ route('agriculture_detail', $land_owner_detail) }}"
                                         class="btn btn-primary"><i class="fas fa-plus-circle px-1"></i> {{ __('कृषि विवरण भर्नुहोस्') }}</a>
                                 @else
-                                    <a class="btn btn-sm text-white btn-primary"><i
-                                            class="fas fa-map px-1"></i>{{ __('कृषि विवरण हेर्नुहोस') }}</a>
+                                    <a href="{{route('agriculture_detail_show',$land_owner_detail)}}" class="btn btn-sm text-white btn-primary"><i
+                                            class="fas fa-eye px-1"></i>{{ __('कृषि विवरण हेर्नुहोस') }}</a>
                                 @endif
                             </td>
                         </tr>

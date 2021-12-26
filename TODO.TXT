@@ -1,0 +1,2 @@
+agriculture ma total area part xaina 
+on adding more on crtop_type data is not coming by filtering

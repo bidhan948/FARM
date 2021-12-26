@@ -2,6 +2,7 @@
 
 namespace App\Models\setting;
 
+use App\Models\agriculture\agriculture_detail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,5 +17,10 @@ class crop_type extends Model
     public function Crop(): HasMany
     {
         return $this->hasMany(crop::class);
+    }
+
+    public function agricultureDetail(): HasMany
+    {
+        return $this->hasMany(agriculture_detail::class);
     }
 }
