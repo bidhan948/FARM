@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\agriculture\AgricultureDetailController;
+use App\Http\Controllers\animal\AnimalDetailController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ use App\Http\Controllers\setting\{
     SeedSupplierController,
     UnitController
 };
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -37,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('land-detail-add/{land_owner}',[LandDetailController::class,'store'])->name('land_detail_store');
     Route::get('agriculture-detail-add/{land_owner}',[AgricultureDetailController::class,'create'])->name('agriculture_detail');
     Route::get('agriculture-detail/{land_owner}',[AgricultureDetailController::class,'show'])->name('agriculture_detail_show');
+    Route::get('animal-add/{land_owner}',[AnimalDetailController::class,'index'])->name('animal_detail_add');
     /****************** end of land route***************************************/
 
     /****************** below route is all for setting****************************/

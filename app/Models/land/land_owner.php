@@ -4,6 +4,9 @@ namespace App\Models\land;
 
 use App\Models\agriculture\agriculture_detail;
 use App\Models\agriculture\seed_detail;
+use App\Models\animal\animal_detail;
+use App\Models\animal\animal_other_detail;
+use App\Models\animal\animal_product_detail;
 use App\Models\land_detail\land_detail;
 use App\Models\setting\business;
 use App\Models\setting\education_qualification;
@@ -41,6 +44,21 @@ class land_owner extends Model
    public function seedDetail(): HasMany
    {
        return $this->hasMany(seed_detail::class);
+   }
+
+   public function animalDetail(): HasMany
+   {
+       return $this->hasMany(animal_detail::class);
+   }
+
+   public function animalProduct(): HasMany
+   {
+       return $this->hasMany(animal_product_detail::class);
+   }
+
+   public function animalOtherProduct(): HasMany
+   {
+       return $this->hasMany(animal_other_detail::class); 
    }
    
    public function landOwnerPermanentAddress(): HasOne
