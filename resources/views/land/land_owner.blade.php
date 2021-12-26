@@ -31,7 +31,7 @@
                     @foreach ($land_owner_details as $key => $land_owner_detail)
                         <tr>
                             <td class="text-center">{{ Nepali($key + 1) }}</td>
-                            <td class="text-center alert alert-success">{{ Nepali($land_owner_detail->reg_id) }}</td>
+                            <td class="text-center"><span class="alert alert-success">{{ Nepali($land_owner_detail->reg_id) }}</span></td>
                             <td class="text-center">{{ $land_owner_detail->name_nepali }}</td>
                             <td class="text-center">{{ $land_owner_detail->name_english }}</td>
                             <td class="text-center">{{ Nepali($land_owner_detail->contact_no) }}</td>
@@ -47,10 +47,21 @@
                                 @endif
                                 @if ($land_owner_detail->agricultureDetail->count() == 0)
                                     <a href="{{ route('agriculture_detail', $land_owner_detail) }}"
-                                        class="btn btn-primary"><i class="fas fa-plus-circle px-1"></i> {{ __('कृषि विवरण भर्नुहोस्') }}</a>
+                                        class="btn btn-primary"><i class="fas fa-plus-circle px-1"></i>
+                                        {{ __('कृषि विवरण भर्नुहोस्') }}</a>
                                 @else
-                                    <a href="{{route('agriculture_detail_show',$land_owner_detail)}}" class="btn btn-sm text-white btn-primary"><i
+                                    <a href="{{ route('agriculture_detail_show', $land_owner_detail) }}"
+                                        class="btn btn-sm text-white btn-primary"><i
                                             class="fas fa-eye px-1"></i>{{ __('कृषि विवरण हेर्नुहोस') }}</a>
+                                @endif
+                                @if ($land_owner_detail->animalDetail->count() == 0)
+                                    <a href="{{ route('animal_detail_add', $land_owner_detail) }}"
+                                        class="btn btn-primary mt-2"><i class="fas fa-plus-circle px-1"></i>
+                                        {{ __('पशु विवरण भर्नुहोस्') }}</a>
+                                @else
+                                <a href="{{ route('agriculture_detail_show', $land_owner_detail) }}"
+                                class="btn btn-sm text-white btn-primary my-2"><i
+                                    class="fas fa-eye px-1"></i>{{ __('पशु विवरण हेर्नुहोस') }}</a>
                                 @endif
                             </td>
                         </tr>
