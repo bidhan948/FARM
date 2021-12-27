@@ -59,7 +59,7 @@
                                 class="form-control  @error('age') is-invalid @enderror">
                             @error('age')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
-                                    {{ __('अंग्रेजी नामको फिल्ड खाली छ ') }}
+                                    {{ __('उमेरको फिल्ड खाली छ ') }}
                                 </p>
                             @enderror
                         </div>

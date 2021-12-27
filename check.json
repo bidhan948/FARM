@@ -168,3 +168,31 @@
 ]
 "seed_source_id" => "1"
 "seed_supplier_id" => "1"
+
+// this is for animal add detail
+"animal_id" => array:2 [▼
+  0 => "1"
+  1 => "2"
+]
+"seed_source_id" => array:2 [▼
+  0 => "1"
+  1 => "1"
+]
+"total_number" => array:2 [▼
+  0 => "10"
+  1 => "2"
+]
+"animal_id_production" => array:1 [▼
+  0 => "2"
+]
+"unit_id" => array:1 [▼
+  0 => "2"
+]
+"production" => array:1 [▼
+  0 => "10"
+]
+"is_insurance" => "1"
+"insurance_start_date" => "2076-09-01"
+"insurance_end_date" => "2078-09-13"
+"insurance_amount" => "100000"
+"fish_type" => "रहू"
