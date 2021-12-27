@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
+use App\Http\Controllers\bibaran\ReportController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /****************** below route is all for Land****************************/
     Route::resource('land-owner', LandController::class);
+    Route::get('Bibaran/{land_owner}',[ReportController::class,'index'])->name('show_bibaran');
     Route::get('land-detail-add/{land_owner}',[LandDetailController::class,'create'])->name('land_detail_add');
     Route::post('land-detail-add/{land_owner}',[LandDetailController::class,'store'])->name('land_detail_store');
     Route::get('agriculture-detail-add/{land_owner}',[AgricultureDetailController::class,'create'])->name('agriculture_detail');

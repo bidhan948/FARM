@@ -36,9 +36,9 @@
                             <td class="text-center">{{ $land_owner_detail->name_english }}</td>
                             <td class="text-center">{{ Nepali($land_owner_detail->contact_no) }}</td>
                             <td class="text-center">
-                                <a class="btn btn-sm text-white btn-primary"><i
-                                        class="fas fa-map px-1"></i>{{ __('जग्गा धनीको विवरण हेर्नुहोस') }}</a>
-                                @if ($land_owner_detail->landDetail == null)
+                                <a  href="{{route('show_bibaran',$land_owner_detail)}}" class="btn btn-sm text-white btn-primary"><i
+                                        class="fas fa-map px-1"></i>{{ __('विवरण हर्नुहोस') }}</a>
+                                {{-- @if ($land_owner_detail->landDetail == null)
                                     <a href="{{ route('land_detail_add', $land_owner_detail) }}"
                                         class="btn btn-primary">{{ __('जग्गा विवरण भर्नुहोस्') }}</a>
                                 @else
@@ -62,7 +62,7 @@
                                 <a href="{{ route('animal_detail_show', $land_owner_detail) }}"
                                 class="btn btn-sm text-white btn-primary my-2"><i
                                     class="fas fa-eye px-1"></i>{{ __('पशु विवरण हेर्नुहोस') }}</a>
-                                @endif
+                                @endif --}}
                             </td>
                         </tr>
                     @endforeach
