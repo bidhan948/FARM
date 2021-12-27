@@ -22,6 +22,6 @@ class animal_detail extends Model
 
     public function Source(): BelongsTo
     {
-        return $this->belongsTo(seed_source::class);
+        return $this->belongsTo(seed_source::class,'seed_source_id');
     }
 }

@@ -59,7 +59,7 @@
                                         class="btn btn-primary mt-2"><i class="fas fa-plus-circle px-1"></i>
                                         {{ __('पशु विवरण भर्नुहोस्') }}</a>
                                 @else
-                                <a href="{{ route('agriculture_detail_show', $land_owner_detail) }}"
+                                <a href="{{ route('animal_detail_show', $land_owner_detail) }}"
                                 class="btn btn-sm text-white btn-primary my-2"><i
                                     class="fas fa-eye px-1"></i>{{ __('पशु विवरण हेर्नुहोस') }}</a>
                                 @endif

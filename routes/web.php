@@ -40,8 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('agriculture-detail-add/{land_owner}',[AgricultureDetailController::class,'create'])->name('agriculture_detail');
     Route::post('agriculture-detail-add/{land_owner}',[AgricultureDetailController::class,'store'])->name('agriculture_detail_store');
     Route::get('agriculture-detail/{land_owner}',[AgricultureDetailController::class,'show'])->name('agriculture_detail_show');
-    Route::get('animal-add/{land_owner}',[AnimalDetailController::class,'index'])->name('animal_detail_add');
+    Route::get('animal-add/{land_owner}',[AnimalDetailController::class,'create'])->name('animal_detail_add');
     Route::post('animal-add/{land_owner}',[AnimalDetailController::class,'store'])->name('animal_detail_store');
+    Route::get('animal-detail/{land_owner}',[AnimalDetailController::class,'show'])->name('animal_detail_show');
     /****************** end of land route***************************************/
 
     /****************** below route is all for setting****************************/
