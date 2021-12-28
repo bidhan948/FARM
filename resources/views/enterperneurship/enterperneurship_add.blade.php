@@ -31,13 +31,13 @@
                         </select>
                         @error('arrogance_status')
                             <p class="invalid-feedback" style="font-size: 0.9rem">
-                                {{ __('उमेरको फिल्ड खाली छ |') }}
+                                {{ __('उधम्शिल्ता/फारम संचालनमा आबद्ध फिल्ड खाली छ |') }}
                             </p>
                         @enderror
                     </div>
                 </div>
                 <!------------------------------------------------------below field is all for organization------------------------------------------------------->
-                <div id="org_detail" style="display: none;">
+                <div id="org_detail" style="display: block;">
                     <div class="row" class="mt-3">
                         <hr class="w-100">
                         <div class="col-6 mt-3">
@@ -345,7 +345,7 @@
                     </div>
                 </div>
                 <div class="col-12 mt-3">
-                    <button class="btn btn-sm btn-primary" type="submit">{{ __('सम्पादन गर्नुहोस्') }}</button>
+                    <button class="btn btn-sm btn-primary" type="submit" onclick="return confirm('कृपया संचालन सुनिस्चित गर्नुहोस्');">{{ __('सम्पादन गर्नुहोस्') }}</button>
                 </div>
             </form>
         </div>

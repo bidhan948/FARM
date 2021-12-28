@@ -32,8 +32,8 @@
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="{{ route('land_detail_add', $land_owner_detail) }}" class="small-box-footer">{{ __('भर्नुहोस्') }} <i
-                                    class="px-1 fas fa-plus"></i></a>
+                            <a href="{{ route('land_detail_add', $land_owner_detail) }}"
+                                class="small-box-footer">{{ __('भर्नुहोस्') }} <i class="px-1 fas fa-plus"></i></a>
                         </div>
                     </div>
                 @else
@@ -108,32 +108,34 @@
                     </div>
                 @endif
 
-                @if ($land_owner->Enterperneurship->count() == 0)
-                    <div class="col-lg-3 col-4">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner text-center">
-                                <p><i class="fas fa-plus px-2"></i> {{ __('उधम्शिलता विवरण भर्नुहोस्') }}</p>
+                @if ($land_owner->arrogance_status)
+                    @if ($land_owner->Enterperneurship->count() == 0)
+                        <div class="col-lg-3 col-4">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner text-center">
+                                    <p><i class="fas fa-plus px-2"></i> {{ __('उधम्शिलता विवरण भर्नुहोस्') }}</p>
+                                </div>
+                                <div class="icon">
+                                </div>
+                                <a href="{{ route('enterperneurship_detail_add', $land_owner) }}"
+                                    class="small-box-footer">{{ __('भर्नुहोस्') }} <i class="px-1 fas fa-plus"></i></a>
                             </div>
-                            <div class="icon">
-                            </div>
-                            <a href="{{ route('enterperneurship_detail_add', $land_owner) }}"
-                                class="small-box-footer">{{ __('भर्नुहोस्') }} <i class="px-1 fas fa-plus"></i></a>
                         </div>
-                    </div>
-                @else
-                    <div class="col-lg-3 col-4">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner text-center">
-                                <p><i class="fas fa-eye px-2"></i> {{ __('उधम्शिलता विवरण हेर्नुहोस') }}</p>
+                    @else
+                        <div class="col-lg-3 col-4">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner text-center">
+                                    <p><i class="fas fa-eye px-2"></i> {{ __('उधम्शिलता विवरण हेर्नुहोस') }}</p>
+                                </div>
+                                <div class="icon">
+                                </div>
+                                <a href="{{ route('enterperneurship_detail_show', $land_owner) }}"
+                                    class="small-box-footer">{{ __('हेर्नुहोस्') }} <i class="px-1 fas fa-eye"></i></a>
                             </div>
-                            <div class="icon">
-                            </div>
-                            <a href="{{ route('animal_detail_show', $land_owner) }}"
-                                class="small-box-footer">{{ __('हेर्नुहोस्') }} <i class="px-1 fas fa-eye"></i></a>
                         </div>
-                    </div>
+                    @endif
                 @endif
             </div>
         </div>

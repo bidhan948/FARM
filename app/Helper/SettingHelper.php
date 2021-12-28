@@ -83,4 +83,24 @@ class SettingHelper
 
         return $data;
     }
+
+    public function grtEnterpeunershipData($attr = [])
+    {
+        $data['organization_name_nepali'] = $attr['organization_name_nepali'];
+        $data['organization_name_english']  = $attr['organization_name_english'];
+        $data['organization_type_id']  = $attr['organization_type_id'];
+        $data['organization_budget']  = $attr['organization_budget'];
+        $data['pan_no']  = $attr['pan_no'];
+        $data['contact_person_name']  = $attr['contact_person_name'];
+        $data['province_id']  = $attr['permanent_province_id'];
+        $data['district_id']  = $attr['permanent_district_id'];
+        $data['municipality_id']  = $attr['permanent_municipality_id'];
+        $data['ward']  = $attr['ward'];
+        $data['toll_name']  = $attr['toll_name'];
+        $data['no_of_staff_in_field']  = $attr['no_of_staff_in_field'];
+        $data['ot_no_of_staff']  = $attr['ot_no_of_staff'];
+        $data['amsik_no_of_staff']  = $attr['amsik_no_of_staff'];
+        
+        return $data;
+    }
 }

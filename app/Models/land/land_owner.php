@@ -28,7 +28,7 @@ class land_owner extends Model
     use HasFactory, SoftDeletes;
 
     const ARROGANCE_TRUE = 1;
-    const ARROGANCE_FALSE = 1;
+    const ARROGANCE_FALSE = 0;
 
     protected $guarded = [];
 
