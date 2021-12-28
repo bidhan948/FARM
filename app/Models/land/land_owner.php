@@ -7,6 +7,8 @@ use App\Models\agriculture\seed_detail;
 use App\Models\animal\animal_detail;
 use App\Models\animal\animal_other_detail;
 use App\Models\animal\animal_product_detail;
+use App\Models\entrepreneurship\business_detail;
+use App\Models\entrepreneurship\upcoming_plans;
 use App\Models\land_detail\land_detail;
 use App\Models\setting\business;
 use App\Models\setting\education_qualification;
@@ -22,82 +24,99 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class land_owner extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $guarded = [];  
+    const ARROGANCE_TRUE = 1;
+    const ARROGANCE_FALSE = 1;
 
-   public function setAgeAttribute($value)
-   {
-       $this->attributes['age'] = English($value);
-   }
+    protected $guarded = [];
 
-   public function landDetail(): HasMany
-   {
-       return $this->hasMany(land_detail::class);
-   }
+    public function setAgeAttribute($value)
+    {
+        $this->attributes['age'] = English($value);
+    }
 
-   public function agricultureDetail(): HasMany
-   {
-       return $this->hasMany(agriculture_detail::class);
-   }
+    public function landDetail(): HasMany
+    {
+        return $this->hasMany(land_detail::class);
+    }
 
-   public function seedDetail(): HasMany
-   {
-       return $this->hasMany(seed_detail::class);
-   }
+    public function agricultureDetail(): HasMany
+    {
+        return $this->hasMany(agriculture_detail::class);
+    }
 
-   public function animalDetail(): HasMany
-   {
-       return $this->hasMany(animal_detail::class);
-   }
+    public function seedDetail(): HasMany
+    {
+        return $this->hasMany(seed_detail::class);
+    }
 
-   public function animalProduct(): HasMany
-   {
-       return $this->hasMany(animal_product_detail::class);
-   }
+    public function animalDetail(): HasMany
+    {
+        return $this->hasMany(animal_detail::class);
+    }
 
-   public function animalOtherProduct(): HasMany
-   {
-       return $this->hasMany(animal_other_detail::class); 
-   }
-   
-   public function landOwnerPermanentAddress(): HasOne
-   {
+    public function animalProduct(): HasMany
+    {
+        return $this->hasMany(animal_product_detail::class);
+    }
+
+    public function animalOtherProduct(): HasMany
+    {
+        return $this->hasMany(animal_other_detail::class);
+    }
+
+    public function Enterperneurship(): HasMany
+    {
+        return $this->hasMany(Enterperneurship::class);
+    }
+
+    public function businessDetail(): HasMany
+    {
+        return $this->hasMany(business_detail::class);
+    }
+
+    public function upcomingPlans(): HasMany
+    {
+        return $this->hasMany(upcoming_plans::class);
+    }
+    public function landOwnerPermanentAddress(): HasOne
+    {
         return $this->hasOne(land_owner_permanent_address::class);
-   }
+    }
 
-   public function landOwnerTemporaryAddress(): HasOne
-   {
+    public function landOwnerTemporaryAddress(): HasOne
+    {
         return $this->hasOne(land_owner_temporary_address::class);
-   }
+    }
 
-   public function Bank(): HasMany
-   {
-       return $this->hasMany(land_owner_bank_detail::class);
-   }
-   
-   public function Gender(): BelongsTo
-   {
-       return $this->belongsTo(gender::class);
-   }
-   
-   public function ethnicGroup(): BelongsTo
-   {
-       return $this->belongsTo(ethnic_group::class);
-   }
-   
-   public function maritalStatus(): BelongsTo
-   {
-       return $this->belongsTo(marital_status::class);
-   }
+    public function Bank(): HasMany
+    {
+        return $this->hasMany(land_owner_bank_detail::class);
+    }
 
-   public function Business(): BelongsTo
-   {
-       return $this->belongsTo(business::class,'bussiness_id');
-   }
-  
-   public function educationQualification(): BelongsTo
-   {
-       return $this->belongsTo(education_qualification::class);
-   }
+    public function Gender(): BelongsTo
+    {
+        return $this->belongsTo(gender::class);
+    }
+
+    public function ethnicGroup(): BelongsTo
+    {
+        return $this->belongsTo(ethnic_group::class);
+    }
+
+    public function maritalStatus(): BelongsTo
+    {
+        return $this->belongsTo(marital_status::class);
+    }
+
+    public function Business(): BelongsTo
+    {
+        return $this->belongsTo(business::class, 'bussiness_id');
+    }
+
+    public function educationQualification(): BelongsTo
+    {
+        return $this->belongsTo(education_qualification::class);
+    }
 }
