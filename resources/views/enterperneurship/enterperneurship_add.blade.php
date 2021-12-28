@@ -201,9 +201,9 @@
                                             class="text-danger px-1 font-weight-bold">*</span>
                                     </span>
                                 </div>
-                                <input type="text" value="{{ old('contact_person_name') }}" name="contact_person_name"
-                                    class="form-control  @error('contact_person_name') is-invalid @enderror">
-                                @error('contact_person_name')
+                                <input type="text" value="{{ old('contact_no') }}" name="contact_no"
+                                    class="form-control  @error('contact_no') is-invalid @enderror">
+                                @error('contact_no')
                                     <p class="invalid-feedback" style="font-size: 0.9rem">
                                         {{ __('सम्पर्क/मोबाईल नंको फिल्ड खाली छ ') }}
                                     </p>

@@ -81,9 +81,9 @@ class AnimalDetailController extends Controller
     {
         abort_if(land_owner::where('id', $land_owner->id)->whereHas('animalDetail')->with('animalDetail')->get() == null, 403);
 
-        $animal_details = animal_detail::query()->with('Source', 'Animal')->get();
-        $animal_product_details = animal_product_detail::query()->with('Animal', 'Unit')->get();
-        $animal_other_details = animal_other_detail::query()->get();
+        $animal_details = animal_detail::query()->where('land_owner_id', $land_owner->id)->with('Source', 'Animal')->get();
+        $animal_product_details = animal_product_detail::query()->where('land_owner_id', $land_owner->id)->with('Animal', 'Unit')->get();
+        $animal_other_details = animal_other_detail::query()->where('land_owner_id', $land_owner->id)->get();
 
         return view(
             'animal.animal_detail_show',

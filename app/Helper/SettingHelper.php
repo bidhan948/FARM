@@ -92,6 +92,8 @@ class SettingHelper
         $data['organization_budget']  = $attr['organization_budget'];
         $data['pan_no']  = $attr['pan_no'];
         $data['contact_person_name']  = $attr['contact_person_name'];
+        $data['contact_no']  = $attr['contact_no'];
+        $data['cit_no']  = $attr['cit_no'];
         $data['province_id']  = $attr['permanent_province_id'];
         $data['district_id']  = $attr['permanent_district_id'];
         $data['municipality_id']  = $attr['permanent_municipality_id'];

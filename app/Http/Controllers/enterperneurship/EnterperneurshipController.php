@@ -16,7 +16,7 @@ class EnterperneurshipController extends Controller
 {
     public function create(land_owner $land_owner, SettingHelper $helper): View
     {
-        abort_if(enterpreneurship::query()->where('land_owner_id',$land_owner->id)->count() != 0, 403);
+        abort_if(enterpreneurship::query()->where('land_owner_id', $land_owner->id)->count() != 0, 403);
 
         $data = $helper->getSetting(['business', 'organization_type']);
         return view(
@@ -31,7 +31,7 @@ class EnterperneurshipController extends Controller
 
     public function store(EnterpeunershipRequest $request, land_owner $land_owner, SettingHelper $helper): RedirectResponse
     {
-        abort_if(enterpreneurship::query()->where('land_owner_id',$land_owner->id)->count() != 0, 403);
+        abort_if(enterpreneurship::query()->where('land_owner_id', $land_owner->id)->count() != 0, 403);
 
         if ($request->arrogance_status == 0) {
             $land_owner->update(['arrogance_status' => land_owner::ARROGANCE_FALSE]);
@@ -64,8 +64,29 @@ class EnterperneurshipController extends Controller
         return redirect()->route('land-owner.index');
     }
 
-    public function show(land_owner $land_owner,SettingHelper $helper): View
+    public function show(land_owner $land_owner): View
     {
-        dd($land_owner);
+        abort_if(enterpreneurship::query()->where('land_owner_id', $land_owner->id)->count() == 0, 403);
+
+        $enterpreneurships = enterpreneurship::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('organizationType','Province','District','Municipality')
+            ->get();
+
+        $business_details = business_detail::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('Business')
+            ->get();
+
+        $upcoming_plans = upcoming_plans::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->get();
+
+        return view('enterperneurship.enterperneurship_show', [
+            'land_owner' => $land_owner,
+            'enterpreneurships' => $enterpreneurships,
+            'business_details' => $business_details,
+            'upcoming_plans' => $upcoming_plans,
+        ]);
     }
 }
