@@ -3,6 +3,7 @@
 use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
 use App\Http\Controllers\bibaran\ReportController;
+use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('animal-add/{land_owner}',[AnimalDetailController::class,'create'])->name('animal_detail_add');
     Route::post('animal-add/{land_owner}',[AnimalDetailController::class,'store'])->name('animal_detail_store');
     Route::get('animal-detail/{land_owner}',[AnimalDetailController::class,'show'])->name('animal_detail_show');
+    Route::get('enterperneurship-add/{land_owner}',[EnterperneurshipController::class,'create'])->name('enterperneurship_detail_add');
+    Route::post('enterperneurship-add/{land_owner}',[EnterperneurshipController::class,'store'])->name('enterperneurship_detail_store');
     /****************** end of land route***************************************/
 
     /****************** below route is all for setting****************************/

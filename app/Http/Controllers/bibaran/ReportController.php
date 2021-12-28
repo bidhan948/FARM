@@ -11,10 +11,12 @@ class ReportController extends Controller
 {
     public function index(land_owner $land_owner): View
     {
-        // dd($land_owner->load('landDetail', 'agricultureDetail', 'animalDetail'));
+        // dd($land_owner->load('landDetail', 'agricultureDetail', 'animalDetail','Enterperneurship'));
         return view(
             'bibaran.individual_bibaran',
-            ['land_owner' => $land_owner->load('landDetail', 'agricultureDetail', 'animalDetail')]
+            [
+                'land_owner' => $land_owner->load('landDetail', 'agricultureDetail', 'animalDetail', 'Enterperneurship')
+            ]
         );
     }
 }

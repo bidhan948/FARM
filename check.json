@@ -196,3 +196,29 @@
 "insurance_end_date" => "2078-09-13"
 "insurance_amount" => "100000"
 "fish_type" => "रहू"
+
+// below data is for enterpunership
+"arrogance_status" => "1"
+"organization_name_nepali" => "test"
+"organization_name_english" => "test1"
+"organization_type_id" => "1"
+"organization_budget" => "100000"
+"pan_no" => "1456789"
+"contact_person_name" => "9815386000"
+"permanent_province_id" => "1"
+"permanent_district_id" => "46"
+"permanent_municipality_id" => "416"
+"ward" => "2"
+"toll_name" => "test toll"
+"no_of_staff_in_field" => "12"
+"ot_no_of_staff" => "10"
+"amsik_no_of_staff" => "6"
+"business_id" => array:1 [▶]
+"yearly_investment" => array:1 [▼
+  0 => "1000000"
+]
+"yearly_income" => array:1 [▶]
+"remark" => array:1 [▶]
+"name" => array:1 [▶]
+"plan_detail" => array:1 [▶]
+"remark_plan" => array:1 [▶]

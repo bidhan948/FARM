@@ -8,6 +8,7 @@ use App\Models\animal\animal_detail;
 use App\Models\animal\animal_other_detail;
 use App\Models\animal\animal_product_detail;
 use App\Models\entrepreneurship\business_detail;
+use App\Models\entrepreneurship\enterpreneurship;
 use App\Models\entrepreneurship\upcoming_plans;
 use App\Models\land_detail\land_detail;
 use App\Models\setting\business;
@@ -68,7 +69,7 @@ class land_owner extends Model
 
     public function Enterperneurship(): HasMany
     {
-        return $this->hasMany(Enterperneurship::class);
+        return $this->hasMany(enterpreneurship::class);
     }
 
     public function businessDetail(): HasMany
