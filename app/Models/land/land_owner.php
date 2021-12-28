@@ -10,6 +10,8 @@ use App\Models\animal\animal_product_detail;
 use App\Models\entrepreneurship\business_detail;
 use App\Models\entrepreneurship\enterpreneurship;
 use App\Models\entrepreneurship\upcoming_plans;
+use App\Models\facility\facility_detail;
+use App\Models\facility\helping_organization_detail;
 use App\Models\land_detail\land_detail;
 use App\Models\setting\business;
 use App\Models\setting\education_qualification;
@@ -80,6 +82,16 @@ class land_owner extends Model
     public function upcomingPlans(): HasMany
     {
         return $this->hasMany(upcoming_plans::class);
+    }
+
+    public function facilityDetail(): HasMany
+    {
+        return $this->hasMany(facility_detail::class);
+    }
+
+    public function helpingOrganization(): HasMany
+    {
+        return $this->hasMany(helping_organization_detail::class);
     }
     public function landOwnerPermanentAddress(): HasOne
     {
