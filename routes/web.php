@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('enterperneurship-detail/{land_owner}',[EnterperneurshipController::class,'show'])->name('enterperneurship_detail_show');
     Route::get('facility-add/{land_owner}',[FacilityDetailController::class,'create'])->name('facility_detail_add');
     Route::post('facility-add/{land_owner}',[FacilityDetailController::class,'store'])->name('facility_detail_store');
+    Route::get('facility-detail/{land_owner}',[FacilityDetailController::class,'show'])->name('facility_detail_show');
     /****************** end of land route***********************************************************************************************************/
 
     /****************** below route is all for setting****************************/

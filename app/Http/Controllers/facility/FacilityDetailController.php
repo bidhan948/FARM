@@ -28,7 +28,8 @@ class FacilityDetailController extends Controller
 
     public function store(Request $request, land_owner $land_owner): RedirectResponse
     {
-        // dd($request->all());
+        abort_if(facility_detail::query()->where('land_owner_id', $land_owner->id)->count() != 0, 403);
+
         foreach ($request->is_facility as $facility_id => $is_facility) {
             facility_detail::create(
                 [
@@ -65,5 +66,26 @@ class FacilityDetailController extends Controller
 
         toast("सरकारी तथा गैरसरकारी विवरण विवरण थप्न सफल भयो", "success");
         return redirect()->route('land-owner.index');
+    }
+
+    public function show(land_owner $land_owner): View
+    {
+        abort_if(facility_detail::query()->where('land_owner_id', $land_owner->id)->count() == 0, 403);
+        
+        $facility_details = facility_detail::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('Facility', 'anudanDetail')
+            ->get();
+
+        $helping_organization_details = helping_organization_detail::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('helpingOrganization')
+            ->get();
+
+        return view('facility.facility_detail_show', [
+            'facility_details' => $facility_details,
+            'helping_organization_details' => $helping_organization_details,
+            'land_owner' => $land_owner 
+        ]);
     }
 }
