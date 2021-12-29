@@ -222,3 +222,20 @@
 "name" => array:1 [▶]
 "plan_detail" => array:1 [▶]
 "remark_plan" => array:1 [▶]
+
+// below data is for facility detail
+"is_facility" => array:5 [▼
+  1 => array:1 [▼
+    0 => "1"
+  ]
+  2 => array:1 [▼
+    0 => "0"
+  ]
+  3 => array:1 [▼
+    0 => "1"
+  ]
+  4 => array:1 [▶]
+  5 => array:1 [▶]
+]
+"anudan_bibaran" => "this is just for test"
+"helping_organization_id" => "2"
