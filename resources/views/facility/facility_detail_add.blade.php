@@ -82,7 +82,7 @@
                                                 <span class="text-danger px-1 font-weight-bold">*</span>
                                             </span>
                                         </div>
-                                        <select id="helping_organization_id[]" name="helping_organization_id"
+                                        <select id="helping_organization_id" name="helping_organization_id[]"
                                             class="custom-select select2 @error('helping_organization_id') is-invalid @enderror"
                                             multiple="multiple" data-placeholder="----छान्नुहोस् ----">
                                             @foreach ($helping_organizations as $helping_organization)
