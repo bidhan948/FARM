@@ -7,6 +7,7 @@ use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
+use App\Http\Controllers\samuha\SamuhaDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\setting\{
     AnimalController,
@@ -53,9 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('facility-add/{land_owner}',[FacilityDetailController::class,'create'])->name('facility_detail_add');
     Route::post('facility-add/{land_owner}',[FacilityDetailController::class,'store'])->name('facility_detail_store');
     Route::get('facility-detail/{land_owner}',[FacilityDetailController::class,'show'])->name('facility_detail_show');
+    Route::get('samuha-add/{land_owner}',[SamuhaDetailController::class,'create'])->name('samuha_detail_add');
     /****************** end of land route***********************************************************************************************************/
 
-    /****************** below route is all for setting****************************/
+    /****************** below route is all for setting**********************************************************************************************/
     Route::prefix('settings')->group(function () {
         Route::resource('gender', GenderController::class);
         Route::resource('citizenship-type', CitizenShipController::class);

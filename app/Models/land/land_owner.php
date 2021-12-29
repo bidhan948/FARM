@@ -13,6 +13,9 @@ use App\Models\entrepreneurship\upcoming_plans;
 use App\Models\facility\facility_detail;
 use App\Models\facility\helping_organization_detail;
 use App\Models\land_detail\land_detail;
+use App\Models\samuha\agriculture_animal_cooperative;
+use App\Models\samuha\agriculture_farm;
+use App\Models\samuha\agriculture_samuha;
 use App\Models\setting\business;
 use App\Models\setting\education_qualification;
 use App\Models\setting\ethnic_group;
@@ -93,6 +96,22 @@ class land_owner extends Model
     {
         return $this->hasMany(helping_organization_detail::class);
     }
+    
+    public function samuhaOrganizationDetail(): HasMany
+    {
+        return $this->hasMany(agriculture_samuha::class);
+    }
+
+    public function agricultureAnimalCopoperative(): HasMany
+    {
+        return $this->hasMany(agriculture_animal_cooperative::class);
+    }
+
+    public function agricultureFarm(): HasMany
+    {
+        return $this->hasMany(agriculture_farm::class);
+    }
+
     public function landOwnerPermanentAddress(): HasOne
     {
         return $this->hasOne(land_owner_permanent_address::class);
