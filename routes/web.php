@@ -4,6 +4,7 @@ use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
 use App\Http\Controllers\bibaran\ReportController;
 use App\Http\Controllers\dashboard\AboutUsController;
+use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\land\LandController;
@@ -63,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('about-us',[AboutUsController::class,'index'])->name('about-us.index');
     Route::post('about-us',[AboutUsController::class,'store'])->name('about-us.store');
     Route::put('about-us/{about_us}',[AboutUsController::class,'update'])->name('about-us.update');
+    Route::resource('notice',NoticeController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

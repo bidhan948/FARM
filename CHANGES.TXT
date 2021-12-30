@@ -9,3 +9,8 @@ anudan_detail
 agriculture_samuha
 agriculture_animal_cooperatives
 agriculture_farm
+
+below is added
+
+notice
+about_us

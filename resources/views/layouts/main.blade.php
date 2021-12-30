@@ -126,6 +126,13 @@
                                         <p class="px-2">{{ __('हाम्रो बारेमा') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('notice.index') }}"
+                                        class="nav-link @yield('dashboard_notice')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('सूचना') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">
