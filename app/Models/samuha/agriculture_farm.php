@@ -13,7 +13,19 @@ class agriculture_farm extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'land_owner_id',
+        'farm_name',
+        'farm_pan_no',
+        'farm_province_id',
+        'farm_district_id',
+        'farm_municipality_id',
+        'farm_ward',
+        'farm_toll_name',
+        'farm_issue_date',
+        'farm_issue_date',
+        'farm_reg_no'
+    ];
 
     public function landOwner(): BelongsTo
     {

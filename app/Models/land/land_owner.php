@@ -34,6 +34,12 @@ class land_owner extends Model
 
     const ARROGANCE_TRUE = 1;
     const ARROGANCE_FALSE = 0;
+    const SAMUHA_STATUS_TRUE =1;
+    const SAMUHA_STATUS_FALSE =0;
+    const COOPERATIVE_STATUS_TRUE =1;
+    const COOPERATIVE_STATUS_FALSE =0;
+    const FARM_STATUS_TRUE =1;
+    const FARM_STATUS_FALSE =0;
 
     protected $guarded = [];
 

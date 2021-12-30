@@ -10,7 +10,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class agriculture_animal_cooperative extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'land_owner_id',
+        'cooperative_name',
+        'cooperative_pan_no',
+        'cooperative_province_id',
+        'cooperative_district_id',
+        'cooperative_municipality_id',
+        'cooperative_ward',
+        'cooperative_toll_name',
+        'cooperative_issue_date',
+        'cooperative_issue_date',
+        'cooperative_reg_no'
+    ];
 
     public function landOwner(): BelongsTo
     {

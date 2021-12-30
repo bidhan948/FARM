@@ -5,3 +5,7 @@ upocming_plan
 facility_detail
 helping_organization_detail
 anudan_detail
+
+agriculture_samuha
+agriculture_animal_cooperatives
+agriculture_farm

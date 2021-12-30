@@ -51,7 +51,7 @@
     </div>
     <input v-model="f_po_id" type="hidden" id="farm_province_id" name="farm_province_id"/>
     <input v-model="f_di_id" type="hidden" id="farm_district_id" name="farm_district_id"/>
-    <input v-model="f_mun_id" type="hidden" id="farm_municipality_id" name="farm_farm_municipality_id"/>
+    <input v-model="f_mun_id" type="hidden" id="farm_municipality_id" name="farm_municipality_id"/>
 </div>
 
 <script>

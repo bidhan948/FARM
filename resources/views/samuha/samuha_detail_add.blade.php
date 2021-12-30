@@ -9,8 +9,18 @@
                 </div>
             </div>
             <!-- /.card-header -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="card-body">
-                <form action="{{ route('facility_detail_store', $land_owner) }}" method="POST">
+                <form action="{{ route('samuha_detail_store', $land_owner) }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-12">
@@ -212,10 +222,10 @@
                                                                 class="text-danger px-1 font-weight-bold">*</span>
                                                         </span>
                                                     </div>
-                                                    <input type="text" value="{{ old('cooprative_name') }}"
-                                                        name="cooprative_name"
-                                                        class="form-control  @error('cooprative_name') is-invalid @enderror">
-                                                    @error('cooprative_name')
+                                                    <input type="text" value="{{ old('cooperative_name') }}"
+                                                        name="cooperative_name"
+                                                        class="form-control  @error('cooperative_name') is-invalid @enderror">
+                                                    @error('cooperative_name')
                                                         <p class="invalid-feedback" style="font-size: 0.9rem">
                                                             {{ __('सहकारीको नामको फिल्ड खाली छ ') }}
                                                         </p>
@@ -230,10 +240,10 @@
                                                                 class="text-danger px-1 font-weight-bold">*</span>
                                                         </span>
                                                     </div>
-                                                    <input type="text" value="{{ old('coopertaive_pan_no') }}"
-                                                        name="coopertaive_pan_no"
-                                                        class="form-control  @error('coopertaive_pan_no') is-invalid @enderror">
-                                                    @error('coopertaive_pan_no')
+                                                    <input type="text" value="{{ old('cooperative_pan_no') }}"
+                                                        name="cooperative_pan_no"
+                                                        class="form-control  @error('cooperative_pan_no') is-invalid @enderror">
+                                                    @error('cooperative_pan_no')
                                                         <p class="invalid-feedback" style="font-size: 0.9rem">
                                                             {{ __('सहकारीको पान नंको फिल्ड खाली छ ') }}
                                                         </p>
@@ -448,8 +458,7 @@
                                                         {{ __('----छान्नुहोस् ----') }}
                                                     </option>
                                                     @for ($i = 1; $i < 20; $i++)
-                                                        <option value="{{ $i }}">{{ Nepali($i) }}
-                                                        </option>
+                                                        <option value="{{ $i }}">{{ Nepali($i) }}</option>
                                                     @endfor
                                                 </select>
                                                 @error('farm_ward')
@@ -459,7 +468,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6 mt-">
+                                        <div class="col-6 mt-1">
                                             <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
