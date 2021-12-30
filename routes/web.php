@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('facility-detail/{land_owner}',[FacilityDetailController::class,'show'])->name('facility_detail_show');
     Route::get('samuha-add/{land_owner}',[SamuhaDetailController::class,'create'])->name('samuha_detail_add');
     Route::post('samuha-add/{land_owner}',[SamuhaDetailController::class,'store'])->name('samuha_detail_store');
+    Route::get('samuha-detail/{land_owner}',[SamuhaDetailController::class,'show'])->name('samuha_detail_show');
     /****************** end of land route***********************************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

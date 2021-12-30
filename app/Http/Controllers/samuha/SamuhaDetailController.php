@@ -16,11 +16,14 @@ class SamuhaDetailController extends Controller
 {
     public function create(land_owner $land_owner): View
     {
+        abort_if(agriculture_samuha::query()->where('land_owner_id', $land_owner->id)->count() != 0, 403);
         return view('samuha.samuha_detail_add', compact('land_owner'));
     }
 
     public function store(SamuhaDetailRequest $request, land_owner $land_owner): RedirectResponse
     {
+        abort_if(agriculture_samuha::query()->where('land_owner_id', $land_owner->id)->count() != 0, 403);
+
         DB::transaction(function () use ($request, $land_owner) {
             if ($request->samuha_status) {
                 agriculture_samuha::create($request->validated() + [
@@ -48,11 +51,38 @@ class SamuhaDetailController extends Controller
                 agriculture_farm::create($request->validated() + [
                     'land_owner_id' => $land_owner->id,
                 ]);
-            }else{
+            } else {
                 $land_owner->update(['samuha_status' => land_owner::FARM_STATUS_FALSE]);
             }
         });
         toast("समूह / सहकारी / फारम हाल्न सफल भयो", "success");
         return redirect()->route('land-owner.index');
+    }
+
+    public function show(land_owner $land_owner): View
+    {
+        abort_if(agriculture_samuha::query()->where('land_owner_id', $land_owner->id)->count() == 0, 403);
+
+        $agriculture_samuhas = agriculture_samuha::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('Province', 'District', 'Municipality')
+            ->get();
+
+        $agriculture_animal_cooperatives = agriculture_animal_cooperative::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('Province', 'District', 'Municipality')
+            ->get();
+
+        $agriculture_farms = agriculture_farm::query()
+            ->where('land_owner_id', $land_owner->id)
+            ->with('Province', 'District', 'Municipality')
+            ->get();
+
+        return view('samuha.samuha_detail_show', [
+            'agriculture_samuhas' => $agriculture_samuhas,
+            'agriculture_animal_cooperatives' => $agriculture_animal_cooperatives,
+            'agriculture_farms' => $agriculture_farms,
+            'land_owner' => $land_owner
+        ]);
     }
 }

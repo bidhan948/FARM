@@ -3,6 +3,8 @@
 namespace App\Models\samuha;
 
 use App\Models\land\land_owner;
+use App\Models\setting\district;
+use App\Models\setting\municipality;
 use App\Models\setting\province;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,5 +38,15 @@ class agriculture_samuha extends Model
     public function Province(): BelongsTo
     {
         return $this->belongsTo(province::class, 'samuha_province_id');
+    }
+
+    public function District():BelongsTo
+    {
+        return $this->belongsTo(district::class,'samuha_district_id');
+    }
+
+    public function Municipality():BelongsTo
+    {
+        return $this->belongsTo(municipality::class,'samuha_municipality_id');
     }
 }

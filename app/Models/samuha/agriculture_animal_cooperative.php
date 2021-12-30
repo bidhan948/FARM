@@ -3,6 +3,9 @@
 namespace App\Models\samuha;
 
 use App\Models\land\land_owner;
+use App\Models\setting\district;
+use App\Models\setting\municipality;
+use App\Models\setting\province;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +32,20 @@ class agriculture_animal_cooperative extends Model
     public function landOwner(): BelongsTo
     {
         return $this->belongsTo(land_owner::class);
+    }
+
+    public function Province(): BelongsTo
+    {
+        return $this->belongsTo(province::class, 'cooperative_province_id');
+    }
+
+    public function District():BelongsTo
+    {
+        return $this->belongsTo(district::class,'cooperative_district_id');
+    }
+
+    public function Municipality():BelongsTo
+    {
+        return $this->belongsTo(municipality::class,'cooperative_municipality_id');
     }
 }

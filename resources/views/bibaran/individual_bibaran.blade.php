@@ -184,11 +184,11 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner text-center">
-                                <p><i class="fas fa-eye px-2"></i> {{ __('समूह / सहकारी / फारम विवरण भर्नुहोस्') }}</p>
+                                <p><i class="fas fa-eye px-2"></i> {{ __('समूह / सहकारी / फारम विवरण हेर्नुहोस') }}</p>
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="{{ route('samuha_detail_add', $land_owner) }}"
+                            <a href="{{ route('samuha_detail_show', $land_owner) }}"
                                 class="small-box-footer">{{ __('हेर्नुहोस्') }} <i class="px-1 fas fa-eye"></i></a>
                         </div>
                     </div>
