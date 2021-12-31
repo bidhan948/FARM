@@ -37,8 +37,8 @@
                             <td class="text-center">{{ Nepali($key + 1) }}</td>
                             <td class="text-center text-sm">{!! $notice->notice !!}
                             </td>
-                            <td class="text-center">{{Nepali($notice->start_date)}}</td>
-                            <td class="text-center">{{Nepali($notice->end_date)}}</td>
+                            <td class="text-center">{{ Nepali($notice->start_date) }}</td>
+                            <td class="text-center">{{ Nepali($notice->end_date) }}</td>
                             <td class="text-center">
                                 @if ($notice->end_dateAd == now())
                                     "Continuous"
@@ -50,8 +50,8 @@
                                     ......
                                 @endif
                             </td>
-                            <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
-                                    data-target="#modal-lg{{ $key + 1 }}" style="cursor: pointer;"><i
+                            <td class="text-center"><a class="btn-sm btn-success text-white"
+                                    href="{{ route('notice.edit', $notice) }}" style="cursor: pointer;"><i
                                         class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
                             </td>
                         </tr>
@@ -156,6 +156,7 @@
                 ndpYear: 200,
                 ndpMonth: true,
                 ndpYearCount: 10,
+                disableDaysBefore: 0,
                 onChange: function() {
                     var dateString = mainInput.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
@@ -168,6 +169,7 @@
                 ndpYear: 200,
                 ndpMonth: true,
                 ndpYearCount: 200,
+                disableDaysBefore: 0,
                 onChange: function() {
                     var dateString = mainInput1.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
