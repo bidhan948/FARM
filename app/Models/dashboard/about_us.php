@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class about_us extends Model
 {
+    const STATUS_TRUE = true;
+    const STATUS_FALSE = false;
+    
     use HasFactory, SoftDeletes;
 
     protected $fillable =

@@ -4,6 +4,7 @@ use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
 use App\Http\Controllers\bibaran\ReportController;
 use App\Http\Controllers\dashboard\AboutUsController;
+use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
@@ -61,10 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('samuha-detail/{land_owner}',[SamuhaDetailController::class,'show'])->name('samuha_detail_show');
     /****************** end of land route***********************************************************************************************************/
     /****************************below route is all for dashboard setting*******************************************************************************************/
-    Route::get('about-us',[AboutUsController::class,'index'])->name('about-us.index');
-    Route::post('about-us',[AboutUsController::class,'store'])->name('about-us.store');
-    Route::put('about-us/{about_us}',[AboutUsController::class,'update'])->name('about-us.update');
+    Route::get('aboutUs',[AboutUsController::class,'index'])->name('about-us.index');
+    Route::post('aboutUs',[AboutUsController::class,'store'])->name('about-us.store');
+    Route::put('aboutUs/{about_us}',[AboutUsController::class,'update'])->name('about-us.update');
     Route::resource('notice',NoticeController::class);
+    Route::get('about-us',[DashboardController::class,'aboutUs'])->name('dashboard.about_us');
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/
