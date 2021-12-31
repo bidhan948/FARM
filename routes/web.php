@@ -38,6 +38,11 @@ use App\Http\Controllers\setting\{
 
 Auth::routes();
 
+// for now not using any session authentication
+Route::get('about-us',[DashboardController::class,'aboutUs'])->name('dashboard.about_us');
+Route::get('contact-us',[DashboardController::class,'contactUs'])->name('dashboard.contact_us');
+Route::get('dashboard/notice',[DashboardController::class,'notice'])->name('dashboard.notice');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /****************************below route is all for Land*******************************************************************************************/
@@ -61,12 +66,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('samuha-add/{land_owner}',[SamuhaDetailController::class,'store'])->name('samuha_detail_store');
     Route::get('samuha-detail/{land_owner}',[SamuhaDetailController::class,'show'])->name('samuha_detail_show');
     /****************** end of land route***********************************************************************************************************/
-    /****************************below route is all for dashboard setting*******************************************************************************************/
+    /****************************below route is all for dashboard setting***************************************************************************/
     Route::get('aboutUs',[AboutUsController::class,'index'])->name('about-us.index');
     Route::post('aboutUs',[AboutUsController::class,'store'])->name('about-us.store');
     Route::put('aboutUs/{about_us}',[AboutUsController::class,'update'])->name('about-us.update');
     Route::resource('notice',NoticeController::class);
-    Route::get('about-us',[DashboardController::class,'aboutUs'])->name('dashboard.about_us');
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

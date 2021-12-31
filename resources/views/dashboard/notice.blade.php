@@ -72,7 +72,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('notice.store') }}">
+                    <form method="post" action="{{ route('notice.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-4 my-2">
@@ -121,6 +121,24 @@
                                         class="form-control @error('end_date') is-invalid @enderror form-control-sm"
                                         id="nepali_datepicker1" readonly>
                                     @error('end_date')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('सूचनाको जारी मितिको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-4 my-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('सूचनाको जारी मिति') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input type="file" name="notice_document[]"
+                                        class="form-control @error('notice_document') is-invalid @enderror form-control-sm"
+                                        id="nepali_datepicker1" multiple>
+                                    @error('notice_document')
                                         <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
                                             {{ __('सूचनाको जारी मितिको फिल्ड खाली छ ') }}
                                         </p>

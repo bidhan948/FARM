@@ -20,14 +20,14 @@ class FarmMobileAssetController extends Controller
             'title' => 'about_us',
             'url' => route('dashboard.about_us'),
             'icon' => asset('farm/about.png'),
-            'is_button' => false
+            'is_button' => true
         ];
         
         $data['website'][] = [
-            'title' => 'about_us',
-            'url' => route('dashboard.about_us'),
-            'icon' => asset('farm/about.png'),
-            'is_button' => false
+            'title' => 'contact_us',
+            'url' => route('dashboard.contact_us'),
+            'icon' => asset('farm/contact.png'),
+            'is_button' => true
         ];
 
         return response()->json($data, 200);

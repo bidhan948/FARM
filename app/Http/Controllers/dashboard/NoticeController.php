@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Helper\MediaHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard\NoticeEditRequest;
 use App\Http\Requests\dashboard\NoticeRequestSubmit;
 use App\Models\dashboard\notice;
+use App\Models\dashboard\notice_document;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,9 +21,13 @@ class NoticeController extends Controller
             ->get()]);
     }
 
-    public function store(NoticeRequestSubmit $request): RedirectResponse
+    public function store(NoticeRequestSubmit $request, MediaHelper $helper): RedirectResponse
     {
-        notice::create($request->validated() + ['entered_by' => auth()->user()->id]);
+        $image =  $helper->uploadMultipleImage($request->notice_document);
+        $notice = notice::create($request->validated() + ['entered_by' => auth()->user()->id]);
+        foreach ($image as $key => $value) {
+            notice_document::create(['notice_id' => $notice->id, 'notice_document' => $value]);
+        }
         toast("सूचना हाल्न सफल भयो", "success");
         return redirect()->back();
     }
