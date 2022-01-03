@@ -133,6 +133,13 @@
                                         <p class="px-2">{{ __('सूचना') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('Publication.index') }}"
+                                        class="nav-link @yield('dashboard_publication')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('प्रकाशन') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">
