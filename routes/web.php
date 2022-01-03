@@ -46,6 +46,7 @@ Route::get('dashboard/notice',[DashboardController::class,'notice'])->name('dash
 Route::get('download/notice/{notice}',[DashboardController::class,'downloadNotice'])->name('dashboard.notice.download');
 Route::get('publication',[DashboardController::class,'publication'])->name('dashboard.publication');
 Route::get('download/publication/{publication}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
+Route::get('farmer',[DashboardController::class,'farmer'])->name('dashboard.farmer_detail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -81,4 +81,9 @@ class DashboardController extends Controller
             return Storage::download($imagePath . "/" . $document->document);
         }
     }
+
+    public function farmer()
+    {
+        dd("page under construction");
+    }
 }

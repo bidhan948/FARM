@@ -44,6 +44,13 @@ class FarmMobileAssetController extends Controller
             'is_button' => true
         ];
 
+        $data['website'][] = [
+            'title' => 'कृषक विवरण',
+            'url' => route('dashboard.farmer_detail'),
+            'icon' => asset('farm/farmer.png'),
+            'is_button' => false
+        ];
+
         return response()->json($data, 200);
     }
 }
