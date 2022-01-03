@@ -37,6 +37,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{-- this is a cdn of ck editor --}}
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+    {{-- this is our own custom css  --}}
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">

@@ -44,6 +44,8 @@ Route::get('about-us',[DashboardController::class,'aboutUs'])->name('dashboard.a
 Route::get('contact-us',[DashboardController::class,'contactUs'])->name('dashboard.contact_us');
 Route::get('dashboard/notice',[DashboardController::class,'notice'])->name('dashboard.notice');
 Route::get('download/notice/{notice}',[DashboardController::class,'downloadNotice'])->name('dashboard.notice.download');
+Route::get('publication',[DashboardController::class,'publication'])->name('dashboard.publication');
+Route::get('download/publication/{publication}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

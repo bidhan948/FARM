@@ -39,7 +39,7 @@
                             <td class="text-center text-sm">{{ $publication->sub_title }}
                             </td>
                             <td class="text-center">
-                                <a href="">
+                                <a href="{{ route('dashboard.publication.download', $publication) }}">
                                     <i class="fas fa-download text-primary fa-2x"></i>
                                 </a>
                             </td>

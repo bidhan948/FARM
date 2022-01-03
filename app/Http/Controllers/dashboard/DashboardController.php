@@ -5,11 +5,12 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\dashboard\about_us;
 use App\Models\dashboard\notice;
+use App\Models\dashboard\publication;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 use File;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -59,5 +60,25 @@ class DashboardController extends Controller
         }
 
         return response()->download(public_path($filename));
+    }
+
+    public function publication()
+    {
+        return view(
+            'dashboard.dashboard_publication',
+            [
+                'publications' => publication::query()->latest()->get()
+            ]
+        );
+    }
+
+    public function downloadPublication(publication $publication)
+    {
+        $publicationDocuments = $publication->load('publicationDocument');
+        $imagePath = config('constant.PUBLICATION_PATH');
+
+        foreach ($publicationDocuments->publicationDocument as $key => $document) {
+            return Storage::download($imagePath . "/" . $document->document);
+        }
     }
 }

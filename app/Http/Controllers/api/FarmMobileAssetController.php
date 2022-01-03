@@ -29,11 +29,19 @@ class FarmMobileAssetController extends Controller
             'icon' => asset('farm/contact.png'),
             'is_button' => true
         ];
+
         $data['website'][] = [
             'title' => 'सूचना',
             'url' => route('dashboard.notice'),
             'icon' => asset('farm/notice.png'),
             'is_button' => false
+        ];
+
+        $data['website'][] = [
+            'title' => 'प्रकाशन',
+            'url' => route('dashboard.publication'),
+            'icon' => asset('farm/publication.png'),
+            'is_button' => true
         ];
 
         return response()->json($data, 200);
