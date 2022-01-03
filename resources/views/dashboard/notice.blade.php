@@ -131,16 +131,16 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('सूचनाको जारी मिति') }} <span
+                                            {{ __('सूचनाको फाइल') }} <span
                                                 class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
                                     <input type="file" name="notice_document[]"
                                         class="form-control @error('notice_document') is-invalid @enderror form-control-sm"
-                                        id="nepali_datepicker1" multiple>
+                                        multiple>
                                     @error('notice_document')
                                         <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                            {{ __('सूचनाको जारी मितिको फिल्ड खाली छ ') }}
+                                            {{ __('सूचनाको फाइलको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>

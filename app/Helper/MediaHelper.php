@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 class MediaHelper
 {
 
-    public function uploadMultipleImage($image, $folder = "")
+    public function uploadMultipleImage($image, $folder = "notice")
     {
         foreach ($image as $key => $value) {
             $orginalName = Str::before($value->getClientOriginalName(), '.');
