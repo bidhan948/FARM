@@ -9,5 +9,6 @@ return [
     "SITE_MUN_NAME" => $district . " ". $site_type . " पालिका",
     "SITE_TYPE" => $site_type . " कार्यपालिकाको कार्यालय",
     "SITE_PROVINCE" => "प्रदेश नं १",
-    "SITE_ADDRESS" => $district. ",नेपाल"
+    "SITE_ADDRESS" => $district. ",नेपाल",
+    "PUBLICATION_PATH" => "public/publication",
 ];

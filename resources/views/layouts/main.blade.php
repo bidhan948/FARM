@@ -58,7 +58,7 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-user"></i> <span class="px-2">{{ auth()->user()->name }}</span>
+                        <i class="fas fa-user"></i> <span class="px-2">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
@@ -82,7 +82,7 @@
             <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">{{ auth()->user()->name }}</span>
+                <span class="brand-text font-weight-light">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</span>
             </a>
 
             <!-- Sidebar -->
@@ -94,7 +94,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                        <a href="#" class="d-block">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</a>
                     </div>
                 </div>
 

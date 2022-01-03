@@ -39,7 +39,9 @@
                             <td class="text-center text-sm">{{ $publication->sub_title }}
                             </td>
                             <td class="text-center">
-                                ...
+                                <a href="">
+                                    <i class="fas fa-download text-primary fa-2x"></i>
+                                </a>
                             </td>
                             <td class="text-center"><a class="btn-sm btn-success text-white"
                                     href="{{ route('Publication.edit', $publication) }}" style="cursor: pointer;"><i

@@ -5,9 +5,9 @@
 @section('dashboard_notice', 'active')
 @section('main_content')
 
-    <div class="card text-sm ">
-        <div class="card-header my-2">
-            <div class="row my-1">
+    <div class="card text-sm my-5">
+        <div class="card-header">
+            <div class="row">
                 <div class="col-md-6" style="margin-bottom:-5px;">
                     <p class="">{{ __('सूचनाको सुचिहरु') }}</p>
                 </div>
