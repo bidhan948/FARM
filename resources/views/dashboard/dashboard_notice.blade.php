@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'हाम्रो बारेमा')
+@section('title', 'सूचना')
 @section('main_content')
     <div class="card text-sm p-3 text-center">
         <div class="row">
@@ -25,7 +25,7 @@
                                 @foreach ($notices as $notice)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="" class="font-weight-bold text-danger">{{ $notice->notice }}</a>
+                                            <a href="{{route('dashboard.notice.download',$notice)}}" class="font-weight-bold text-danger">{{ $notice->notice }}</a>
                                         </td>
                                         <td class="text-center">
                                             जारी म्याद : {{ Nepali($notice->start_date) }} <br>

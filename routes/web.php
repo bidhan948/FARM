@@ -42,6 +42,7 @@ Auth::routes();
 Route::get('about-us',[DashboardController::class,'aboutUs'])->name('dashboard.about_us');
 Route::get('contact-us',[DashboardController::class,'contactUs'])->name('dashboard.contact_us');
 Route::get('dashboard/notice',[DashboardController::class,'notice'])->name('dashboard.notice');
+Route::get('download/notice/{notice}',[DashboardController::class,'downloadNotice'])->name('dashboard.notice.download');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

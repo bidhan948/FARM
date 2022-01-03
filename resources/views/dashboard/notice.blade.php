@@ -43,10 +43,10 @@
                                 @if ($notice->end_dateAd == now())
                                     "Continuous"
                                 @endif
-                                @if ($notice->end_dateAd > now())
+                                @if ($notice->end_dateAd < now())
                                     "Closed"
                                 @endif
-                                @if ($notice->end_dateAd < now())
+                                @if ($notice->end_dateAd > now())
                                     ......
                                 @endif
                             </td>
