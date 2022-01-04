@@ -146,7 +146,7 @@
                                     <a href="{{ route('agriculture-animal-detail.index') }}"
                                         class="nav-link @yield('dashboard_agriculture_animal_detail')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('कृषि तथा पसुपपन्छि सम्बन्धि आधारभूत जानकारी') }}</p>
+                                        <p class="px-2">{{ __('कृषि तथा पशुपन्छि सम्बन्धि') }}</p>
                                     </a>
                                 </li>
                             </ul>

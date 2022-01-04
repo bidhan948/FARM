@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
 use App\Http\Controllers\detail\AgricultureAnimalDetailController;
+use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\land\LandController;
@@ -80,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('notice',NoticeController::class);
     Route::resource('Publication',PublicationController::class);
     Route::resource('agriculture-animal-detail',AgricultureAnimalDetailController::class);
+    Route::resource('agriculture-animal-detail.page',PageController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/
