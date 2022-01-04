@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\dashboard\about_us;
 use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
+use App\Models\dashboard\publication_document;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use ZipArchive;
@@ -72,14 +73,15 @@ class DashboardController extends Controller
         );
     }
 
-    public function downloadPublication(publication $publication)
+    public function downloadPublication($document)
     {
-        $publicationDocuments = $publication->load('publicationDocument');
+        // $publicationDocuments = $publication->load('publicationDocument');
         $imagePath = config('constant.PUBLICATION_PATH');
 
-        foreach ($publicationDocuments->publicationDocument as $key => $document) {
-            return Storage::download($imagePath . "/" . $document->document);
-        }
+        // foreach ($publicationDocuments->publicationDocument as $key => $document) {
+        //     return Storage::download($imagePath . "/" . $document->document);
+        // }
+        return Storage::download($imagePath . "/" . $document);
     }
 
     public function farmer()

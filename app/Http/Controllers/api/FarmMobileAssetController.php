@@ -20,35 +20,51 @@ class FarmMobileAssetController extends Controller
             'title' => 'हाम्रो बारेमा',
             'url' => route('dashboard.about_us'),
             'icon' => asset('farm/about.png'),
-            'is_button' => true
+            'is_button' => true,
+            'is_child' => false
         ];
-        
+
         $data['website'][] = [
             'title' => 'सम्पर्क',
             'url' => route('dashboard.contact_us'),
             'icon' => asset('farm/contact.png'),
-            'is_button' => true
+            'is_button' => true,
+            'is_child' => false
         ];
 
         $data['website'][] = [
             'title' => 'सूचना',
             'url' => route('dashboard.notice'),
             'icon' => asset('farm/notice.png'),
-            'is_button' => false
+            'is_button' => false,
+            'is_child' => false
         ];
 
         $data['website'][] = [
             'title' => 'प्रकाशन',
             'url' => route('dashboard.publication'),
             'icon' => asset('farm/publication.png'),
-            'is_button' => true
+            'is_button' => true,
+            'is_child' => false
         ];
 
         $data['website'][] = [
             'title' => 'कृषक विवरण',
             'url' => route('dashboard.farmer_detail'),
             'icon' => asset('farm/farmer.png'),
-            'is_button' => false
+            'is_button' => false,
+            'is_child' => true,
+            'child' => [[
+                'title' => 'प्रकाशन',
+                'url' => route('dashboard.publication'),
+                'icon' => asset('farm/publication.png'),
+                'is_button' => true,
+            ], [
+                'title' => 'प्रकाशन',
+                'url' => route('dashboard.publication'),
+                'icon' => asset('farm/publication.png'),
+                'is_button' => true,
+            ]]
         ];
 
         return response()->json($data, 200);

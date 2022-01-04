@@ -17,6 +17,7 @@ class PublicationController extends Controller
     public function index(): View
     {
         return view('dashboard.publication', ['publications' => publication::query()
+            ->with('publicationDocument')
             ->latest()
             ->get()]);
     }

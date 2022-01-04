@@ -45,7 +45,7 @@ Route::get('contact-us',[DashboardController::class,'contactUs'])->name('dashboa
 Route::get('dashboard/notice',[DashboardController::class,'notice'])->name('dashboard.notice');
 Route::get('download/notice/{notice}',[DashboardController::class,'downloadNotice'])->name('dashboard.notice.download');
 Route::get('publication',[DashboardController::class,'publication'])->name('dashboard.publication');
-Route::get('download/publication/{publication}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
+Route::get('download/publication/{document}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
 Route::get('farmer',[DashboardController::class,'farmer'])->name('dashboard.farmer_detail');
 
 Route::group(['middleware' => 'auth'], function () {
