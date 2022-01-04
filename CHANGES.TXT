@@ -10,7 +10,8 @@ agriculture_samuha
 agriculture_animal_cooperatives
 agriculture_farm
 
-below is added
+above is added
 
 notice
 about_us
+publication

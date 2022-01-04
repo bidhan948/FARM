@@ -94,6 +94,6 @@ class DashboardController extends Controller
 
     public function agricultureAnimal(): View
     {
-        dd("page is under construction");
+        return view('dashboard.dashboard_agriculture_animal_detail');
     }
 }

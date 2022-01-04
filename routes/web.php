@@ -7,6 +7,7 @@ use App\Http\Controllers\dashboard\AboutUsController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
+use App\Http\Controllers\detail\AgricultureAnimalDetailController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\land\LandController;
@@ -47,7 +48,7 @@ Route::get('download/notice/{notice}',[DashboardController::class,'downloadNotic
 Route::get('publication',[DashboardController::class,'publication'])->name('dashboard.publication');
 Route::get('download/publication/{document}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
 Route::get('farmer',[DashboardController::class,'farmer'])->name('dashboard.farmer_detail');
-Route::get('agriculture-animal',[DashboardController::class,'farmer'])->name('dashboard.animal_agriculture');
+Route::get('agriculture-animal',[DashboardController::class,'agricultureAnimal'])->name('dashboard.animal_agriculture');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -78,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('aboutUs/{about_us}',[AboutUsController::class,'update'])->name('about-us.update');
     Route::resource('notice',NoticeController::class);
     Route::resource('Publication',PublicationController::class);
+    Route::resource('agriculture-animal-detail',AgricultureAnimalDetailController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

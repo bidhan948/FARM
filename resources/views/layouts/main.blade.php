@@ -142,6 +142,13 @@
                                         <p class="px-2">{{ __('प्रकाशन') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('agriculture-animal-detail.index') }}"
+                                        class="nav-link @yield('dashboard_agriculture_animal_detail')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('कृषि तथा पसुपपन्छि सम्बन्धि आधारभूत जानकारी') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">

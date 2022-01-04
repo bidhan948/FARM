@@ -1,0 +1,136 @@
+@extends('layouts.main')
+@section('title', 'कृषि तथा पसुपपन्छि सम्बन्धि आधारभूत जानकारी')
+@section('menu_ope', 'menu-open')
+@section('s_child_dashboard', 'block')
+@section('dashboard_agriculture_animal_detail', 'active')
+@section('main_content')
+
+    <div class="card text-sm ">
+        <div class="card-header my-2">
+            <div class="row my-1">
+                <div class="col-md-6" style="margin-bottom:-5px;">
+                    <p class="">{{ __('सूचनाको सुचिहरु') }}</p>
+                </div>
+                <div class="
+                    col-md-6 text-right">
+                    <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
+                        {{ __('सूचना थप्नुहोस') }}</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">{{ __('क्र.स.') }}</th>
+                        <th class="text-center">{{ __('शिर्षक') }}</th>
+                        <th class="text-center">{{ __('उपशिर्षक') }}</th>
+                        <th class="text-center">{{ __('फाइल') }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+    {{-- modal for adding publication status --}}
+    <div class="modal fade text-sm" id="modal-lg">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="">{{ __('सूचना थप्नुहोस') }}</h5>
+                    <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('Publication.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-4 my-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('शिर्षक') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input name="title" class="form-control form-control-sm @error('title') is-invalid @enderror">
+                                    @error('title')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('शिर्षकको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-4 my-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('उपशिर्षक') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input name="sub_title" class="form-control form-control-sm  @error('sub_title') is-invalid @enderror">
+                                    @error('sub_title')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('उपशिर्षकको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-4 my-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('फाइल') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input name="document[]" type="file" class="form-control form-control-sm  @error('document') is-invalid @enderror" multiple>
+                                    @error('document')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('फाइलको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">पेश
+                                    गर्नुहोस्</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    {{-- end of modal for adding publication status --}}
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+    <script>
+        window.onload = function() {
+            if ({{ $errors->any() }}) {
+                $('#modal-lg').modal('show');
+            }
+        }
+    </script>
+@endsection
