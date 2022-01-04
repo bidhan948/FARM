@@ -49,17 +49,12 @@ class FarmMobileAssetController extends Controller
         ];
 
         $data['website'][] = [
-            'title' => 'कृषक विवरण',
-            'url' => route('dashboard.farmer_detail'),
-            'icon' => asset('farm/farmer.png'),
+            'title' => 'कृषि तथा पशुपंक्षी सम्बन्धि आधारभुत जानकारी',
+            'url' => route('dashboard.animal_agriculture'),
+            'icon' => asset('farm/farm-animal.png'),
             'is_button' => false,
             'is_child' => true,
             'child' => [[
-                'title' => 'प्रकाशन',
-                'url' => route('dashboard.publication'),
-                'icon' => asset('farm/publication.png'),
-                'is_button' => true,
-            ], [
                 'title' => 'प्रकाशन',
                 'url' => route('dashboard.publication'),
                 'icon' => asset('farm/publication.png'),

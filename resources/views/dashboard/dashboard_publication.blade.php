@@ -17,7 +17,7 @@
             @foreach ($publications as $publication)
                 <h5 class="text-center font-weight-bold font-16">{{ $publication->title }}</h5>
                 <div class="card mt-2 p-3">
-                    <a href="{{ route('dashboard.publication.download', $publication) }}"
+                    <a href="{{ route('dashboard.publication.download', $publication->publicationDocument[0]->document) }}"
                         class="text-danger text-center font-weight-bold font-12">{{ $publication->sub_title }}</a>
                 </div>
             @endforeach

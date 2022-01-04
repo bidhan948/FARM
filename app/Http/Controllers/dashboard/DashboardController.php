@@ -68,7 +68,10 @@ class DashboardController extends Controller
         return view(
             'dashboard.dashboard_publication',
             [
-                'publications' => publication::query()->latest()->get()
+                'publications' => publication::query()
+                    ->with('publicationDocument')
+                    ->latest()
+                    ->get()
             ]
         );
     }
@@ -87,5 +90,10 @@ class DashboardController extends Controller
     public function farmer()
     {
         dd("page under construction");
+    }
+
+    public function agricultureAnimal(): View
+    {
+        dd("page is under construction");
     }
 }
