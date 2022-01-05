@@ -11,7 +11,8 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            @foreach ($page->Children as $children)
+            @foreach ($pages as $children)
+                <h5 class="text-center font-weight-bold my-2">{{$children->title}}</h5>
                 <div class="card mt-2 p-3">
                     {!! $children->long_desc !!}
                 </div>

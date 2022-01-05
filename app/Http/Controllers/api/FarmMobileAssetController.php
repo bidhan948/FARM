@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\detail\agriculture_animal_detail;
 use Illuminate\Http\Request;
 
 class FarmMobileAssetController extends Controller
@@ -54,12 +55,9 @@ class FarmMobileAssetController extends Controller
             'icon' => asset('farm/farm-animal.png'),
             'is_button' => false,
             'is_child' => true,
-            'child' => [[
-                'title' => 'प्रकाशन',
-                'url' => route('dashboard.publication'),
-                'icon' => asset('farm/publication.png'),
-                'is_button' => true,
-            ]]
+            'child' => [
+                agriculture_animal_detail::query()->select('title','featured_image')->get()
+            ]
         ];
 
         return response()->json($data, 200);

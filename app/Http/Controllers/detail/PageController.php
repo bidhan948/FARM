@@ -32,7 +32,11 @@ class PageController extends Controller
     {
         return view('dashboard.page_individual_detail', [
             'agriculture_animal_detail' => $agriculture_animal_detail,
-            'page' => $page->load('Children')
+            'page' => $page,
+            'pages' => page::query()
+                ->where('page_id', $page->id)
+                ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
+                ->get()
         ]);
     }
 }
