@@ -25,14 +25,19 @@
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
                         <th class="text-center">{{ __('शिर्षक') }}</th>
-                        <th class="text-center">{{ __('उपशिर्षक') }}</th>
-                        <th class="text-center">{{ __('फाइल') }}</th>
-                        <th></th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pages as $key => $page)
+                    @foreach ($parentPages as $key => $page)
                         <tr>
+                            <td class="text-center">{{ Nepali($key + 1) }}</td>
+                            <td class="text-center">{{ $page->title }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('agriculture-animal-detail.page.show', [$agriculture_animal_detail, $page->id]) }}"
+                                    class="btn btn-sm btn-primary"><i class="fas fa-eye px-1"></i>
+                                    {{ $page->title . ' अन्तर्गत हर्नुहोस' }}</a>
+                            </td>
                         </tr>
                     @endforeach
             </table>
@@ -83,7 +88,7 @@
                                     <select name="page_id" class="form-control-sm select2 form-control">
                                         <option value="">{{ __('---अनतर्गत भएमा छान्नुहोस्--') }}</option>
                                         @foreach ($parentPages as $parent)
-                                             <option value="{{$parent->id}}">{{$parent->title}}</option>
+                                            <option value="{{ $parent->id }}">{{ $parent->title }}</option>
                                         @endforeach
                                     </select>
                                     @error('sub_title')

@@ -25,8 +25,8 @@ class PageRequestSubmit extends FormRequest
     {
         return [
             'title' => 'required',
-            'page_id' => 'present',
-            'long_desc' => 'present'
+            'page_id' => 'required',
+            'long_desc' => 'required'
         ];
     }
 }

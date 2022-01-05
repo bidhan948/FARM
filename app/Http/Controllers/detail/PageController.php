@@ -27,4 +27,12 @@ class PageController extends Controller
         toast($agriculture_animal_detail->title . " थप्न सफल भयो", "success");
         return redirect()->back();
     }
+
+    public function show(agriculture_animal_detail $agriculture_animal_detail, page $page): View
+    {
+        return view('dashboard.page_individual_detail', [
+            'agriculture_animal_detail' => $agriculture_animal_detail,
+            'page' => $page->load('Children')
+        ]);
+    }
 }
