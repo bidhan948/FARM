@@ -70,7 +70,7 @@
                                                                         class="text-danger px-1 font-weight-bold">*</span>
                                                                 </span>
                                                             </div>
-                                                            <textarea name="about_us" id="editor"
+                                                            <textarea name="about_us" id="editor1"
                                                                 class="form-control">{!! $about_us->about_us !!}</textarea>
                                                             @error('about_us')
                                                                 <p class="invalid-feedback mb-0" style="font-size: 0.9rem">

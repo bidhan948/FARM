@@ -29,4 +29,9 @@ class agriculture_animal_detail extends Model
     {
         return $this->hasMany(page::class);
     }
+
+    public function getFeaturedImage()
+    {
+        return (config('constant.CROP_PATH') . $this->featured_image);
+    }
 }

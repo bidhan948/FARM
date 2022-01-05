@@ -11,4 +11,5 @@ return [
     "SITE_PROVINCE" => "प्रदेश नं १",
     "SITE_ADDRESS" => $district. ",नेपाल",
     "PUBLICATION_PATH" => "public/publication",
+    "CROP_PATH" => "storage/crop/",
 ];

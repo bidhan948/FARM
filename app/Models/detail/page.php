@@ -23,4 +23,9 @@ class page extends Model
     {
         return $this->belongsTo(agriculture_animal_detail::class);
     }
+
+    public function scopeParent($query)
+    {
+        $query->whereNull('page_id');
+    }
 }

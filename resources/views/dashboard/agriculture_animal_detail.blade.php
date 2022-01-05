@@ -37,14 +37,14 @@
                             <td class="text-center">{{ $agriculture_animal_detail->cropType->name }}</td>
                             <td class="text-center">{{ $agriculture_animal_detail->title }}</td>
                             <td class="text-center"><a
-                                    href="{{ asset('storage/crop/' . $agriculture_animal_detail->featured_image) }}"
+                                    href="{{ asset( asset($agriculture_animal_detail->getFeaturedImage())) }}"
                                     target="_blank"><img
-                                        src="{{ asset('storage/crop/' . $agriculture_animal_detail->featured_image) }}"
-                                        alt="बालि" width="50" height="50"></a>
+                                        src="{{ asset($agriculture_animal_detail->getFeaturedImage()) }}" alt="बालि"
+                                        width="50" height="50"></a>
                             </td>
                             <td class="text-center"><a
-                                    href="{{ route('agriculture-animal-detail.page.create', $agriculture_animal_detail) }}"
-                                    class="btn btn-sm btn-success">{{ $agriculture_animal_detail->title . ' थप्नुहोस' }}</a>
+                                    href="{{ route('agriculture-animal-detail.page.index', $agriculture_animal_detail) }}"
+                                    class="btn btn-sm btn-success"><i class="fas fa-plus px-1"></i> {{ $agriculture_animal_detail->title . ' थप्नुहोस' }}</a>
                             </td>
                         </tr>
                     @endforeach

@@ -9,7 +9,6 @@ use App\Models\detail\agriculture_animal_detail;
 use App\Models\setting\crop_type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class AgricultureAnimalDetailController extends Controller
 {
