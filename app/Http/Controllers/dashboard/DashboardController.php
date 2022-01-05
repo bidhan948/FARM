@@ -7,6 +7,8 @@ use App\Models\dashboard\about_us;
 use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
 use App\Models\dashboard\publication_document;
+use App\Models\detail\agriculture_animal_detail;
+use App\Models\detail\page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use ZipArchive;
@@ -94,6 +96,26 @@ class DashboardController extends Controller
 
     public function agricultureAnimal(): View
     {
-        return view('dashboard.dashboard_agriculture_animal_detail');
+        return view('dashboard.dashboard_agriculture_animal_detail', [
+            'agriculture_animal_details' => agriculture_animal_detail::query()->with('cropType')->get()
+        ]);
+    }
+
+    public function agricultureAnimalShow(agriculture_animal_detail $agriculture_animal_detail): View
+    {
+        $pages = page::query()
+            ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
+            ->Children()
+            ->get();
+
+        $parents = page::query()
+            ->Parent()
+            ->get();
+
+        return view('dashboard.dashboard_agriculture_animal', [
+            'pages' => $pages,
+            'parents' => $parents,
+            'agriculture_animal_detail' => $agriculture_animal_detail
+        ]);
     }
 }

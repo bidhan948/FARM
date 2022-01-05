@@ -52,6 +52,7 @@ Route::get('publication',[DashboardController::class,'publication'])->name('dash
 Route::get('download/publication/{document}',[DashboardController::class,'downloadPublication'])->name('dashboard.publication.download');
 Route::get('farmer',[DashboardController::class,'farmer'])->name('dashboard.farmer_detail');
 Route::get('agriculture-animal',[DashboardController::class,'agricultureAnimal'])->name('dashboard.animal_agriculture');
+Route::get('agriculture-animal/{agriculture_animal_detail}',[DashboardController::class,'agricultureAnimalShow'])->name('dashboard.agriculture_animal');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -22,7 +22,7 @@ class FarmMobileAssetController extends Controller
             'url' => route('dashboard.about_us'),
             'icon' => asset('farm/about.png'),
             'is_button' => true,
-            'is_child' => false
+            'child' => null
         ];
 
         $data['website'][] = [
@@ -30,7 +30,7 @@ class FarmMobileAssetController extends Controller
             'url' => route('dashboard.contact_us'),
             'icon' => asset('farm/contact.png'),
             'is_button' => true,
-            'is_child' => false
+            'child' => null
         ];
 
         $data['website'][] = [
@@ -38,7 +38,7 @@ class FarmMobileAssetController extends Controller
             'url' => route('dashboard.notice'),
             'icon' => asset('farm/notice.png'),
             'is_button' => false,
-            'is_child' => false
+            'child' => null
         ];
 
         $data['website'][] = [
@@ -46,18 +46,18 @@ class FarmMobileAssetController extends Controller
             'url' => route('dashboard.publication'),
             'icon' => asset('farm/publication.png'),
             'is_button' => true,
-            'is_child' => false
+            'child' => null
         ];
 
         $data['website'][] = [
             'title' => 'कृषि तथा पशुपंक्षी सम्बन्धि आधारभुत जानकारी',
-            'url' => route('dashboard.animal_agriculture'),
+            'url' => "http://192.168.1.112:8000/agriculture-animal/",
+            'storage_url' => asset(config('constant.CROP_PATH')),
             'icon' => asset('farm/farm-animal.png'),
             'is_button' => false,
-            'is_child' => true,
-            'child' => [
-                agriculture_animal_detail::query()->select('title','featured_image')->get()
-            ]
+            'child' => agriculture_animal_detail::query()
+                ->select('id', 'title', 'featured_image')
+                ->get()
         ];
 
         return response()->json($data, 200);

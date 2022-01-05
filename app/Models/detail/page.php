@@ -29,6 +29,10 @@ class page extends Model
         $query->whereNull('page_id');
     }
 
+    public function scopeChildren($query)
+    {
+        $query->whereNotNull('page_id');
+    }
     public function Children()
     {
         return $this->hasMany(page::class, 'page_id')->with('Children');
