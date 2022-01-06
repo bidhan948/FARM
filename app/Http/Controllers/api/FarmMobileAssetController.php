@@ -69,6 +69,7 @@ class FarmMobileAssetController extends Controller
             'is_button' => false,
             'child' => crop_type::query()
                 ->select('id', 'name as title', 'image as featured_image')
+                ->whereNotNull('image')
                 ->get()
         ];
 

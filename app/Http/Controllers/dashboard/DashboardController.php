@@ -125,7 +125,9 @@ class DashboardController extends Controller
     public function agricultureTechnologyShow(): View
     {
         return view('dashboard.dashboard_agriculture_technology', [
-            'crop_types' => crop_type::query()->get()
+            'crop_types' => crop_type::query()
+                ->whereNotNull('image')
+                ->get()
         ]);
     }
 

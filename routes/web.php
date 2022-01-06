@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Publication',PublicationController::class);
     Route::resource('agriculture-animal-detail',AgricultureAnimalDetailController::class);
     Route::resource('agriculture-animal-detail.page',PageController::class)->except('edit,update,delete');
+    Route::resource('question',PageController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

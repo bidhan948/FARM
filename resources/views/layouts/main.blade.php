@@ -149,6 +149,13 @@
                                         <p class="px-2">{{ __('कृषि तथा पशुपन्छि सम्बन्धि') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('question.index') }}"
+                                        class="nav-link @yield('dashboard_question')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('प्रश्नहरू') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">
