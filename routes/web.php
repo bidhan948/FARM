@@ -54,6 +54,7 @@ Route::get('farmer',[DashboardController::class,'farmer'])->name('dashboard.farm
 Route::get('agriculture-animal',[DashboardController::class,'agricultureAnimal'])->name('dashboard.animal_agriculture');
 Route::get('agriculture-animal/{agriculture_animal_detail}',[DashboardController::class,'agricultureAnimalShow'])->name('dashboard.agriculture_animal');
 Route::get('agriculture-technology',[DashboardController::class,'agricultureTechnologyShow'])->name('dashboard.agriculture_technology');
+Route::get('agriculture-technology/{crop_type}',[DashboardController::class,'agricultureTechnologyDetail'])->name('dashboard.agriculture_technology_detail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

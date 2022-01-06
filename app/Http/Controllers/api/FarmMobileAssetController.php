@@ -68,7 +68,7 @@ class FarmMobileAssetController extends Controller
             'icon' => asset('farm/fram-technology.png'),
             'is_button' => false,
             'child' => crop_type::query()
-                ->select('id', 'name', 'image')
+                ->select('id', 'name as title', 'image as featured_image')
                 ->get()
         ];
 

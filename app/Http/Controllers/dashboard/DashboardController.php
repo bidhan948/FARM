@@ -9,6 +9,7 @@ use App\Models\dashboard\publication;
 use App\Models\dashboard\publication_document;
 use App\Models\detail\agriculture_animal_detail;
 use App\Models\detail\page;
+use App\Models\setting\crop_type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use ZipArchive;
@@ -102,7 +103,7 @@ class DashboardController extends Controller
     }
 
     public function agricultureAnimalShow(agriculture_animal_detail $agriculture_animal_detail): View
-    { 
+    {
         $pages = page::query()
             ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
             ->Children()
@@ -112,7 +113,7 @@ class DashboardController extends Controller
         $parents = page::query()
             ->Parent()
             ->get();
-            
+
         return view('dashboard.dashboard_agriculture_animal', [
             'pages' => $pages,
             'parents' => $parents,
@@ -123,6 +124,16 @@ class DashboardController extends Controller
 
     public function agricultureTechnologyShow(): View
     {
-        dd("coming sooon");        
+        return view('dashboard.dashboard_agriculture_technology', [
+            'crop_types' => crop_type::query()->get()
+        ]);
+    }
+
+    public function agricultureTechnologyDetail(crop_type $crop_type)
+    {
+        return view('dashboard.dashboard_agriculture_technology_detail', [
+            'crops' => $crop_type->load('Crop'),
+            'crop_type' => $crop_type
+        ]);
     }
 }

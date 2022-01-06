@@ -23,4 +23,9 @@ class crop_type extends Model
     {
         return $this->hasMany(agriculture_detail::class);
     }
+
+    public function getImage()
+    {
+        return (config('constant.FOOD_PATH') . $this->image);
+    }
 }
