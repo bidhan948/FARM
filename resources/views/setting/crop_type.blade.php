@@ -35,11 +35,12 @@
                             <td class="text-center">{{ $crop_type->name }}
                             </td>
                             <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
-                                    data-target="#modal-lg{{$key+1}}" style="cursor: pointer;"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                                    data-target="#modal-lg{{ $key + 1 }}" style="cursor: pointer;"><i
+                                        class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
 
                                 {{-- modal for adding crop_type status --}}
-                                <div class="modal fade text-sm" id="modal-lg{{$key+1}}">
-                                    <div class="modal-dialog modal-lg">
+                                <div class="modal fade text-sm" id="modal-lg{{ $key + 1 }}">
+                                    <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="">{{ __('बलिको प्रकार सच्याउनुहोस् ') }}</h5>
@@ -49,7 +50,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form method="post" action="{{ route('crop-type.update',$crop_type) }}">
+                                                <form method="post" action="{{ route('crop-type.update', $crop_type) }}" enctype="multipart/form-data">
                                                     @method('PUT')
                                                     @csrf
                                                     <div class="row">
@@ -70,10 +71,31 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-4">
-                                                            <button type="submit" class="btn btn-primary">पेश
+                            
+                                                        <div class="col-6">
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        {{ __('बलिको प्रकारको फोटो') }} <span
+                                                                            class="text-danger px-1 font-weight-bold">*</span>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="file" name="image"
+                                                                    class="form-control  @error('image') is-invalid @enderror">
+                                                                @error('image')
+                                                                    <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                                                        {{ __('बलिको प्रकार फोटोको फिल्ड खाली छ ') }}
+                                                                    </p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="photo" value="{{ $crop_type->image }}">
+                                                        {{-- <div class="col-2 mt-2"> --}}
+                                                        <div class="mt-3">
+                                                            <button type="submit" class=" btn btn-primary">पेश
                                                                 गर्नुहोस्</button>
                                                         </div>
+                                                        {{-- </div> --}}
                                                     </div>
 
                                                 </form>
@@ -98,7 +120,7 @@
 
     {{-- modal for adding crop_type status --}}
     <div class="modal fade text-sm" id="modal-lg">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="">{{ __('बलिको प्रकार थप्नुहोस') }}</h5>
@@ -107,14 +129,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('crop-type.store') }}">
+                    <form method="post" action="{{ route('crop-type.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('बलिको प्रकार') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('बलिको प्रकार') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
                                     <input type="text" value="{{ old('name') }}" name="name"
@@ -126,7 +149,24 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('बलिको प्रकारको फोटो') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input type="file" value="{{ old('image') }}" name="image"
+                                        class="form-control  @error('image') is-invalid @enderror">
+                                    @error('image')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('बलिको प्रकार फोटोको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <button type="submit" class="btn btn-primary">पेश
                                     गर्नुहोस्</button>
                             </div>

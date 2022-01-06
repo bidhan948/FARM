@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\detail\agriculture_animal_detail;
+use App\Models\setting\crop_type;
 use Illuminate\Http\Request;
 
 class FarmMobileAssetController extends Controller
@@ -57,6 +58,17 @@ class FarmMobileAssetController extends Controller
             'is_button' => false,
             'child' => agriculture_animal_detail::query()
                 ->select('id', 'title', 'featured_image')
+                ->get()
+        ];
+
+        $data['website'][] = [
+            'title' => 'कृषि प्रबिधि',
+            'url' => "http://192.168.1.112:8000/agriculture-technology",
+            'storage_url' => asset(config('constant.FOOD_PATH')),
+            'icon' => asset('farm/fram-technology.png'),
+            'is_button' => false,
+            'child' => crop_type::query()
+                ->select('id', 'name', 'image')
                 ->get()
         ];
 

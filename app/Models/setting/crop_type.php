@@ -12,7 +12,7 @@ class crop_type extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','image'];
 
     public function Crop(): HasMany
     {

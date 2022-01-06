@@ -102,7 +102,7 @@ class DashboardController extends Controller
     }
 
     public function agricultureAnimalShow(agriculture_animal_detail $agriculture_animal_detail): View
-    {
+    { 
         $pages = page::query()
             ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
             ->Children()
@@ -119,5 +119,10 @@ class DashboardController extends Controller
             'agriculture_animal_detail' => $agriculture_animal_detail,
             'checkForNotRepeatingParent' => []
         ]);
+    }
+
+    public function agricultureTechnologyShow(): View
+    {
+        dd("coming sooon");        
     }
 }
