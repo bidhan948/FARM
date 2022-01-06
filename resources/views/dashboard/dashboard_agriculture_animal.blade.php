@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'हाम्रो बारेमा')
+@section('title', $agriculture_animal_detail->title . ' विवरण')
 @section('main_content')
     <style>
         .card-body {
@@ -12,11 +12,14 @@
             <div class="col-12">
                 <div id="accordion">
                     @foreach ($pages as $key => $page)
-                        @foreach ($parents as $parent)
-                            @if ($page->page_id == $parent->id)
-                                <h5 class="font-weight-bold">{{ $parent->title }}</h5>
+                        <h5 class="font-weight-bold">
+                            @if (!in_array($page->Parent->title, $checkForNotRepeatingParent))
+                                @php
+                                    $checkForNotRepeatingParent[] = $page->Parent->title;
+                                @endphp
+                                {{ $page->Parent->title }}
                             @endif
-                        @endforeach
+                        </h5>
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">

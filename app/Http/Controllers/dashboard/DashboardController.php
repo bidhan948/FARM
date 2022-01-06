@@ -106,16 +106,18 @@ class DashboardController extends Controller
         $pages = page::query()
             ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
             ->Children()
+            ->with('Parent')
             ->get();
 
         $parents = page::query()
             ->Parent()
             ->get();
-
+            
         return view('dashboard.dashboard_agriculture_animal', [
             'pages' => $pages,
             'parents' => $parents,
-            'agriculture_animal_detail' => $agriculture_animal_detail
+            'agriculture_animal_detail' => $agriculture_animal_detail,
+            'checkForNotRepeatingParent' => []
         ]);
     }
 }

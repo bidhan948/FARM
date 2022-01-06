@@ -51,7 +51,7 @@ class FarmMobileAssetController extends Controller
 
         $data['website'][] = [
             'title' => 'कृषि तथा पशुपंक्षी सम्बन्धि आधारभुत जानकारी',
-            'url' => "http://192.168.1.112:8000/agriculture-animal/",
+            'url' => "http://192.168.1.112:8000/agriculture-animal",
             'storage_url' => asset(config('constant.CROP_PATH')),
             'icon' => asset('farm/farm-animal.png'),
             'is_button' => false,

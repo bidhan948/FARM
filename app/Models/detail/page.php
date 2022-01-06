@@ -37,4 +37,9 @@ class page extends Model
     {
         return $this->hasMany(page::class, 'page_id')->with('Children');
     }
+
+    public function Parent(): BelongsTo
+    {
+        return $this->belongsTo(page::class,'page_id');
+    }
 }
