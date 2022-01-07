@@ -156,6 +156,13 @@
                                         <p class="px-2">{{ __('प्रश्नहरू') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('market-plan.index') }}"
+                                        class="nav-link @yield('dashboard_market_plan')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('ब्यबसायिक योजना') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">

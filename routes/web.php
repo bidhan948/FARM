@@ -3,6 +3,7 @@
 use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
 use App\Http\Controllers\bibaran\ReportController;
+use App\Http\Controllers\dahsboard\MarketPlanDetailController;
 use App\Http\Controllers\dashboard\AboutUsController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
@@ -94,6 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('question-restore/{question_recover}', [QuestionController::class, 'recover'])->name('question.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
     Route::resource('question', QuestionController::class);
     Route::get('general-question', [DashboardController::class, 'generalQuestionType'])->name('dashboard.question');
+    Route::resource('market-plan', MarketPlanDetailController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/
