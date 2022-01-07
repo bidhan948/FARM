@@ -92,6 +92,14 @@ class FarmMobileAssetController extends Controller
             'child' => null
         ];
 
+        $data['website'][] = [
+            'title' => 'ब्यबसायिक योजना बनाउन जान्नु पर्ने आधारभूत जानकारी',
+            'url' => route('dashboard.marketing_plan'),
+            'icon' => asset('farm/notebook.png'),
+            'is_button' => true,
+            'child' => null
+        ];
+
         return response()->json($data, 200);
     }
 }

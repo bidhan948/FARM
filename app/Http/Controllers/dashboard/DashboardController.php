@@ -8,6 +8,7 @@ use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
 use App\Models\dashboard\question;
 use App\Models\detail\agriculture_animal_detail;
+use App\Models\detail\market_plan_detail;
 use App\Models\detail\page;
 use App\Models\setting\crop;
 use App\Models\setting\crop_type;
@@ -162,17 +163,26 @@ class DashboardController extends Controller
             'crop' => $crop,
             'questions' => question::query()
                 ->where('crop_id', $crop->id)
-                ->where('is_insurance',question::STATUS_GENERAL)
+                ->where('is_insurance', question::STATUS_GENERAL)
                 ->latest()
                 ->get()
         ]);
     }
-    
+
     public function insuranceQuestion(): View
     {
         return view('dashboard.insurance_question', [
             'questions' => question::query()
-                ->where('is_insurance',question::STATUS_INSUARNCE)
+                ->where('is_insurance', question::STATUS_INSUARNCE)
+                ->latest()
+                ->get()
+        ]);
+    }
+
+    public function showMarketPlan()
+    {
+        return view('dashboard.dashboard_market_plan', [
+            'market_plan_details' => market_plan_detail::query()
                 ->latest()
                 ->get()
         ]);

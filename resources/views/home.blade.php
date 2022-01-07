@@ -99,5 +99,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6 col-sm-6 col-12 mt-3">
+            <div class="info-box">
+                <span class="info-box-icon"><img src="{{ asset('farm/notebook.png') }}" alt=""></span>
+                <div class="info-box-content">
+                    <span class="info-box-text mt-2 mx-1">{{ __('ब्यबसायिक योजना बनाउन जान्नु पर्ने आधारभूत जानकारी') }}</span>
+                    <span class="info-box-number mt-2"><a href="{{ route('dashboard.marketing_plan') }}"
+                            class="text-dark mx-1">हेर्नुहोस् <i class="fas fa-arrow-circle-right px-1"></i></a></span>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

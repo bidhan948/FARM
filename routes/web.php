@@ -60,6 +60,7 @@ Route::get('agriculture-technology/{crop_type}', [DashboardController::class, 'a
 Route::get('general-question/{crop_type}', [DashboardController::class, 'generalQuestionDetail'])->name('dashboard.question_detail');
 Route::get('general-question/crop/{crop}', [DashboardController::class, 'generalQuestion'])->name('dashboard.question_crop');
 Route::get('insurance-question', [DashboardController::class, 'insuranceQuestion'])->name('dashboard.insurance');
+Route::get('marketing-plan', [DashboardController::class, 'showMarketPlan'])->name('dashboard.marketing_plan');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
