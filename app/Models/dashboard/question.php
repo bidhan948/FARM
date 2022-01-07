@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\dashboard;
 
 use App\Models\setting\crop_type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +16,8 @@ class question extends Model
         'question',
         'answer',
         'crop_type_id',
-        'is_insurance'
+        'is_insurance',
+        'crop_id'
     ];
 
     public function cropType(): BelongsTo

@@ -7,6 +7,7 @@ use App\Http\Controllers\dashboard\AboutUsController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
+use App\Http\Controllers\dashboard\QuestionController;
 use App\Http\Controllers\detail\AgricultureAnimalDetailController;
 use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
@@ -87,7 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Publication',PublicationController::class);
     Route::resource('agriculture-animal-detail',AgricultureAnimalDetailController::class);
     Route::resource('agriculture-animal-detail.page',PageController::class)->except('edit,update,delete');
-    Route::resource('question',PageController::class);
+    Route::get('question-restore/{question_recover}',[QuestionController::class,'recover'])->name('question.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
+    Route::resource('question',QuestionController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/
