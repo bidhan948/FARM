@@ -84,6 +84,14 @@ class FarmMobileAssetController extends Controller
             'child' => $crops
         ];
 
+        $data['website'][] = [
+            'title' => 'कृषि तथा पशुपंक्षी बिमा जानकारी',
+            'url' => route('dashboard.insurance'),
+            'icon' => asset('farm/insurance.png'),
+            'is_button' => true,
+            'child' => null
+        ];
+
         return response()->json($data, 200);
     }
 }

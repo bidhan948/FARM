@@ -6,14 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\dashboard\about_us;
 use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
-use App\Models\dashboard\publication_document;
 use App\Models\dashboard\question;
 use App\Models\detail\agriculture_animal_detail;
 use App\Models\detail\page;
 use App\Models\setting\crop;
 use App\Models\setting\crop_type;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use ZipArchive;
 use File;
 use Illuminate\Support\Facades\Storage;
@@ -164,6 +162,17 @@ class DashboardController extends Controller
             'crop' => $crop,
             'questions' => question::query()
                 ->where('crop_id', $crop->id)
+                ->where('is_insurance',question::STATUS_GENERAL)
+                ->latest()
+                ->get()
+        ]);
+    }
+    
+    public function insuranceQuestion(): View
+    {
+        return view('dashboard.insurance_question', [
+            'questions' => question::query()
+                ->where('is_insurance',question::STATUS_INSUARNCE)
                 ->latest()
                 ->get()
         ]);

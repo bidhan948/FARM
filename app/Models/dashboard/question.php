@@ -12,6 +12,9 @@ class question extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS_INSUARNCE = 1;
+    const STATUS_GENERAL = 0;
+
     protected $fillable = [
         'question',
         'answer',
