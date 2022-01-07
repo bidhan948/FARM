@@ -11,6 +11,11 @@ class FarmMobileAssetController extends Controller
 {
     public function index()
     {
+        $crops = crop_type::query()
+        ->select('id', 'name as title', 'image as featured_image')
+        ->whereNotNull('image')
+        ->get();
+
         $data['heading'] = [
             'SITE_MUN_NAME' => config("constant.SITE_MUN_NAME"),
             'SITE_TYPE' => config("constant.SITE_TYPE"),
@@ -67,10 +72,16 @@ class FarmMobileAssetController extends Controller
             'storage_url' => asset(config('constant.FOOD_PATH')),
             'icon' => asset('farm/fram-technology.png'),
             'is_button' => false,
-            'child' => crop_type::query()
-                ->select('id', 'name as title', 'image as featured_image')
-                ->whereNotNull('image')
-                ->get()
+            'child' => $crops
+        ];
+
+        $data['website'][] = [
+            'title' => 'बारम्बार सोधिने प्रश्नहरु',
+            'url' => "http://192.168.1.112:8000/general-question",
+            'storage_url' => asset(config('constant.FOOD_PATH')),
+            'icon' => asset('farm/question.png'),
+            'is_button' => false,
+            'child' => $crops
         ];
 
         return response()->json($data, 200);

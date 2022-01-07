@@ -7,9 +7,9 @@
         }
 
     </style>
-    <div class="card text-sm p-3 text-left">
-        <div class="row">
-            <div class="col-12">
+    <div class="card mt-4 text-sm p-3 text-left">
+        <div class="row mt-4">
+            <div class="col-12 mt-4">
                 <div id="accordion">
                     @foreach ($pages as $key => $page)
                         <h5 class="font-weight-bold">

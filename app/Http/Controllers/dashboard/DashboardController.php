@@ -7,8 +7,10 @@ use App\Models\dashboard\about_us;
 use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
 use App\Models\dashboard\publication_document;
+use App\Models\dashboard\question;
 use App\Models\detail\agriculture_animal_detail;
 use App\Models\detail\page;
+use App\Models\setting\crop;
 use App\Models\setting\crop_type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -136,6 +138,34 @@ class DashboardController extends Controller
         return view('dashboard.dashboard_agriculture_technology_detail', [
             'crops' => $crop_type->load('Crop'),
             'crop_type' => $crop_type
+        ]);
+    }
+
+    public function generalQuestionType(): View
+    {
+        return view('dashboard.dashboard_question', [
+            'crop_types' => crop_type::query()
+                ->whereNotNull('image')
+                ->get()
+        ]);
+    }
+
+    public function generalQuestionDetail(crop_type $crop_type): View
+    {
+        return view('dashboard.dashboard_question_detail', [
+            'crops' => $crop_type->load('Crop'),
+            'crop_type' => $crop_type
+        ]);
+    }
+
+    public function generalQuestion(crop $crop): View
+    {
+        return view('dashboard.dashboard_question_crop', [
+            'crop' => $crop,
+            'questions' => question::query()
+                ->where('crop_id', $crop->id)
+                ->latest()
+                ->get()
         ]);
     }
 }

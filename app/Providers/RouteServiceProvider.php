@@ -48,7 +48,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
-          //
           parent::boot();
 
           Route::bind('question_recover', function ($id) {

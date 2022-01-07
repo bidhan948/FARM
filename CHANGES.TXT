@@ -18,3 +18,4 @@ publication
 agriculture-animal-detail
 pages
 add image column on crop types table 
+question
