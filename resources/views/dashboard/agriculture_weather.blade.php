@@ -2,7 +2,7 @@
 @section('title', 'कृषि - मौसम सल्लाह बुलेटिन')
 @section('menu_ope', 'menu-open')
 @section('s_child_dashboard', 'block')
-@section('dashboard_about_us', 'active')
+@section('dashboard_agriculture_weather', 'active')
 @section('main_content')
 
     <div class="card text-sm ">

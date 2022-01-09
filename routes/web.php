@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
 use App\Http\Controllers\dashboard\QuestionController;
 use App\Http\Controllers\detail\AgricultureAnimalDetailController;
+use App\Http\Controllers\detail\AgricultureTechnologyController;
 use App\Http\Controllers\detail\AgricultureWeatherController;
 use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
@@ -56,8 +57,10 @@ Route::get('download/publication/{document}', [DashboardController::class, 'down
 Route::get('farmer', [DashboardController::class, 'farmer'])->name('dashboard.farmer_detail');
 Route::get('agriculture-animal', [DashboardController::class, 'agricultureAnimal'])->name('dashboard.animal_agriculture');
 Route::get('agriculture-animal/{agriculture_animal_detail}', [DashboardController::class, 'agricultureAnimalShow'])->name('dashboard.agriculture_animal');
-Route::get('agriculture-technology', [DashboardController::class, 'agricultureTechnologyShow'])->name('dashboard.agriculture_technology');
-Route::get('agriculture-technology/{crop_type}', [DashboardController::class, 'agricultureTechnologyDetail'])->name('dashboard.agriculture_technology_detail');
+Route::get('agriculture-technology', [DashboardController::class, 'agricultureTechnology'])->name('dashboard.agriculture_technology');
+Route::get('agriculture-technology/{crop_type}', [DashboardController::class, 'agricultureTechnologyShow'])->name('dashboard.agriculture_technology_detail');
+Route::get('agriculture-technology-detail/{crop}', [DashboardController::class, 'agricultureTechnologyDetail'])->name('dashboard.agriculture_technology_show');
+Route::get('agriculture-technology-download/{document}', [DashboardController::class, 'agricultureTechnologyDownload'])->name('dashboard.agriculture_technology_download');
 Route::get('general-question/{crop_type}', [DashboardController::class, 'generalQuestionDetail'])->name('dashboard.question_detail');
 Route::get('general-question/crop/{crop}', [DashboardController::class, 'generalQuestion'])->name('dashboard.question_crop');
 Route::get('insurance-question', [DashboardController::class, 'insuranceQuestion'])->name('dashboard.insurance');
@@ -102,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('market-plan', MarketPlanDetailController::class);
     Route::get('agriculture-restore/{agriculture_weather_recover}', [AgricultureWeatherController::class, 'recover'])->name('agriculture-weather.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
     Route::resource('agriculture-weather', AgricultureWeatherController::class);
+    Route::resource('agriculture-technique',AgricultureTechnologyController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/

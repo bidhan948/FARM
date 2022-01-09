@@ -8,7 +8,7 @@
             </div>
             @foreach ($crops->Crop as $crop)
                 <div class="col-md-4 col-12 mt-4">
-                    <a href="" class="btn btn-outline-primary px-5 rounded-pill">{{ $crop->name }}</a>
+                    <a href="{{route('dashboard.agriculture_technology_show',$crop)}}" class="btn btn-outline-primary px-5 rounded-pill">{{ $crop->name }}</a>
                 </div>
             @endforeach
         </div>

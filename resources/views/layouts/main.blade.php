@@ -170,6 +170,13 @@
                                         <p class="px-2">{{ __('ब्यबसायिक योजना') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('agriculture-technique.index') }}"
+                                        class="nav-link @yield('dashboard_ag_tech')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('कृषि प्रबिधि') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview  @yield('menu_open')">

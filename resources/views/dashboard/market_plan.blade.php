@@ -2,7 +2,7 @@
 @section('title', 'ब्यबसायिक योजना बनाउन जान्नु पर्ने आधारभूत जानकारी')
 @section('menu_ope', 'menu-open')
 @section('s_child_dashboard', 'block')
-@section('dashboard_market_plan_detail', 'active')
+@section('dashboard_market_plan', 'active')
 @section('main_content')
 
     <div class="card text-sm ">
@@ -25,7 +25,7 @@
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
                         <th class="text-center">{{ __('शीर्षक') }}</th>
-                        <th class="text-center">{{ __('संक्षिप्त विवरण') }}</th>
+                        {{-- <th class="text-center">{{ __('संक्षिप्त विवरण') }}</th> --}}
                         <th></th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ $market_plan_detail->title }}</td>
-                            <td class="text-center">{!! $market_plan_detail->description !!}</td>
+                            {{-- <td class="text-center">{!! $market_plan_detail->description !!}</td> --}}
                             <td class="text-center">
                                 <a class="btn-sm btn-success text-white" data-toggle="modal"
                                     data-target="#modal-lg{{ $key + 1 }}" style="cursor: pointer;"><i

@@ -12,5 +12,6 @@ return [
     "SITE_ADDRESS" => $district. ",नेपाल",
     "PUBLICATION_PATH" => "public/publication",
     "CROP_PATH" => "storage/crop/",
-    "FOOD_PATH" => "storage/food/"
+    "FOOD_PATH" => "storage/food/",
+    "AGRICULTURE_TECHNOLOGY_PATH" => "public/agriculture_technology/",
 ];
