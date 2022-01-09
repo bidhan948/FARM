@@ -10,6 +10,7 @@ use App\Models\dashboard\question;
 use App\Models\detail\agriculture_animal_detail;
 use App\Models\detail\market_plan_detail;
 use App\Models\detail\page;
+use App\Models\land\land_owner;
 use App\Models\setting\crop;
 use App\Models\setting\crop_type;
 use Illuminate\Contracts\View\View;
@@ -91,9 +92,15 @@ class DashboardController extends Controller
         return Storage::download($imagePath . "/" . $document);
     }
 
-    public function farmer()
+    public function farmer(): View
     {
-        dd("page under construction");
+        return view('dashboard.dashboard_land_owner_detail', [
+            'land_owners' => land_owner::query()
+                ->select('name_nepali', 'name_english', 'contact_no', 'cit_no','reg_id')
+                ->with('Gender')
+                ->latest()
+                ->get()
+        ]);
     }
 
     public function agricultureAnimal(): View

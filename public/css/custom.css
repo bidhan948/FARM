@@ -1,3 +1,6 @@
+.card-body{
+    overflow-x: scroll !important;
+}
 .font-11{
     font-size: 1.1rem !important;
 }
