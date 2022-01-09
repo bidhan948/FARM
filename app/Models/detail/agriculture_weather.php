@@ -20,4 +20,20 @@ class agriculture_weather extends Model
         'date_desc',
     ];
 
+    // below is accessor used another approach bcz laravel doc convention doesnt work here
+    public function getDateDesc(): string
+    {
+        return Nepali($this->date_desc);
+    }
+
+    public function getYear(): string
+    {
+        return Nepali($this->year);
+    }
+    
+    public function getIndex(): string
+    {
+        return Nepali($this->index);
+    }
+
 }

@@ -24,11 +24,40 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('कृषि - मौसम सल्लाह बुलेटिन') }}</th>
-                        <th class="text-center">{{ __('लागु ?') }}</th>
+                        <th class="text-center">{{ __('शिर्षक') }}</th>
+                        <th class="text-center">{{ __('अंक') }}</th>
+                        <th class="text-center">{{ __('वर्ष') }}</th>
+                        <th class="text-center"></th>
                         <th></th>
                     </tr>
                 </thead>
+                @foreach ($agriculture_weathers as $key => $agriculture_weather)
+                    <tr>
+                        <td class="text-center">{{ Nepali($key + 1) }}</td>
+                        <td class="text-center"><a href="{{ route('agriculture-weather.show', $agriculture_weather) }}"
+                                class="">{{ $agriculture_weather->title }}</a>
+                        </td>
+                        <td class="text-center">{{ $agriculture_weather->getYear() }}</td>
+                        <td class="text-center">{{ $agriculture_weather->getIndex() }}</td>
+                        <td class="text-center">{{ $agriculture_weather->getDateDesc() }}</td>
+                        <td class="text-center">
+                            @if ($agriculture_weather->deleted_at == null)
+                                <a class="text-danger" style="cursor: pointer;" onclick="destroy({{ $key + 1 }})
+                                                                        "><i class="fas fa-trash-alt pb-0 fa-2x"></i></a>
+                                <form id="logout-form{{ $key + 1 }}"
+                                    action="{{ route('agriculture-weather.destroy', $agriculture_weather) }}"
+                                    method="POST" class="d-none">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                            @else
+                                <a href="{{ route('agriculture-weather.restore', $agriculture_weather->id) }}"
+                                    class="text-success" style="cursor: pointer;"><i
+                                        class="fas fa-trash-restore fa-2x"></i></a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
                 <tbody>
             </table>
         </div>
@@ -132,7 +161,8 @@
                             </div>
                             <input type="hidden" name="date_desc" id="date_desc">
                             <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-primary btn-sm">पेश
+                                <button type="submit" class="btn btn-primary btn-sm"
+                                    onclick="return confirm('के तपाई निश्चित हुनुहुन्छ ?')">पेश
                                     गर्नुहोस्</button>
                             </div>
                         </div>
@@ -154,6 +184,13 @@
     <script src="{{ asset('js/agriculture_weather.js') }}"></script>
     <script>
         CKEDITOR.replace('editor');
+
+        function destroy(params) {
+            if (confirm("के तपाई निश्चित हुनुहुन्छ ?")) {
+                event.preventDefault();
+                document.getElementById('logout-form' + params).submit();
+            }
+        }
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,

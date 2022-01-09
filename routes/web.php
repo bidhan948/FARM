@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('question', QuestionController::class);
     Route::get('general-question', [DashboardController::class, 'generalQuestionType'])->name('dashboard.question');
     Route::resource('market-plan', MarketPlanDetailController::class);
+    Route::get('agriculture-restore/{agriculture_weather_recover}', [AgricultureWeatherController::class, 'recover'])->name('agriculture-weather.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
     Route::resource('agriculture-weather', AgricultureWeatherController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\dashboard\question;
+use App\Models\detail\agriculture_weather;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -52,6 +53,9 @@ class RouteServiceProvider extends ServiceProvider
 
           Route::bind('question_recover', function ($id) {
               return question::onlyTrashed()->findOrFail($id);
+          });
+          Route::bind('agriculture_weather_recover', function ($id) {
+              return agriculture_weather::onlyTrashed()->findOrFail($id);
           });
     }
 
