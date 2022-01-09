@@ -93,6 +93,14 @@ class FarmMobileAssetController extends Controller
         ];
 
         $data['website'][] = [
+            'title' => 'कृषि - मौसम सल्लाह बुलेटिन',
+            'url' => route('dashboard.agriculture_weather'),
+            'icon' => asset('farm/weather.png'),
+            'is_button' => false,
+            'child' => null
+        ];
+
+        $data['website'][] = [
             'title' => 'ब्यबसायिक योजना बनाउन जान्नु पर्ने आधारभूत जानकारी',
             'url' => route('dashboard.marketing_plan'),
             'icon' => asset('farm/notebook.png'),

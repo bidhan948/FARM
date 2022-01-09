@@ -8,6 +8,7 @@ use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
 use App\Models\dashboard\question;
 use App\Models\detail\agriculture_animal_detail;
+use App\Models\detail\agriculture_weather;
 use App\Models\detail\market_plan_detail;
 use App\Models\detail\page;
 use App\Models\land\land_owner;
@@ -96,7 +97,7 @@ class DashboardController extends Controller
     {
         return view('dashboard.dashboard_land_owner_detail', [
             'land_owners' => land_owner::query()
-                ->select('name_nepali', 'name_english', 'contact_no', 'cit_no','reg_id')
+                ->select('name_nepali', 'name_english', 'contact_no', 'cit_no', 'reg_id')
                 ->with('Gender')
                 ->latest()
                 ->get()
@@ -192,6 +193,22 @@ class DashboardController extends Controller
             'market_plan_details' => market_plan_detail::query()
                 ->latest()
                 ->get()
+        ]);
+    }
+
+    public function showAgricultureWeather(): View
+    {
+        return view('dashboard.dashboard_agriculture_weather', [
+            'agriculture_weathers' => agriculture_weather::query()
+                ->latest()
+                ->paginate(25)
+        ]);
+    }
+
+    public function showAgricultureWeatherDetail(agriculture_weather $agriculture_weather): View
+    {
+        return view('dashboard.dashboard_agriculture_weather_show', [
+            'agriculture_weather' => $agriculture_weather
         ]);
     }
 }

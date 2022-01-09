@@ -62,6 +62,8 @@ Route::get('general-question/{crop_type}', [DashboardController::class, 'general
 Route::get('general-question/crop/{crop}', [DashboardController::class, 'generalQuestion'])->name('dashboard.question_crop');
 Route::get('insurance-question', [DashboardController::class, 'insuranceQuestion'])->name('dashboard.insurance');
 Route::get('marketing-plan', [DashboardController::class, 'showMarketPlan'])->name('dashboard.marketing_plan');
+Route::get('dashboard/agriculture-weather', [DashboardController::class, 'showAgricultureWeather'])->name('dashboard.agriculture_weather');
+Route::get('dashboard/agriculture-weather/{agriculture_weather}', [DashboardController::class, 'showAgricultureWeatherDetail'])->name('dashboard.agriculture_weather_show');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
