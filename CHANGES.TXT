@@ -20,3 +20,4 @@ pages
 add image column on crop types table 
 question
 market_plan_detail
+agriculture_weather

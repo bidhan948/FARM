@@ -157,6 +157,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('agriculture-weather.index') }}"
+                                        class="nav-link @yield('dashboard_agriculture_weather')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('कृषि - मौसम सल्लाह बुलेटिन') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('market-plan.index') }}"
                                         class="nav-link @yield('dashboard_market_plan')">
                                         <i class="far fa-circle nav-icon"></i>

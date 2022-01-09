@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
 use App\Http\Controllers\dashboard\QuestionController;
 use App\Http\Controllers\detail\AgricultureAnimalDetailController;
+use App\Http\Controllers\detail\AgricultureWeatherController;
 use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
@@ -97,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('question', QuestionController::class);
     Route::get('general-question', [DashboardController::class, 'generalQuestionType'])->name('dashboard.question');
     Route::resource('market-plan', MarketPlanDetailController::class);
+    Route::resource('agriculture-weather', AgricultureWeatherController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************** below route is all for setting**********************************************************************************************/
