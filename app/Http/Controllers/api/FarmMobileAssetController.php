@@ -12,9 +12,9 @@ class FarmMobileAssetController extends Controller
     public function index()
     {
         $crops = crop_type::query()
-        ->select('id', 'name as title', 'image as featured_image')
-        ->whereNotNull('image')
-        ->get();
+            ->select('id', 'name as title', 'image as featured_image')
+            ->whereNotNull('image')
+            ->get();
 
         $data['heading'] = [
             'SITE_MUN_NAME' => config("constant.SITE_MUN_NAME"),
@@ -88,7 +88,7 @@ class FarmMobileAssetController extends Controller
             'title' => 'कृषि तथा पशुपंक्षी बिमा जानकारी',
             'url' => route('dashboard.insurance'),
             'icon' => asset('farm/insurance.png'),
-            'is_button' => true,
+            'is_button' => false,
             'child' => null
         ];
 
@@ -96,7 +96,7 @@ class FarmMobileAssetController extends Controller
             'title' => 'ब्यबसायिक योजना बनाउन जान्नु पर्ने आधारभूत जानकारी',
             'url' => route('dashboard.marketing_plan'),
             'icon' => asset('farm/notebook.png'),
-            'is_button' => true,
+            'is_button' => false,
             'child' => null
         ];
 
