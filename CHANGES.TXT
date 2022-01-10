@@ -21,3 +21,6 @@ add image column on crop types table
 question
 market_plan_detail
 agriculture_weather
+agriculture_technology
+
+above all is added on 2078-09-26 ✔️

@@ -8,7 +8,8 @@
             </div>
             @foreach ($crops->Crop as $crop)
                 <div class="col-md-4 col-12 mt-4">
-                    <a href="{{route('dashboard.question_crop',$crop_type)}}" class="btn btn-outline-primary px-5 rounded-pill">{{ $crop->name }}</a>
+                    <a href="{{ route('dashboard.question_crop', $crop) }}"
+                        class="btn btn-outline-primary px-5 rounded-pill">{{ $crop->name }}</a>
                 </div>
             @endforeach
         </div>
