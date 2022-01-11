@@ -20,7 +20,7 @@
                         </div>
                         <div class="icon">
                         </div>
-                        <a href="#" class="small-box-footer">{{ __('हेर्नुहोस्') }} <i class="px-1 fas fa-eye"></i></a>
+                        <a href="{{route('land_owner_detail',$land_owner)}}" class="small-box-footer">{{ __('हेर्नुहोस्') }} <i class="px-1 fas fa-eye"></i></a>
                     </div>
                 </div>
                 @if ($land_owner->landDetail->count() == 0)
@@ -32,7 +32,7 @@
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="{{ route('land_detail_add', $land_owner_detail) }}"
+                            <a href="{{ route('land_detail_add', $land_owner) }}"
                                 class="small-box-footer">{{ __('भर्नुहोस्') }} <i class="px-1 fas fa-plus"></i></a>
                         </div>
                     </div>

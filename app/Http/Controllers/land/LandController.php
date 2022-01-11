@@ -81,4 +81,25 @@ class LandController extends Controller
         toast("जग्गाधनीको विवरण हाल्न सफल भयो", "success");
         return redirect()->route('land-owner.index');
     }
+
+    public function show(land_owner $land_owner): View
+    {
+        // dd($land_owner->load('landOwnerFamilyDetail'));
+
+        return view('land_owner_detail.land_owner_detail', [
+            'land_owner' => $land_owner->load(
+                [
+                    'Bank',
+                    'Gender',
+                    'ethnicGroup',
+                    'maritalStatus',
+                    'educationQualification',
+                    'Business',
+                    'landOwnerFamilyDetail.Gender',
+                    'landOwnerPermanentAddress.District',
+                    'landOwnerTemporaryAddress.District',
+                ]
+            )
+        ]);
+    }
 }

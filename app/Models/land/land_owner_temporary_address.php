@@ -2,6 +2,9 @@
 
 namespace App\Models\land;
 
+use App\Models\setting\district;
+use App\Models\setting\municipality;
+use App\Models\setting\province;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

@@ -128,6 +128,11 @@ class land_owner extends Model
         return $this->hasOne(land_owner_temporary_address::class);
     }
 
+    public function landOwnerFamilyDetail(): HasMany
+    {
+        return $this->hasMany(land_owner_family_detail::class);
+    }
+
     public function Bank(): HasMany
     {
         return $this->hasMany(land_owner_bank_detail::class);

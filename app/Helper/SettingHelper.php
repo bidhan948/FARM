@@ -39,13 +39,13 @@ class SettingHelper
             $data['country_name'] = $attr['permanent_country_name'];
             $data['passport_no'] = $attr['permanent_passport_no'];
         } else {
-            $data['province_id'] = $attr['permanent_province_id'];
-            $data['district_id'] = $attr['permanent_district_id'];
-            $data['municipality_id'] = $attr['permanent_municipality_id'];
-            $data['ward'] = $attr['permanent_ward'];
-            $data['tole'] = $attr['permanent_tole'];
-            $data['country_name'] = $attr['permanent_country_name'];
-            $data['passport_no'] = $attr['permanent_passport_no'];
+            $data['province_id'] = $attr['temporary_province_id'];
+            $data['district_id'] = $attr['temporary_district_id'];
+            $data['municipality_id'] = $attr['temporary_municipality_id'];
+            $data['ward'] = $attr['temporary_ward'];
+            $data['tole'] = $attr['temporary_tole'];
+            $data['country_name'] = $attr['temporary_country_name'];
+            $data['passport_no'] = $attr['temporary_passport_no'];
         }
 
         return $data;

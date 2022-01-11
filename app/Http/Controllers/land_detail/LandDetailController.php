@@ -90,4 +90,6 @@ class LandDetailController extends Controller
 
         return redirect()->route('land-owner.index');
     }
+
+
 }
