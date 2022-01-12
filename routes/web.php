@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Bibaran/{land_owner}', [ReportController::class, 'index'])->name('show_bibaran');
     Route::get('land-detail-add/{land_owner}', [LandDetailController::class, 'create'])->name('land_detail_add');
     Route::post('land-detail-add/{land_owner}', [LandDetailController::class, 'store'])->name('land_detail_store');
+    Route::get('land-detail-show/{land_owner}', [LandDetailController::class, 'show'])->name('land_detail_show');
     Route::get('land-owner-detail/{land_owner}', [LandController::class, 'show'])->name('land_owner_detail');
     Route::get('agriculture-detail-add/{land_owner}', [AgricultureDetailController::class, 'create'])->name('agriculture_detail');
     Route::post('agriculture-detail-add/{land_owner}', [AgricultureDetailController::class, 'store'])->name('agriculture_detail_store');

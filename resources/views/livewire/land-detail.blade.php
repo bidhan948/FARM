@@ -155,7 +155,7 @@
                 <select name="irrigation_facility" class="form-control form-control-sm" id="irrigation_facility">
                     <option value="">{{ __('--छान्नुहोस् --') }}</option>
                     <option value="1">{{ __('रहेको') }}</option>
-                    <option >{{ __('नरहेको') }}</option>
+                    <option value="0">{{ __('नरहेको') }}</option>
                 </select>
                 @error('irrigation_facility')
                     <p class="invalid-feedback" style="font-size: 0.9rem">
@@ -229,7 +229,7 @@
                     <option value="">{{ __('--छान्नुहोस् --') }}</option>
                     <option value="1" {{ old('road_facility') == 1 ? 'selected' : '' }}>
                         {{ __('पुगेको') }}</option>
-                    <option >
+                    <option value="0" >
                         {{ __('नपुगेको') }}</option>
                 </select>
                 @error('road_facility')

@@ -45,7 +45,7 @@
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="#" class="small-box-footer">{{ __('हेर्नुहोस्') }} <i
+                            <a href="{{route('land_detail_show',$land_owner)}}" class="small-box-footer">{{ __('हेर्नुहोस्') }} <i
                                     class="px-1 fas fa-eye"></i></a>
                         </div>
                     </div>
