@@ -37,8 +37,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{-- this is a cdn of ck editor --}}
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-    {{-- this is our own custom css --}}
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    {{-- this is our own custom css  --}}
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
@@ -60,8 +60,7 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-user"></i> <span
-                            class="px-2">{{ auth()->user() == null ? 'ADMIN' : auth()->user()->name }}</span>
+                        <i class="fas fa-user"></i> <span class="px-2">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
@@ -117,7 +116,7 @@
                             <a href="{{ route('user.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
-                                    {{ __('प्रयोगकर्ता व्यवस्थापन') }}
+                                    {{ __('प्रयोगकर्ता') }}
                                 </p>
                             </a>
                         </li>
@@ -126,6 +125,14 @@
                                 <i class="nav-icon fas fa-user-tag"></i>
                                 <p>
                                     {{ __('प्रयोगकर्ता व्यवस्थापन') }}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('permission.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-user-lock"></i>
+                                <p>
+                                    {{ __('अनुमति व्यवस्थापन') }}
                                 </p>
                             </a>
                         </li>

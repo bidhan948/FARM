@@ -116,6 +116,9 @@ Route::group(['middleware' => 'auth'], function () {
     /****************************Below route is all for role & permission***********************************************************/
     Route::resource('user',UserController::class);
     Route::post('password-change/{user}',[UserController::class,'passwordChange'])->name('user.change');
+    Route::get('manage-permission/{role}',[RoleAndPermissionController::class,'managePermission'])->name('role.permission');
+    Route::get('permission',[RoleAndPermissionController::class,'indexPermission'])->name('permission.index');
+    Route::post('permission',[RoleAndPermissionController::class,'storePermission'])->name('permission.store');
     Route::resource('role',RoleAndPermissionController::class);
     /***************************end route for role $permission********************************************************************/
     /****************** below route is all for setting**********************************************************************************************/
