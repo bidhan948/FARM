@@ -115,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     /****************************Below route is all for role & permission***********************************************************/
     Route::resource('user',UserController::class);
+    Route::post('password-change/{user}',[UserController::class,'passwordChange'])->name('user.change');
     Route::resource('role',RoleAndPermissionController::class);
     /***************************end route for role $permission********************************************************************/
     /****************** below route is all for setting**********************************************************************************************/
