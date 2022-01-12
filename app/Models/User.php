@@ -21,8 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'ward_no'
     ];
-
+    
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

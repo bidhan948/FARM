@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\agriculture\AgricultureDetailController;
 use App\Http\Controllers\animal\AnimalDetailController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\bibaran\ReportController;
 use App\Http\Controllers\dahsboard\MarketPlanDetailController;
 use App\Http\Controllers\dashboard\AboutUsController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
+use App\Http\Controllers\role_ad_permission\RoleAndPermissionController;
 use App\Http\Controllers\samuha\SamuhaDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\setting\{
@@ -109,7 +111,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('agriculture-weather', AgricultureWeatherController::class);
     Route::resource('agriculture-technique',AgricultureTechnologyController::class);
     /****************************end route for dashboard setting*******************************************************************************************/
-
+    
+    
+    /****************************Below route is all for role & permission***********************************************************/
+    Route::resource('user',UserController::class);
+    Route::resource('role',RoleAndPermissionController::class);
+    /***************************end route for role $permission********************************************************************/
     /****************** below route is all for setting**********************************************************************************************/
     Route::prefix('settings')->group(function () {
         Route::resource('gender', GenderController::class);
