@@ -198,6 +198,25 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <table class="table table-bordered table-striped my-4">
+                <tbody>
+                    <tr>
+                        <td class="text-center">{{ __('परिवारको सदस्य बैदेशिक रोजगारमा') }}</td>
+                        <td class="text-center">{{ $land_owner->is_foreign ? 'रहेको' :'नरहेको' }}</td>
+                    </tr>
+                    @if ($land_owner->is_foreign)
+                        <tr>
+                            <td class="text-center">{{ __('देशको नाम') }}</td>
+                            <td class="text-center">{{ $land_owner->country_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">{{ __('जम्मा') }}</td>
+                            <td class="text-center">{{ Nepali($land_owner->foreign_member)}}</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
             <hr class="w-100">
         </div>
         <!-- /.card-body -->
