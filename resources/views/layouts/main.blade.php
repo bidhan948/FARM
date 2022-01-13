@@ -124,7 +124,7 @@
                             <a href="{{ route('role.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user-tag"></i>
                                 <p>
-                                    {{ __('प्रयोगकर्ता व्यवस्थापन') }}
+                                    {{ __('भूमिका व्यवस्थापन') }}
                                 </p>
                             </a>
                         </li>

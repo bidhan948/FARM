@@ -3,6 +3,8 @@
 namespace App\Helper;
 
 use App\Models\land\land_owner;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 class SettingHelper
 {
@@ -26,6 +28,23 @@ class SettingHelper
             $randomInt = random_int(999999, 100000000);
         }
         return $randomInt;
+    }
+
+    public function getPermission()
+    {
+        $permissions_raw = Permission::query()->get();
+        foreach ($permissions_raw as $key => $value) {
+            $permission[] = Str::of($value->name)->before('_');
+            $model[] = Str::of($value->name)->after('_');
+        }
+        $model = collect($model)->unique();
+        $permission = collect($permission)->unique();
+
+        return [
+            'model' => $model,
+            'permission' => $permission,
+            'allpermissions' => $permissions_raw
+        ];
     }
 
     public function getAddressFromRequest($attr = [], $type = "permanent")
