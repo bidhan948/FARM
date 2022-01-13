@@ -15,7 +15,9 @@ class RoleAndPermissionController extends Controller
     public function index(): View
     {
         return view('role_and_permssion.role', [
-            'roles' => Role::query()->get()
+            'roles' => Role::query()
+                ->exceptSuperAdmin()
+                ->get()
         ]);
     }
 

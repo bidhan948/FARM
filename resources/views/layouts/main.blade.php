@@ -120,22 +120,26 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('role.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-tag"></i>
-                                <p>
-                                    {{ __('भूमिका व्यवस्थापन') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('permission.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-lock"></i>
-                                <p>
-                                    {{ __('अनुमति व्यवस्थापन') }}
-                                </p>
-                            </a>
-                        </li>
+                        @can('ADD_ROLE')
+                            <li class="nav-item">
+                                <a href="{{ route('role.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-tag"></i>
+                                    <p>
+                                        {{ __('भूमिका व्यवस्थापन') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('ADD_PERMISSION')
+                            <li class="nav-item">
+                                <a href="{{ route('permission.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-lock"></i>
+                                    <p>
+                                        {{ __('अनुमति व्यवस्थापन') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
                         <li class="nav-item has-treeview  @yield('menu_ope')">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-tachometer-alt nav-icon"></i>

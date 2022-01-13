@@ -23,7 +23,9 @@ class UserController extends Controller
                 ->whereNotNull('ward_no')
                 ->with('roles')
                 ->get(),
-            'roles' => Role::query()->get()
+            'roles' => Role::query()
+                ->exceptSuperAdmin()
+                ->get()
         ]);
     }
 
