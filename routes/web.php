@@ -96,30 +96,38 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('samuha-detail/{land_owner}', [SamuhaDetailController::class, 'show'])->name('samuha_detail_show');
     /****************** end of land route***********************************************************************************************************/
     /****************************below route is all for dashboard setting***************************************************************************/
-    Route::get('aboutUs', [AboutUsController::class, 'index'])->name('about-us.index');
-    Route::post('aboutUs', [AboutUsController::class, 'store'])->name('about-us.store');
-    Route::put('aboutUs/{about_us}', [AboutUsController::class, 'update'])->name('about-us.update');
-    Route::resource('notice', NoticeController::class);
-    Route::resource('Publication', PublicationController::class);
-    Route::resource('agriculture-animal-detail', AgricultureAnimalDetailController::class);
-    Route::resource('agriculture-animal-detail.page', PageController::class)->except('edit,update,delete');
-    Route::get('question-restore/{question_recover}', [QuestionController::class, 'recover'])->name('question.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
-    Route::resource('question', QuestionController::class);
-    Route::get('general-question', [DashboardController::class, 'generalQuestionType'])->name('dashboard.question');
-    Route::resource('market-plan', MarketPlanDetailController::class);
-    Route::get('agriculture-restore/{agriculture_weather_recover}', [AgricultureWeatherController::class, 'recover'])->name('agriculture-weather.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
-    Route::resource('agriculture-weather', AgricultureWeatherController::class);
-    Route::resource('agriculture-technique',AgricultureTechnologyController::class);
+    Route::group(['middleware' => ['can:VIEW_DASHBOARD']], function () {
+        Route::get('aboutUs', [AboutUsController::class, 'index'])->name('about-us.index');
+        Route::post('aboutUs', [AboutUsController::class, 'store'])->name('about-us.store');
+        Route::put('aboutUs/{about_us}', [AboutUsController::class, 'update'])->name('about-us.update');
+        Route::resource('notice', NoticeController::class);
+        Route::resource('Publication', PublicationController::class);
+        Route::resource('agriculture-animal-detail', AgricultureAnimalDetailController::class);
+        Route::resource('agriculture-animal-detail.page', PageController::class)->except('edit,update,delete');
+        Route::get('question-restore/{question_recover}', [QuestionController::class, 'recover'])->name('question.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
+        Route::resource('question', QuestionController::class);
+        Route::get('general-question', [DashboardController::class, 'generalQuestionType'])->name('dashboard.question');
+        Route::resource('market-plan', MarketPlanDetailController::class);
+        Route::get('agriculture-restore/{agriculture_weather_recover}', [AgricultureWeatherController::class, 'recover'])->name('agriculture-weather.restore'); //this route is for trashed recover bcz RMB doesnt work on SD
+        Route::resource('agriculture-weather', AgricultureWeatherController::class);
+        Route::resource('agriculture-technique', AgricultureTechnologyController::class);
+    });
     /****************************end route for dashboard setting*******************************************************************************************/
-    
-    
+
+
     /****************************Below route is all for role & permission***********************************************************/
-    Route::resource('user',UserController::class);
-    Route::post('password-change/{user}',[UserController::class,'passwordChange'])->name('user.change');
-    Route::get('manage-permission/{role}',[RoleAndPermissionController::class,'managePermission'])->name('role.permission');
-    Route::get('permission',[RoleAndPermissionController::class,'indexPermission'])->name('permission.index');
-    Route::post('permission',[RoleAndPermissionController::class,'storePermission'])->name('permission.store');
-    Route::resource('role',RoleAndPermissionController::class)->middleware('can:ROLE');
+    Route::resource('user', UserController::class)->except('edit','show','destroy');
+    Route::post('password-change/{user}', [UserController::class, 'passwordChange'])->name('user.change');
+    Route::get('manage-permission/{role}', [RoleAndPermissionController::class, 'managePermission'])
+        ->name('role.permission')
+        ->middleware('can:MANAGE_PERMISSION');
+    Route::get('permission', [RoleAndPermissionController::class, 'indexPermission'])
+        ->name('permission.index')
+        ->middleware('can:PERMISSION');
+    Route::post('permission', [RoleAndPermissionController::class, 'storePermission'])
+        ->name('permission.store')
+        ->middleware('can:ADD_PERMISSION');
+    Route::resource('role', RoleAndPermissionController::class)->middleware('can:ROLE');
     /***************************end route for role $permission********************************************************************/
     /****************** below route is all for setting**********************************************************************************************/
     Route::prefix('settings')->group(function () {

@@ -37,8 +37,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{-- this is a cdn of ck editor --}}
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-    {{-- this is our own custom css  --}}
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    {{-- this is our own custom css --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{asset('css/spinner.css')}}">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
@@ -60,7 +62,8 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-user"></i> <span class="px-2">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</span>
+                        <i class="fas fa-user"></i> <span
+                            class="px-2">{{ auth()->user() == null ? 'ADMIN' : auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
@@ -140,73 +143,75 @@
                                 </a>
                             </li>
                         @endcan
-                        <li class="nav-item has-treeview  @yield('menu_ope')">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-tachometer-alt nav-icon"></i>
-                                <p class="px-2 font-weight-bold">
-                                    {{ __('ड्यासबोर्ड सेटिङ्हरू') }}
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview " style="display: @yield('s_child_dashboard')">
-                                <li class="nav-item">
-                                    <a href="{{ route('about-us.index') }}"
-                                        class="nav-link @yield('dashboard_about_us')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('हाम्रो बारेमा') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('notice.index') }}"
-                                        class="nav-link @yield('dashboard_notice')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('सूचना') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('Publication.index') }}"
-                                        class="nav-link @yield('dashboard_publication')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('प्रकाशन') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('agriculture-animal-detail.index') }}"
-                                        class="nav-link @yield('dashboard_agriculture_animal_detail')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('कृषि तथा पशुपन्छि सम्बन्धि') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('question.index') }}"
-                                        class="nav-link @yield('dashboard_question')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('प्रश्नहरू') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('agriculture-weather.index') }}"
-                                        class="nav-link @yield('dashboard_agriculture_weather')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('कृषि - मौसम सल्लाह बुलेटिन') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('market-plan.index') }}"
-                                        class="nav-link @yield('dashboard_market_plan')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('ब्यबसायिक योजना') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('agriculture-technique.index') }}"
-                                        class="nav-link @yield('dashboard_ag_tech')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('कृषि प्रबिधि') }}</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @can('VIEW_DASHBOARD')
+                            <li class="nav-item has-treeview  @yield('menu_ope')">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    <p class="px-2 font-weight-bold">
+                                        {{ __('ड्यासबोर्ड सेटिङ्हरू') }}
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview " style="display: @yield('s_child_dashboard')">
+                                    <li class="nav-item">
+                                        <a href="{{ route('about-us.index') }}"
+                                            class="nav-link @yield('dashboard_about_us')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('हाम्रो बारेमा') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('notice.index') }}"
+                                            class="nav-link @yield('dashboard_notice')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('सूचना') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('Publication.index') }}"
+                                            class="nav-link @yield('dashboard_publication')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('प्रकाशन') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('agriculture-animal-detail.index') }}"
+                                            class="nav-link @yield('dashboard_agriculture_animal_detail')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('कृषि तथा पशुपन्छि सम्बन्धि') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('question.index') }}"
+                                            class="nav-link @yield('dashboard_question')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('प्रश्नहरू') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('agriculture-weather.index') }}"
+                                            class="nav-link @yield('dashboard_agriculture_weather')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('कृषि - मौसम सल्लाह बुलेटिन') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('market-plan.index') }}"
+                                            class="nav-link @yield('dashboard_market_plan')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('ब्यबसायिक योजना') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('agriculture-technique.index') }}"
+                                            class="nav-link @yield('dashboard_ag_tech')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('कृषि प्रबिधि') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endcan
                         <li class="nav-item has-treeview  @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>
@@ -382,21 +387,58 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <section class="content">
-                <div class="container-fluid">
+            <section class="content" style="position: relative;">
+                <div class="container-fluid" id="content" style="display: none;">
                     <div class="row">
                         <div class="col-md-12">
                             @yield('main_content')
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Main content -->
-            <!-- /.content -->
+                <div class="container-fluid" id="loader" style="    position: absolute;
+                top: 60px;
+                max-height:100vh;
+                background: #fff;">
+                    <div class="col-12">
+                        <div align="center" class="fond">
+                            <div class="contener_general">
+                                <div class="contener_mixte">
+                                    <div class="ballcolor ball_1">&nbsp;</div>
+                                </div>
+                                <div class="contener_mixte">
+                                    <div class="ballcolor ball_2">&nbsp;</div>
+                                </div>
+                                <div class="contener_mixte">
+                                    <div class="ballcolor ball_3">&nbsp;</div>
+                                </div>
+                                <div class="contener_mixte">
+                                    <div class="ballcolor ball_4">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+
+        </section>
+        <!-- Main content -->
+        <!-- /.content -->
+    </div>
+    </div>
     </div>
     <!-- ./wrapper -->
     @livewireScripts
+    <script>
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector("#loader").style.display = "block";
+                document.querySelector("#content").style.display = "none";
+            } else {
+                document.querySelector("#loader").style.display = "none";
+                document.querySelector("#content").style.display = "block";
+            }
+        };
+    </script>
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -429,7 +471,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/demo.js') }}"></script> --}}
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
