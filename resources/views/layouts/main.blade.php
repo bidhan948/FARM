@@ -120,7 +120,7 @@
                                 </p>
                             </a>
                         </li>
-                        @can('ADD_ROLE')
+                        @can('ROLE')
                             <li class="nav-item">
                                 <a href="{{ route('role.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-tag"></i>
@@ -130,7 +130,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('ADD_PERMISSION')
+                        @can('PERMISSION')
                             <li class="nav-item">
                                 <a href="{{ route('permission.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-lock"></i>

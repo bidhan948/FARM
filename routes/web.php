@@ -71,7 +71,7 @@ Route::get('dashboard/agriculture-weather', [DashboardController::class, 'showAg
 Route::get('dashboard/agriculture-weather/{agriculture_weather}', [DashboardController::class, 'showAgricultureWeatherDetail'])->name('dashboard.agriculture_weather_show');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('can:VIEW_DASHBOARD');
     /****************************below route is all for Land*******************************************************************************************/
     Route::resource('land-owner', LandController::class);
     Route::get('Bibaran/{land_owner}', [ReportController::class, 'index'])->name('show_bibaran');
@@ -119,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('manage-permission/{role}',[RoleAndPermissionController::class,'managePermission'])->name('role.permission');
     Route::get('permission',[RoleAndPermissionController::class,'indexPermission'])->name('permission.index');
     Route::post('permission',[RoleAndPermissionController::class,'storePermission'])->name('permission.store');
-    Route::resource('role',RoleAndPermissionController::class);
+    Route::resource('role',RoleAndPermissionController::class)->middleware('can:ROLE');
     /***************************end route for role $permission********************************************************************/
     /****************** below route is all for setting**********************************************************************************************/
     Route::prefix('settings')->group(function () {

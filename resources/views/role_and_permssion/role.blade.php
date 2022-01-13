@@ -8,11 +8,13 @@
                 <div class="col-md-6" style="margin-bottom:-5px;">
                     <p class="">{{ __('भूमिकाको सुचिहरु') }}</p>
                 </div>
-                <div class="
-                        col-md-6 text-right">
-                    <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('भूमिका थप्नुहोस') }}</a>
-                </div>
+                @can('ADD_ROLE')
+                    <div class="
+                            col-md-6 text-right">
+                        <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
+                            {{ __('भूमिका थप्नुहोस') }}</a>
+                    </div>
+                @endcan
             </div>
         </div>
         <!-- /.card-header -->
@@ -22,6 +24,7 @@
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
                         <th class="text-center">{{ __('भूमिका') }}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +33,10 @@
                             <td class="text-center">{{ Nepali($key + 1) }}</td>
                             <td class="text-center">{{ $role->name }}
                             </td>
-                            <td class="text-center"><a href="{{route('role.permission',$role)}}" class="btn btn-sm btn-danger">{{__('अनुमति प्रबन्ध गर्नुहोस्')}}</a></td>
+                            @can('MANAGE_PERMISSION')
+                                <td class="text-center"><a href="{{ route('role.permission', $role) }}"
+                                        class="btn btn-sm btn-danger">{{ __('अनुमति प्रबन्ध गर्नुहोस्') }}</a></td>
+                            @endcan
                         </tr>
                     @endforeach
             </table>
@@ -38,53 +44,56 @@
         <!-- /.card-body -->
     </div>
 
-    {{-- modal for adding role status --}}
-    <div class="modal fade text-sm" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="">{{ __('भूमिका थप्नुहोस') }}</h5>
-                    <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ route('role.store') }}">
-                        @csrf
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            {{ __('भूमिका') }} <span class="text-danger px-1 font-weight-bold">*</span>
-                                        </span>
+    @can('ADD_ROLE')
+        {{-- modal for adding role status --}}
+        <div class="modal fade text-sm" id="modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="">{{ __('भूमिका थप्नुहोस') }}</h5>
+                        <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{{ route('role.store') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                {{ __('भूमिका') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            </span>
+                                        </div>
+                                        <input type="text" value="{{ old('name') }}" name="name"
+                                            class="form-control  @error('name') is-invalid @enderror">
+                                        @error('name')
+                                            <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                                {{ __('भूमिकाको फिल्ड खाली छ ') }}
+                                            </p>
+                                        @enderror
                                     </div>
-                                    <input type="text" value="{{ old('name') }}" name="name"
-                                        class="form-control  @error('name') is-invalid @enderror">
-                                    @error('name')
-                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                            {{ __('भूमिकाको फिल्ड खाली छ ') }}
-                                        </p>
-                                    @enderror
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="return confirm('के तपाई निश्चित हुनुहुन्छ ?')">पेश
+                                        गर्नुहोस्</button>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary" onclick="return confirm('के तपाई निश्चित हुनुहुन्छ ?')">पेश
-                                    गर्नुहोस्</button>
-                            </div>
-                        </div>
 
-                    </form>
+                        </form>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
-    {{-- end of modal for adding role status --}}
+        {{-- end of modal for adding role status --}}
+    @endcan
 @endsection
 
 @section('scripts')

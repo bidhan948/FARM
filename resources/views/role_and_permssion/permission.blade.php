@@ -27,7 +27,7 @@
                 <tbody>
                     @foreach ($permissions as $key => $permission)
                         <tr>
-                            <td class="text-center">{{ Nepali($key + 1) }}</td>
+                            <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ Str::replace('_',' ',$permission->name)}}
                             </td>
                         </tr>
