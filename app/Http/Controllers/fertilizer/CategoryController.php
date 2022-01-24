@@ -13,8 +13,10 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        return view('fertilizer.category',[
-            'categories'=> category::query()->get()
+        return view('fertilizer.category', [
+            'categories' => category::query()
+                ->latest()
+                ->get()
         ]);
     }
 
@@ -32,10 +34,10 @@ class CategoryController extends Controller
             'name' => [
                 'required',
                 Rule::unique('categories')
-                ->ignore($category)
-                ]
-            ]);
-            
+                    ->ignore($category)
+            ]
+        ]);
+
         $category->update($validate);
         toast("Category (वर्ग) सच्याउन सफल भयो ", "success");
         return redirect()->back();

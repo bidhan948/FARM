@@ -149,6 +149,13 @@
                                             <p class="px-2">{{ __('Category (वर्ग)') }}</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('Crop.index') }}"
+                                            class="nav-link @yield('fertilizer_crop')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('Crops (बाली)') }}</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @endcan

@@ -17,6 +17,7 @@ use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\fertilizer\CategoryController;
+use App\Http\Controllers\fertilizer\FertilizerCropController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
 use App\Http\Controllers\role_ad_permission\RoleAndPermissionController;
@@ -119,6 +120,10 @@ Route::group(['middleware' => 'auth'], function () {
     /****************************below route is all for fertilizer setting***************************************************************************/
     Route::prefix('fertilizer')->group(function () {
         Route::resource('category',CategoryController::class)
+        ->except('edit','destroy','show','create')
+        ->middleware('can:SETTING_FORMULA');
+
+        Route::resource('Crop',FertilizerCropController::class)
         ->except('edit','destroy','show','create')
         ->middleware('can:SETTING_FORMULA');
     });
