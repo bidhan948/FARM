@@ -16,6 +16,7 @@ use App\Http\Controllers\detail\AgricultureWeatherController;
 use App\Http\Controllers\detail\PageController;
 use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
+use App\Http\Controllers\fertilizer\CategoryController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
 use App\Http\Controllers\role_ad_permission\RoleAndPermissionController;
@@ -50,6 +51,7 @@ use App\Http\Controllers\setting\{
 Auth::routes();
 
 // for now not using any session authentication
+Route::view('privacy-policy', 'privacy-policy')->name('privacy_policy');
 Route::get('about-us', [DashboardController::class, 'aboutUs'])->name('dashboard.about_us');
 Route::get('contact-us', [DashboardController::class, 'contactUs'])->name('dashboard.contact_us');
 Route::get('dashboard/notice', [DashboardController::class, 'notice'])->name('dashboard.notice');
@@ -114,6 +116,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
     /****************************end route for dashboard setting*******************************************************************************************/
 
+    /****************************below route is all for fertilizer setting***************************************************************************/
+    Route::prefix('fertilizer')->group(function () {
+        Route::resource('category',CategoryController::class)
+        ->except('edit','destroy','show','create')
+        ->middleware('can:SETTING_FORMULA');
+    });
+    /****************************end route all for fertilizer setting*******************************************************************************/
 
     /****************************Below route is all for role & permission***********************************************************/
     Route::resource('user', UserController::class)->except('edit','show','destroy');

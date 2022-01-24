@@ -39,7 +39,7 @@
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
     {{-- this is our own custom css --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{asset('css/spinner.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/spinner.css') }}">
 
 </head>
 
@@ -92,17 +92,6 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</a>
-                    </div>
-                </div> --}}
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -141,6 +130,26 @@
                                         {{ __('अनुमति व्यवस्थापन') }}
                                     </p>
                                 </a>
+                            </li>
+                        @endcan
+                        @can('SETTING_FORMULA')
+                            <li class="nav-item has-treeview  @yield('menu_show')">
+                                <a href="#" class="nav-link">
+                                    <i class=" fas fa-cogs nav-icon"></i>
+                                    <p class="px-2 font-weight-bold">
+                                        {{ __('मल मापन सेटिङ्हरू') }}
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview " style="display: @yield('s_child_setting_formula')">
+                                    <li class="nav-item">
+                                        <a href="{{ route('category.index') }}"
+                                            class="nav-link @yield('dashboard_category')">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p class="px-2">{{ __('Category (वर्ग)') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         @endcan
                         @can('VIEW_DASHBOARD')
@@ -377,6 +386,14 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('privacy_policy') }}" class="nav-link">
+                                <i class="fas fa-lock nav-icon"></i>
+                                <p>
+                                    {{ __('Privacy & Policy') }}
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

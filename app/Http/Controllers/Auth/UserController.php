@@ -51,7 +51,7 @@ class UserController extends Controller
         DB::transaction(function () use ($user, $validate) {
             $roles = $user->load('roles');
             if ($roles->roles->count() > 0) {
-                $user->removeRole($roles->roles->name);
+                $user->removeRole($roles->roles[0]->name);
             }
             $user->assignRole($validate['role']);
             $user->update($validate);
@@ -69,7 +69,7 @@ class UserController extends Controller
             return redirect()->back();
         }
         $user->update(['password' => Hash::make($request->password)]);
-        toast('प्रयोगकर्ताको पासवोर्ड सच्याउन सफल भयो ', 'success');
+        toast('प्रयोगकर्ताको पासवोर्ड सच्याउन सफल भयो', 'success');
         return redirect()->route('user.index');
     }
 }

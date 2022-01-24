@@ -11,6 +11,7 @@ use App\Models\entrepreneurship\upcoming_plans;
 use App\Models\land\land_owner;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class EnterperneurshipController extends Controller
 {
@@ -36,29 +37,31 @@ class EnterperneurshipController extends Controller
         if ($request->arrogance_status == 0) {
             $land_owner->update(['arrogance_status' => land_owner::ARROGANCE_FALSE]);
         } else {
-            enterpreneurship::create($helper->grtEnterpeunershipData($request->validated()) + ['land_owner_id' => $land_owner->id]);
-            foreach ($request->business_id as $key => $busines_id) {
-                business_detail::create(
-                    [
-                        'land_owner_id' => $land_owner->id,
-                        'business_id' => $busines_id,
-                        'yearly_investment' => $request->yearly_investment[$key],
-                        'yearly_income' => $request->yearly_income[$key],
-                        'remark' => $request->remark[$key],
-                    ]
-                );
-            }
+            DB::transaction(function () use ($request, $helper, $land_owner) {
+                enterpreneurship::create($helper->grtEnterpeunershipData($request->validated()) + ['land_owner_id' => $land_owner->id]);
+                foreach ($request->business_id as $key => $busines_id) {
+                    business_detail::create(
+                        [
+                            'land_owner_id' => $land_owner->id,
+                            'business_id' => $busines_id,
+                            'yearly_investment' => $request->yearly_investment[$key],
+                            'yearly_income' => $request->yearly_income[$key],
+                            'remark' => $request->remark[$key],
+                        ]
+                    );
+                }
 
-            foreach ($request->name as $key => $name) {
-                upcoming_plans::create(
-                    [
-                        'land_owner_id' => $land_owner->id,
-                        'name' => $name,
-                        'plan_detail' => $request->plan_detail[$key],
-                        'remark' => $request->remark_plan[$key],
-                    ]
-                );
-            }
+                foreach ($request->name as $key => $name) {
+                    upcoming_plans::create(
+                        [
+                            'land_owner_id' => $land_owner->id,
+                            'name' => $name,
+                            'plan_detail' => $request->plan_detail[$key],
+                            'remark' => $request->remark_plan[$key],
+                        ]
+                    );
+                }
+            });
         }
         toast("उधम्शिल्ता/फारम संचालनमा आबद्ध थप्न सफल भयो", "success");
         return redirect()->route('land-owner.index');
@@ -70,7 +73,7 @@ class EnterperneurshipController extends Controller
 
         $enterpreneurships = enterpreneurship::query()
             ->where('land_owner_id', $land_owner->id)
-            ->with('organizationType','Province','District','Municipality')
+            ->with('organizationType', 'Province', 'District', 'Municipality')
             ->get();
 
         $business_details = business_detail::query()
