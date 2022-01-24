@@ -15,6 +15,9 @@ class CreateFertilizerAreasTable extends Migration
     {
         Schema::create('fertilizer_areas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->float('equal_to_kattha');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
