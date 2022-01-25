@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'जग्गाधनीको विवरण')
+@section('is_active_land_owner', 'active')
 @section('main_content')
     <div class="card text-sm ">
         <div class="card-header my-2">

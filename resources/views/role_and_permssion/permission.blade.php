@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'अनुमति')
+@section('is_active_permission', 'active')
 @section('main_content')
 
     <div class="card text-sm ">

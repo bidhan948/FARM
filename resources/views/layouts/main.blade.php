@@ -97,7 +97,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('land-owner.index') }}" class="nav-link">
+                            <a href="{{ route('land-owner.index') }}" class="nav-link @yield('is_active_land_owner')">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     {{ __('जग्गाधनीको विवरण') }}
@@ -105,7 +105,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link">
+                            <a href="{{ route('user.index') }}" class="nav-link @yield('is_active_user')">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
                                     {{ __('प्रयोगकर्ता') }}
@@ -114,7 +114,7 @@
                         </li>
                         @can('ROLE')
                             <li class="nav-item">
-                                <a href="{{ route('role.index') }}" class="nav-link">
+                                <a href="{{ route('role.index') }}" class="nav-link @yield('is_active_role')">
                                     <i class="nav-icon fas fa-user-tag"></i>
                                     <p>
                                         {{ __('भूमिका व्यवस्थापन') }}
@@ -124,10 +124,20 @@
                         @endcan
                         @can('PERMISSION')
                             <li class="nav-item">
-                                <a href="{{ route('permission.index') }}" class="nav-link">
+                                <a href="{{ route('permission.index') }}" class="nav-link @yield('is_active_permission')">
                                     <i class="nav-icon fas fa-user-lock"></i>
                                     <p>
                                         {{ __('अनुमति व्यवस्थापन') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('FERTILIZE_CALCULATE')
+                            <li class="nav-item ">
+                                <a href="{{ route('fertilize_calculate') }}" class="nav-link @yield('is_active')">
+                                    <i class="fas fa-calculator nav-icon"></i>
+                                    <p>
+                                        {{ __('रासायनिक मल मापन') }}
                                     </p>
                                 </a>
                             </li>
