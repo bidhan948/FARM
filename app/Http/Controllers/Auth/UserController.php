@@ -64,11 +64,14 @@ class UserController extends Controller
     public function passwordChange(Request $request, User $user): RedirectResponse
     {
         $request->validate(['password' => ['required', 'string', 'min:8', 'confirmed']]);
-        if (Hash::check($request->password, $user->password)) {
-            Alert::error('पासवोर्ड पहिलानै प्रयोग गरिएको छ ');
-            return redirect()->back();
-        }
-        $user->update(['password' => Hash::make($request->password)]);
+        // if (Hash::check($request->password, $user->password)) {
+        //     Alert::error('पासवोर्ड पहिलानै प्रयोग गरिएको छ ');
+        //     return redirect()->back();
+        // }
+        // using query builder because orm is not working here :(
+        DB::table('users')->where('id',$user->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
         toast('प्रयोगकर्ताको पासवोर्ड सच्याउन सफल भयो', 'success');
         return redirect()->route('user.index');
     }
