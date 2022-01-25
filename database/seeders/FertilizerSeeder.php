@@ -42,7 +42,12 @@ class FertilizerSeeder extends Seeder
 
         fertilizer_area::create([
             'name' => 'Square Meter (वर्ग मिटर)',
-            'equal_to_kattha' => '126.44'
+            'equal_to_kattha' => '0.0029531628373989'
+        ]);
+
+        fertilizer_area::create([
+            'name' => 'Dhur (धुर)',
+            'equal_to_kattha' => '0.05'
         ]);
     }
 }

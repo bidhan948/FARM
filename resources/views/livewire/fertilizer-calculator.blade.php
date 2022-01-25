@@ -46,7 +46,7 @@
                 <span class="input-group-text">
                     {{ __('क्षेत्र') }}
             </div>
-            <input type="number" wire:model="area" class="form-control form-control-sm">
+            <input type="number" step="0.1" min="0" max="100000000" wire:model="area" class="form-control form-control-sm">
         </div>
     </div>
     <div class="col-md-3 my-2">

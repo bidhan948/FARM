@@ -11,7 +11,9 @@ return [
     "SITE_PROVINCE" => "प्रदेश नं १",
     "SITE_ADDRESS" => $district. ",नेपाल",
     "PUBLICATION_PATH" => "public/publication",
+    "NOTICE_PATH" => "public/notice/",
     "CROP_PATH" => "storage/crop/",
     "FOOD_PATH" => "storage/food/",
     "AGRICULTURE_TECHNOLOGY_PATH" => "public/agriculture_technology/",
+    "BASE_PATH" => url('/')
 ];
