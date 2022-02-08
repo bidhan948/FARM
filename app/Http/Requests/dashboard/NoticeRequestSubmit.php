@@ -26,9 +26,9 @@ class NoticeRequestSubmit extends FormRequest
         return [
             'notice' => 'required',
             'start_date' => 'required',
-            'end_date' => 'required',
+            'end_date' => 'present',
             'start_dateAd' => 'required',
-            'end_dateAd' => 'required',
+            'end_dateAd' => 'present',
         ];
     }
 }

@@ -142,6 +142,16 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('FERTILIZE_CALCULATE')
+                            <li class="nav-item ">
+                                <a href="{{ route('stock.index') }}" class="nav-link @yield('is_active_stock')">
+                                    <i class="nav-icon fas fa-store"></i>
+                                    <p>
+                                        {{ __('STOCK') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
                         <li class="nav-item has-treeview @yield('menu_show')  @yield('menu_open') @yield('menu_ope')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>

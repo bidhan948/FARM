@@ -9,12 +9,12 @@
         <div class="card-header my-2">
             <div class="row my-1">
                 <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('सूचनाको सुचिहरु') }}</p>
+                    <p class="">{{ __('प्रकाशनको सुचिहरु') }}</p>
                 </div>
                 <div class="
                     col-md-6 text-right">
                     <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('सूचना थप्नुहोस') }}</a>
+                        {{ __('प्रकाशन थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="">{{ __('सूचना थप्नुहोस') }}</h5>
+                    <h5 class="">{{ __('प्रकाशन थप्नुहोस') }}</h5>
                     <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

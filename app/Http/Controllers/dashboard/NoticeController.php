@@ -17,7 +17,8 @@ class NoticeController extends Controller
     public function index(): View
     {
         return view('dashboard.notice', ['notices' => notice::query()
-            ->orderBy('start_dateAd')
+            ->orderBy('start_dateAd','DESC')
+            ->with('noticeDocument')
             ->get()]);
     }
 
@@ -40,7 +41,9 @@ class NoticeController extends Controller
     public function update(notice $notice, NoticeEditRequest $request, MediaHelper $helper): RedirectResponse
     {
         $request->merge(['start_date' => $request->start_date == null ? $notice->start_date : $request->start_date]);
+        $request->merge(['start_dateAd' => $request->start_dateAd == null ? $notice->start_dateAd : $request->start_dateAd]);
         $request->merge(['end_date' => $request->end_date == null ? $notice->end_date : $request->end_date]);
+        $request->merge(['end_dateAd' => $request->end_dateAd == null ? $notice->end_dateAd : $request->end_dateAd]);
 
         if ($request->has('notice_document')) {
 

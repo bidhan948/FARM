@@ -40,15 +40,20 @@
                             <td class="text-center">{{ Nepali($notice->start_date) }}</td>
                             <td class="text-center">{{ Nepali($notice->end_date) }}</td>
                             <td class="text-center">
-                                @if ($notice->end_dateAd == now())
-                                    "Continuous"
+                                <!--@if ($notice->end_dateAd == now())-->
+                                <!--    "Continuous"-->
+                                <!--@endif-->
+                                @if($notice->end_dateAd != null)
+                                    @if ($notice->end_dateAd < now())
+                                        सकिएको 
+                                    @endif
+                                    @if ($notice->end_dateAd > now())
+                                        चलिरहेको
+                                    @endif
+                                @else
+                                    -------
                                 @endif
-                                @if ($notice->end_dateAd < now())
-                                    "Closed"
-                                @endif
-                                @if ($notice->end_dateAd > now())
-                                    ......
-                                @endif
+
                             </td>
                             <td class="text-center"><a class="btn-sm btn-success text-white"
                                     href="{{ route('notice.edit', $notice) }}" style="cursor: pointer;"><i
@@ -113,8 +118,7 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('सूचनाको जारी मिति') }} <span
-                                                class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('सूचनाको अन्तिम  मिति') }}
                                         </span>
                                     </div>
                                     <input name="end_date"
@@ -174,7 +178,7 @@
                 ndpYear: 200,
                 ndpMonth: true,
                 ndpYearCount: 10,
-                disableDaysBefore: 0,
+                // disableDaysBefore: 0,
                 onChange: function() {
                     var dateString = mainInput.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions
@@ -187,7 +191,7 @@
                 ndpYear: 200,
                 ndpMonth: true,
                 ndpYearCount: 200,
-                disableDaysBefore: 0,
+                // disableDaysBefore: 0,
                 onChange: function() {
                     var dateString = mainInput1.value;
                     var dateAd = NepaliFunctions.ConvertDateFormat(NepaliFunctions.BS2AD(NepaliFunctions

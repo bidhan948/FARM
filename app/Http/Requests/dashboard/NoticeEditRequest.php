@@ -25,10 +25,10 @@ class NoticeEditRequest extends FormRequest
     {
         return [
             'notice' => 'required',
-            'start_date' => 'nullable',
-            'end_date' => 'nullable',
-            'start_dateAd' => 'required',
-            'end_dateAd' => 'required',
+            'start_date' => 'present',
+            'end_date' => 'present',
+            'start_dateAd' => 'present',
+            'end_dateAd' => 'present',
         ];
     }
 }

@@ -11,7 +11,8 @@ return [
     "SITE_PROVINCE" => "प्रदेश नं १",
     "SITE_ADDRESS" => $district. ",नेपाल",
     "PUBLICATION_PATH" => "public/publication",
-    "CROP_PATH" => "storage/crop/",
+    // "NOTICE_PATH"=> url('/')."FARM/public/storage/notice/",
+    "CROP_PATH" => url('/')."/laravel/storage/app/public/crop/",
     "FOOD_PATH" => "storage/food/",
     "AGRICULTURE_TECHNOLOGY_PATH" => "public/agriculture_technology/",
 ];

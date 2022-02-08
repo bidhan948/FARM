@@ -40,7 +40,8 @@ class DashboardController extends Controller
     {
         return view('dashboard.dashboard_notice', [
             'notices' => notice::query()
-                ->orderBy('start_dateAd')
+                ->orderBy('start_dateAd', 'DESC')
+                ->with('noticeDocument')
                 ->get()
         ]);
     }
@@ -93,37 +94,37 @@ class DashboardController extends Controller
         // }
         return Storage::download($imagePath . "/" . $document);
     }
-    
+
     public function farmer(): View
     {
         return view('dashboard.dashboard_land_owner_detail', [
             'land_owners' => land_owner::query()
-            ->select('name_nepali', 'name_english', 'contact_no', 'cit_no', 'reg_id')
-            ->with('Gender')
-            ->latest()
-            ->get()
+                ->select('name_nepali', 'name_english', 'contact_no', 'cit_no', 'reg_id')
+                ->with('Gender')
+                ->latest()
+                ->get()
         ]);
     }
-    
+
     public function agricultureAnimal(): View
     {
         return view('dashboard.dashboard_agriculture_animal_detail', [
             'agriculture_animal_details' => agriculture_animal_detail::query()->with('cropType')->get()
         ]);
     }
-    
+
     public function agricultureAnimalShow(agriculture_animal_detail $agriculture_animal_detail): View
     {
         $pages = page::query()
-        ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
-        ->Children()
-        ->with('Parent')
-        ->get();
-        
+            ->where('agriculture_animal_detail_id', $agriculture_animal_detail->id)
+            ->Children()
+            ->with('Parent')
+            ->get();
+
         $parents = page::query()
-        ->Parent()
-        ->get();
-        
+            ->Parent()
+            ->get();
+
         return view('dashboard.dashboard_agriculture_animal', [
             'pages' => $pages,
             'parents' => $parents,
@@ -131,16 +132,16 @@ class DashboardController extends Controller
             'checkForNotRepeatingParent' => []
         ]);
     }
-    
+
     public function agricultureTechnology(): View
     {
         return view('dashboard.dashboard_agriculture_technology', [
             'crop_types' => crop_type::query()
-            ->whereNotNull('image')
-            ->get()
+                ->whereNotNull('image')
+                ->get()
         ]);
     }
-    
+
     public function agricultureTechnologyShow(crop_type $crop_type)
     {
         return view('dashboard.dashboard_agriculture_technology_detail', [
@@ -153,19 +154,18 @@ class DashboardController extends Controller
         return view('dashboard.dashboard_agriculture_technology_show', [
             'crop' => $crop->load('cropType'),
             'agriculture_technologies' => agriculture_technology::query()
-            ->where('crop_id', $crop->id)
-            ->latest()
-            ->get()
+                ->where('crop_id', $crop->id)
+                ->latest()
+                ->get()
         ]);
     }
-    
+
     public function agricultureTechnologyDownload($document)
     {
         $imagePath = config('constant.AGRICULTURE_TECHNOLOGY_PATH');
         return Storage::download($imagePath . $document);
-
     }
-    
+
     public function generalQuestionType(): View
     {
         return view('dashboard.dashboard_question', [

@@ -18,6 +18,7 @@ use App\Http\Controllers\enterperneurship\EnterperneurshipController;
 use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\fertilizer\CategoryController;
 use App\Http\Controllers\fertilizer\FertilizerCropController;
+use App\Http\Controllers\fertilizer\StockController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\land\LandController;
 use App\Http\Controllers\land_detail\LandDetailController;
@@ -133,6 +134,11 @@ Route::group(['middleware' => 'auth'], function () {
         ->middleware('can:FERTILIZE_CALCULATE');
     });
     /****************************end route all for fertilizer setting*******************************************************************************/
+
+    /****************************below route is all for fertilizer disturbation****************************************************************/
+    Route::resource('/stock',StockController::class)->except('upadte','edit','delete','create','store');
+    /****************************end route is all for fertilizer disturbation****************************************************************/
+
 
     /****************************Below route is all for role & permission***********************************************************/
     Route::resource('user', UserController::class)->except('edit','show','destroy');
