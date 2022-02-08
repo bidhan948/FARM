@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Category: (वर्ग)')
 @section('menu_show', 'menu-open')
+@section('menu_open', 'menu-open')
 @section('s_child_setting_formula', 'block')
 @section('dashboard_category', 'active')
 @section('main_content')

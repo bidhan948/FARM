@@ -1,20 +1,20 @@
 @extends('layouts.main')
-@section('title', 'बाली')
+@section('title', 'crop: (बालि)')
+@section('menu_show', 'menu-open')
 @section('menu_open', 'menu-open')
-@section('s_child', 'block')
-@section('setting_crop', 'active')
+@section('s_child_setting_formula', 'block')
+@section('fertilizer_crop', 'active')
 @section('main_content')
-
     <div class="card text-sm ">
         <div class="card-header my-2">
             <div class="row my-1">
                 <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('बालीको सुचिहरु') }}</p>
+                    <p class="">{{ __('crop: बालिको सुचिहरु') }}</p>
                 </div>
                 <div class="
                         col-md-6 text-right">
                     <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('बाली थप्नुहोस') }}</a>
+                        <i class="fas fa-plus px-2"></i> {{ __('crop: (बालि) थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
@@ -24,37 +24,44 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('बाली') }}</th>
+                        <th class="text-center">{{ __('बालि') }}</th>
+                        <th class="text-center">{{ __('पोटसको मात्रा') }}</th>
+                        <th class="text-center">{{ __('गेडेमल (डियपि) मात्रा') }}</th>
+                        <th class="text-center">{{ __('चिनीमल (युरिया) मात्रा') }}</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($crop_types as $crop_type)
-                        @foreach ($crop_type->Crop as $crop)
+                    @foreach ($categories as  $category)
+                        <tr>
+                            <td class="text-center" colspan="6">{{ $category->name }}
+                            </td>
+                        </tr>
+                        @foreach ($category->fertilizerCrop as $key => $fertilizerCrop)
                             <tr>
-                                <td class="text-center">{{ Nepali($i++) }}</td>
-                                <td class="text-center">{{ $crop->name }} / {{ $crop_type->name }}
+                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td class="text-center">{{ $fertilizerCrop->name }}
                                 </td>
+                                <td class="text-center">{{ Nepali($fertilizerCrop->potash) }}</td>
+                                <td class="text-center">{{ Nepali($fertilizerCrop->dap) }}</td>
+                                <td class="text-center">{{ Nepali($fertilizerCrop->urea) }}</td>
                                 <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
-                                        data-target="#modal-lg{{ $i }}" style="cursor: pointer;"><i
+                                        data-target="#modal-lg{{ $fertilizerCrop->id}}" style="cursor: pointer;"><i
                                             class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
-
                                     {{-- modal for adding crop status --}}
-                                    <div class="modal fade text-sm" id="modal-lg{{ $i }}">
-                                        <div class="modal-dialog modal-lg">
+                                    <div class="modal fade text-sm" id="modal-lg{{ $fertilizerCrop->id }}">
+                                        <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="">{{ __('बाली सच्याउनुहोस् ') }}</h5>
+                                                    <h5 class="">{{ __('crop: (बालि) थप्नुहोस') }}</h5>
                                                     <button type=" button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('crop.update', $crop) }}">
+                                                    <form method="post"
+                                                        action="{{ route('Crop.update', $fertilizerCrop) }}">
                                                         @method('PUT')
                                                         @csrf
                                                         <div class="row">
@@ -62,17 +69,17 @@
                                                                 <div class="input-group input-group-sm">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">
-                                                                            {{ __('बाली') }} <span
+                                                                            {{ __('बालि') }} <span
                                                                                 class="text-danger px-1 font-weight-bold">*</span>
                                                                         </span>
                                                                     </div>
-                                                                    <input type="text" value="{{ $crop->name }}"
-                                                                        name="name"
+                                                                    <input type="text" name="name"
+                                                                        value="{{ $fertilizerCrop->name }}"
                                                                         class="form-control  @error('name') is-invalid @enderror">
                                                                     @error('name')
                                                                         <p class="invalid-feedback mb-0"
                                                                             style="font-size: 0.9rem">
-                                                                            {{ __('बालीको फिल्ड खाली छ ') }}
+                                                                            {{ __('crop: (बालि)को फिल्ड खाली छ ') }}
                                                                         </p>
                                                                     @enderror
                                                                 </div>
@@ -81,29 +88,87 @@
                                                                 <div class="input-group input-group-sm">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">
-                                                                            {{ __('वालिको प्रकार') }}
-                                                                            <span
+                                                                            {{ __('बर्ग') }} <span
                                                                                 class="text-danger px-1 font-weight-bold">*</span>
                                                                         </span>
                                                                     </div>
-                                                                    <select name="crop_type_id"
-                                                                        class="custom-select select2 @error('crop_type_id') is-invalid @enderror">
-                                                                        @foreach ($crop_types as $crop_type)
-                                                                            <option value="{{ $crop_type->id }}" {{$crop_type->id == $crop->crop_type_id ? "selected" : ""}}>
-                                                                                {{ $crop_type->name }}</option>
+                                                                    <select name="category_id"
+                                                                        class="form-control form-control-sm">
+                                                                        <option value="">{{ __('---छान्नुहोस्---') }}
+                                                                        </option>
+                                                                        @foreach ($categories as $category)
+                                                                            <option value="{{ $category->id }}"
+                                                                                {{ $fertilizerCrop->id == $category->id ? 'selected' : '' }}>
+                                                                                {{ $category->name }}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('crop_type_id')
-                                                                        <p class="invalid-feedback" style="font-size: 0.9rem">
-                                                                            {{ __('वालिको प्रकार फिल्ड खाली छ |') }}
+                                                                    @error('category_id')
+                                                                        <p class="invalid-feedback mb-0"
+                                                                            style="font-size: 0.9rem">
+                                                                            {{ __('crop: (बालि)को फिल्ड खाली छ ') }}
                                                                         </p>
                                                                     @enderror
                                                                 </div>
-                                                                <!-- /input-group -->
                                                             </div>
-                                                            <div class="col-4 mt-2">
-                                                                <button type="submit" style="margin-left: -155px;"
-                                                                    class="btn btn-primary">पेश
+                                                            <div class="col-6 my-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            {{ __('पोटसको मात्रा') }} <span
+                                                                                class="text-danger px-1 font-weight-bold">*</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" name="potash"
+                                                                        value="{{ $fertilizerCrop->potash }}"
+                                                                        class="form-control  @error('potash') is-invalid @enderror">
+                                                                    @error('potash')
+                                                                        <p class="invalid-feedback mb-0"
+                                                                            style="font-size: 0.9rem">
+                                                                            {{ __('पोटसको मात्राको फिल्ड खाली छ ') }}
+                                                                        </p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 my-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            {{ __('गेडेमल (डियपि) मात्रा') }} <span
+                                                                                class="text-danger px-1 font-weight-bold">*</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" name="dap"
+                                                                        value="{{ $fertilizerCrop->dap }}"
+                                                                        class="form-control  @error('dap') is-invalid @enderror">
+                                                                    @error('dap')
+                                                                        <p class="invalid-feedback mb-0"
+                                                                            style="font-size: 0.9rem">
+                                                                            {{ __('गेडेमल (डियपि) मात्राको फिल्ड खाली छ ') }}
+                                                                        </p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            {{ __('चिनीमल (युरिया) मात्रा') }} <span
+                                                                                class="text-danger px-1 font-weight-bold">*</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" name="urea"
+                                                                        value="{{ $fertilizerCrop->urea }}"
+                                                                        class="form-control  @error('urea') is-invalid @enderror">
+                                                                    @error('urea')
+                                                                        <p class="invalid-feedback mb-0"
+                                                                            style="font-size: 0.9rem">
+                                                                            {{ __('चिनीमल (युरिया) मात्राको फिल्ड खाली छ ') }}
+                                                                        </p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-4 ">
+                                                                <button type="submit" class="btn-sm btn btn-primary">पेश
                                                                     गर्नुहोस्</button>
                                                             </div>
                                                         </div>
@@ -131,30 +196,30 @@
 
     {{-- modal for adding crop status --}}
     <div class="modal fade text-sm" id="modal-lg">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="">{{ __('बाली थप्नुहोस') }}</h5>
+                    <h5 class="">{{ __('crop: (बालि) थप्नुहोस') }}</h5>
                     <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('crop.store') }}">
+                    <form method="post" action="{{ route('Crop.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('बाली') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('बालि') }} <span class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
                                     <input type="text" value="{{ old('name') }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                            {{ __('बालीको फिल्ड खाली छ ') }}
+                                            {{ __('crop: (बालि)को फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -163,27 +228,77 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('वालिको प्रकार') }}
-                                            <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('बर्ग') }} <span class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
-                                    <select name="crop_type_id"
-                                        class="custom-select select2 @error('crop_type_id') is-invalid @enderror">
-                                        <option value="">{{ __('वालिको प्रकार ') }}</option>
-                                        @foreach ($crop_types as $crop_type)
-                                            <option value="{{ $crop_type->id }}">{{ $crop_type->name }}</option>
+                                    <select name="category_id" class="form-control form-control-sm">
+                                        <option value="">{{ __('---छान्नुहोस्---') }}</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('crop_type_id')
-                                        <p class="invalid-feedback" style="font-size: 0.9rem">
-                                            {{ __('वालिको प्रकार फिल्ड खाली छ |') }}
+                                    @error('category_id')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('crop: (बालि)को फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
-                                <!-- /input-group -->
                             </div>
-                            <div class="col-4 mt-2">
-                                <button type="submit" class="btn btn-primary">पेश
+                            <div class="col-6 my-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('पोटसको मात्रा') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input type="text" value="{{ old('potash') }}" name="potash"
+                                        class="form-control  @error('potash') is-invalid @enderror">
+                                    @error('potash')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('पोटसको मात्राको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-6 my-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('गेडेमल (डियपि) मात्रा') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input type="text" value="{{ old('dap') }}" name="dap"
+                                        class="form-control  @error('dap') is-invalid @enderror">
+                                    @error('dap')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('गेडेमल (डियपि) मात्राको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            {{ __('चिनीमल (युरिया) मात्रा') }} <span
+                                                class="text-danger px-1 font-weight-bold">*</span>
+                                        </span>
+                                    </div>
+                                    <input type="text" value="{{ old('urea') }}" name="urea"
+                                        class="form-control  @error('urea') is-invalid @enderror">
+                                    @error('urea')
+                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                                            {{ __('चिनीमल (युरिया) मात्राको फिल्ड खाली छ ') }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-4 ">
+                                <button type="submit" class="btn-sm btn btn-primary">पेश
                                     गर्नुहोस्</button>
                             </div>
                         </div>
@@ -212,7 +327,7 @@
     </script>
     <script>
         window.onload = function() {
-            if ({{$errors->any()}}) {
+            if ({{ $errors->any() }}) {
                 $('#modal-lg').modal('show');
             }
         }

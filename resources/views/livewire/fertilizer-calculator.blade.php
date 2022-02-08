@@ -40,20 +40,20 @@
             </select>
         </div>
     </div>
-    <div class="col-md-3 my-2">
+    <div class="col-md-2 my-2">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    {{ __('क्षेत्र') }}
+                    {{ __('क्षेत्रफल ') }}
             </div>
             <input type="number" step="0.1" min="0" max="100000000" wire:model="area" class="form-control form-control-sm">
         </div>
     </div>
-    <div class="col-md-3 my-2">
+    <div class="col-md-2 my-2">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    {{ __('बाली') }}
+                    {{ __('इकाई ') }}
             </div>
             <select wire:model="area_id" class="form-control form-control-sm">
                 <option value="">{{ __('---छान्नुहोस्---') }}
@@ -65,49 +65,56 @@
             </select>
         </div>
     </div>
-    <div class="col-md-3 my-2 my-2">
+    <div class="col-md-2 my-2 my-2">
         <a wire:click="calculate()" class="btn btn-sm btn-primary text-white"><i
                 class="fas fa-search px-1"></i>{{ __('खोज्नुहोस्') }}</a>
     </div>
 
     @if ($bool)
         <div class="col-12 my-3 card p-2 shadow-lg">
-            <table class="table table-bordered table-striped">
+      
+            <table class="fertilizer_box">
                 <tbody>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-right">
                             <img src="{{asset('fertilizer/potash.png')}}" alt="potash">
                         </td>
-                        <td class="text-center">
-                            <p class="text-center mb-0 font-weight-bold text-lg" style="padding-top:35px;">
+                        <td>
+                            <div class="fert_des">
+                            <p>
                                 आवश्यक पोटसको मात्रा
-                                {{ $fertilizerCrop->name ?? '' }}मा
-                                {{ Nepali($calculation['potash'] ?? '') }} kg
+                                <span> {{ $fertilizerCrop->name ?? '' }} </span> मा
+                                <span> {{ Nepali($calculation['potash'] ?? '') }} </span> kg
                             </p>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-right">
                             <img src="{{asset('fertilizer/dap.png')}}" alt="dap">
                         </td>
-                        <td class="text-center">
-                            <p class="text-center mb-0 font-weight-bold text-lg" style="padding-top:35px;">
+                        <td>
+                            <div class="fert_des">
+                            <p>
                                 आवश्यक गेडेमल (डियपि)को मात्रा
-                                {{ $fertilizerCrop->name ?? '' }}मा
-                                {{ Nepali($calculation['dap'] ?? '') }} kg
+                                <span> {{ $fertilizerCrop->name ?? '' }} </span>मा
+                                <span> {{ Nepali($calculation['dap'] ?? '') }}</span> kg
                             </p>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-right">
                             <img src="{{asset('fertilizer/urea.png')}}" alt="urea">
                         </td>
-                        <td class="text-center">
-                            <p class="text-center mb-0 font-weight-bold text-lg" style="padding-top:35px;">
+                        <td>
+                            <div class="fert_des">
+                            <p>
                                 आवश्यक चिनीमल (युरिया)को मात्रा
-                                {{ $fertilizerCrop->name ?? '' }}मा
-                                {{ Nepali($calculation['urea'] ?? '') }} kg
+                               <span>  {{ $fertilizerCrop->name ?? '' }} </span>मा
+                                <span> {{ Nepali($calculation['urea'] ?? '') }} </span> kg
                             </p>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
