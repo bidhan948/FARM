@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('title', 'crop: (बालि)')
 @section('menu_show', 'menu-open')
-@section('menu_open', 'menu-open')
 @section('s_child_setting_formula', 'block')
 @section('fertilizer_crop', 'active')
 @section('main_content')
+
     <div class="card text-sm ">
         <div class="card-header my-2">
             <div class="row my-1">
@@ -32,12 +32,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as  $category)
+                    @foreach ($categories as $key => $category)
                         <tr>
                             <td class="text-center" colspan="6">{{ $category->name }}
                             </td>
                         </tr>
-                        @foreach ($category->fertilizerCrop as $key => $fertilizerCrop)
+                        @foreach ($category->fertilizerCrop as $fertilizerCrop)
                             <tr>
                                 <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">{{ $fertilizerCrop->name }}
@@ -46,10 +46,10 @@
                                 <td class="text-center">{{ Nepali($fertilizerCrop->dap) }}</td>
                                 <td class="text-center">{{ Nepali($fertilizerCrop->urea) }}</td>
                                 <td class="text-center"><a class="btn-sm btn-success text-white" data-toggle="modal"
-                                        data-target="#modal-lg{{ $fertilizerCrop->id}}" style="cursor: pointer;"><i
+                                        data-target="#modal-lg{{ $key + 1 }}" style="cursor: pointer;"><i
                                             class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
                                     {{-- modal for adding crop status --}}
-                                    <div class="modal fade text-sm" id="modal-lg{{ $fertilizerCrop->id }}">
+                                    <div class="modal fade text-sm" id="modal-lg{{ $key + 1 }}">
                                         <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
                                                 <div class="modal-header">

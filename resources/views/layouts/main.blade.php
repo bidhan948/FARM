@@ -39,7 +39,7 @@
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
     {{-- this is our own custom css --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{asset('css/spinner.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/spinner.css') }}">
 
 </head>
 
@@ -92,31 +92,20 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user() == null ? "ADMIN" : auth()->user()->name }}</a>
-                    </div>
-                </div> --}}
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('land-owner.index') }}" class="nav-link">
+                            <a href="{{ route('land-owner.index') }}" class="nav-link @yield('is_active_land_owner')">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    {{ __('जग्गाधनीको विवरण') }}
+                                    {{ __('कृषकको  विवरण') }}
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link">
+                            <a href="{{ route('user.index') }}" class="nav-link @yield('is_active_user')">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
                                     {{ __('प्रयोगकर्ता') }}
@@ -125,7 +114,7 @@
                         </li>
                         @can('ROLE')
                             <li class="nav-item">
-                                <a href="{{ route('role.index') }}" class="nav-link">
+                                <a href="{{ route('role.index') }}" class="nav-link @yield('is_active_role')">
                                     <i class="nav-icon fas fa-user-tag"></i>
                                     <p>
                                         {{ __('भूमिका व्यवस्थापन') }}
@@ -135,7 +124,7 @@
                         @endcan
                         @can('PERMISSION')
                             <li class="nav-item">
-                                <a href="{{ route('permission.index') }}" class="nav-link">
+                                <a href="{{ route('permission.index') }}" class="nav-link @yield('is_active_permission')">
                                     <i class="nav-icon fas fa-user-lock"></i>
                                     <p>
                                         {{ __('अनुमति व्यवस्थापन') }}
@@ -143,10 +132,60 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('VIEW_DASHBOARD')
+                        @can('FERTILIZE_CALCULATE')
+                            <li class="nav-item ">
+                                <a href="{{ route('fertilize_calculate') }}" class="nav-link @yield('is_active')">
+                                    <i class="fas fa-calculator nav-icon"></i>
+                                    <p>
+                                        {{ __('रासायनिक मल मापन') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item has-treeview @yield('menu_show')  @yield('menu_open') @yield('menu_ope')">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p class="px-2 font-weight-bold">
+                                    {{ __(' सेटिङ्हरू') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview " style="display: @yield('s_child')">
+                            @can('SETTING_FORMULA')
+                                <li class="nav-item has-treeview  @yield('menu_show')">
+                                    <a href="#" class="nav-link">
+                                        <i class=" fas fa-cogs nav-icon"></i>
+                                        <p class="px-2 font-weight-bold">
+                                            {{ __('मल मापन सेटिङ्हरू') }}
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview " style="display: @yield('s_child_setting_formula')">
+                                        <li class="nav-item mx-1">
+                                            <a href="{{ route('category.index') }}"
+                                                class="nav-link @yield('dashboard_category')">
+                                                <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                                </span>
+                                                <p class="px-2">{{ __('Category (वर्ग)') }}</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('Crop.index') }}"
+                                                class="nav-link @yield('fertilizer_crop')">
+                                                <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                                </span>
+                                                <p class="px-2">{{ __('Crops (बाली)') }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endcan
+                            @can('VIEW_DASHBOARD')
                             <li class="nav-item has-treeview  @yield('menu_ope')">
                                 <a href="#" class="nav-link">
-                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                   <i class=" fas fa-cogs nav-icon"></i>
                                     <p class="px-2 font-weight-bold">
                                         {{ __('ड्यासबोर्ड सेटिङ्हरू') }}
                                         <i class="fas fa-angle-left right"></i>
@@ -156,71 +195,78 @@
                                     <li class="nav-item">
                                         <a href="{{ route('about-us.index') }}"
                                             class="nav-link @yield('dashboard_about_us')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                          <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                           </span>
                                             <p class="px-2">{{ __('हाम्रो बारेमा') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('notice.index') }}"
                                             class="nav-link @yield('dashboard_notice')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                           <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                           </span>
                                             <p class="px-2">{{ __('सूचना') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('Publication.index') }}"
                                             class="nav-link @yield('dashboard_publication')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                           <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                            </span>
                                             <p class="px-2">{{ __('प्रकाशन') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('agriculture-animal-detail.index') }}"
                                             class="nav-link @yield('dashboard_agriculture_animal_detail')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                            <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                            </span>
                                             <p class="px-2">{{ __('कृषि तथा पशुपन्छि सम्बन्धि') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('question.index') }}"
                                             class="nav-link @yield('dashboard_question')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                            <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                            </span>
                                             <p class="px-2">{{ __('प्रश्नहरू') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('agriculture-weather.index') }}"
                                             class="nav-link @yield('dashboard_agriculture_weather')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                                <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                                </span>
                                             <p class="px-2">{{ __('कृषि - मौसम सल्लाह बुलेटिन') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('market-plan.index') }}"
                                             class="nav-link @yield('dashboard_market_plan')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                            <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                            </span>
                                             <p class="px-2">{{ __('ब्यबसायिक योजना') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('agriculture-technique.index') }}"
                                             class="nav-link @yield('dashboard_ag_tech')">
-                                            <i class="far fa-circle nav-icon"></i>
+                                          <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                            </span>
                                             <p class="px-2">{{ __('कृषि प्रबिधि') }}</p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                         @endcan
-                        <li class="nav-item has-treeview  @yield('menu_open')">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-cogs"></i>
-                                <p class="px-2 font-weight-bold">
-                                    {{ __(' सेटिङ्हरू') }}
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview " style="display: @yield('s_child')">
                                 <li class="nav-item">
                                     <a href="{{ route('gender.index') }}" class="nav-link @yield('setting_gender')">
                                         <i class="far fa-circle nav-icon"></i>
@@ -377,6 +423,22 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://farm.sarathitechnosoft.com.np/backup.php" class="nav-link">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>
+                                    {{ __('Backup Database') }}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('privacy_policy') }}" class="nav-link">
+                                <i class="fas fa-lock nav-icon"></i>
+                                <p>
+                                    {{ __('Privacy & Policy') }}
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

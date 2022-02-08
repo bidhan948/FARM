@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'भूमिका')
+@section('is_active_role', 'active')
 @section('main_content')
 
     <div class="card text-sm ">

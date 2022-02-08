@@ -4,6 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\detail\agriculture_animal_detail;
+use App\Models\fertilizer\category;
+use App\Models\fertilizer\fertilizer_area;
+use App\Models\fertilizer\fertilizer_crop;
+use App\Models\setting\area;
 use App\Models\setting\crop_type;
 use Illuminate\Http\Request;
 
@@ -14,6 +18,26 @@ class FarmMobileAssetController extends Controller
         $crops = crop_type::query()
             ->select('id', 'name as title', 'image as featured_image')
             ->whereNotNull('image')
+            ->get();
+
+        $data['fertilizer_calculations']['asset'] = [
+            'title' => 'रासायनिक मल मापन',
+            'icon' => asset('fertilizer/potash.png')
+        ];
+
+        $data['fertilizer_calculations']['categories'] = category::query()
+            ->select('id', 'name')
+            ->latest()
+            ->get();
+
+        $data['fertilizer_calculations']['crops'] = fertilizer_crop::query()
+            ->select('id', 'name', 'category_id', 'urea', 'dap', 'potash')
+            ->latest()
+            ->get();
+
+        $data['fertilizer_calculations']['areas'] = fertilizer_area::query()
+            ->select('id', 'name', 'equal_to_kattha')
+            ->latest()
             ->get();
 
         $data['heading'] = [
@@ -34,7 +58,7 @@ class FarmMobileAssetController extends Controller
         $data['website'][] = [
             'title' => 'सम्पर्क',
             'url' => route('dashboard.contact_us'),
-            'icon' => asset('farm/contact.png'),
+            'icon' =>asset('farm/contact.png'),
             'is_button' => true,
             'child' => null
         ];
@@ -57,7 +81,7 @@ class FarmMobileAssetController extends Controller
 
         $data['website'][] = [
             'title' => 'कृषि तथा पशुपंक्षी सम्बन्धि आधारभुत जानकारी',
-            'url' => "http://192.168.1.112:8000/agriculture-animal",
+            'url' => config('constant.BASE_PATH')."agriculture-animal",
             'storage_url' => asset(config('constant.CROP_PATH')),
             'icon' => asset('farm/farm-animal.png'),
             'is_button' => false,
@@ -68,7 +92,7 @@ class FarmMobileAssetController extends Controller
 
         $data['website'][] = [
             'title' => 'कृषि प्रबिधि',
-            'url' => "http://192.168.1.112:8000/agriculture-technology",
+            'url' => config('constant.BASE_PATH')."agriculture-technology",
             'storage_url' => asset(config('constant.FOOD_PATH')),
             'icon' => asset('farm/fram-technology.png'),
             'is_button' => false,
@@ -77,7 +101,7 @@ class FarmMobileAssetController extends Controller
 
         $data['website'][] = [
             'title' => 'बारम्बार सोधिने प्रश्नहरु',
-            'url' => "http://192.168.1.112:8000/general-question",
+            'url' =>config('constant.BASE_PATH')."general-question",
             'storage_url' => asset(config('constant.FOOD_PATH')),
             'icon' => asset('farm/question.png'),
             'is_button' => false,
