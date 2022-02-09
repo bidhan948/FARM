@@ -32,8 +32,7 @@ class StockAdd extends Component
                     $this->fertilizers = fertilizer::query()->get();
                     $this->is_crop = false;
                     $this->is_fertilizer = TRUE;
-                }
-                if ($this->stock_type == 'seed') {
+                }else{
                     if ($this->crop_type_id != '') {
                         $this->crops = crop::query()
                             ->where('crop_type_id', $this->crop_type_id)

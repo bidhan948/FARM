@@ -27,7 +27,7 @@
                     </span>
                 </div>
                 <select wire:model="crop_type_id" class="form-control form-control-sm">
-                    <option value="" selected>{{ __('---छान्नुहोस्----') }}</option>
+                    <option value="" >{{ __('---छान्नुहोस्----') }}</option>
                     @foreach ($crop_types as $crop_type)
                         <option value="{{ $crop_type->id }}">{{ $crop_type->name }}</option>
                     @endforeach
@@ -58,29 +58,46 @@
                     </p>
                 @enderror
             </div>
-            <input type="hidden" name="crop_id" value="{{$crop_id ?? ''}}">
+            <input type="hidden" name="crop_id" value="{{ $crop_id ?? '' }}">
         </div>
     @endif
     @if ($is_fertilizer)
-    <div class="col-6">
+        <div class="col-6">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        {{ __('मल') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                    </span>
+                </div>
+                <select wire:model="fertilizer_id" class="form-control form-control-sm">
+                    <option value="">{{ __('---छान्नुहोस्----') }}</option>
+                    @foreach ($fertilizers as $fertilizer)
+                        <option value="{{ $fertilizer->id }}">{{ $fertilizer->name }}</option>
+                    @endforeach
+                </select>
+                <input type="hidden" step="0.5" name="fertilizer_id" value="{{$fertilizer_id ?? ''}}">
+                @error('name')
+                    <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                        {{ __('मलको फिल्ड खाली छ ') }}
+                    </p>
+                @enderror
+            </div>
+        </div>
+    @endif
+    <div class="col-6 my-2">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    {{ __('मल') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                    {{ __('मात्रा') }} <span class="text-danger px-1 font-weight-bold">*</span>
                 </span>
             </div>
-            <select wire:model="fertilizer_id" class="form-control form-control-sm">
-                <option value="">{{ __('---छान्नुहोस्----') }}</option>
-                @foreach ($fertilizers as $fertilizer)
-                    <option value="{{ $fertilizer->id }}">{{ $fertilizer->name }}</option>
-                @endforeach
-            </select>
-            @error('name')
+            <input type="number" value="{{ old('quantity') }}" name="quantity"
+                class="form-control  @error('quantity') is-invalid @enderror">
+            @error('quantity')
                 <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                    {{ __('मलको फिल्ड खाली छ ') }}
+                    {{ __('मात्राको फिल्ड खाली छ ') }}
                 </p>
             @enderror
         </div>
     </div>
-    @endif
 </div>

@@ -145,7 +145,7 @@ Route::group(['middleware' => 'auth'], function () {
     /****************************end route all for fertilizer setting*******************************************************************************/
 
     /****************************below route is all for fertilizer disturbation****************************************************************/
-    Route::resource('/stock',StockController::class)->except('upadte','edit','delete','create','store');
+    Route::resource('/stock',StockController::class)->except('upadte','edit','delete','create');
     /****************************end route is all for fertilizer disturbation****************************************************************/
 
 

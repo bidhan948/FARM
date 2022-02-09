@@ -44,26 +44,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('category.store') }}">
+                    <form method="post" action="{{ route('stock.store') }}">
                         @csrf
                         @livewire('stock-add', ['crop_types' => $crop_types])
                         <div class="row">
-                            <div class="col-6">
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            {{ __('STOCK') }} <span class="text-danger px-1 font-weight-bold">*</span>
-                                        </span>
-                                    </div>
-                                    <input type="text" value="{{ old('name') }}" name="name"
-                                        class="form-control  @error('name') is-invalid @enderror">
-                                    @error('name')
-                                        <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
-                                            {{ __('STOCKको फिल्ड खाली छ ') }}
-                                        </p>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="col-4">
                                 <button type="submit" class="btn btn-primary">पेश
                                     गर्नुहोस्</button>
