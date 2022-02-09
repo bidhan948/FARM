@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\bibaran\ReportController;
 use App\Http\Controllers\dahsboard\MarketPlanDetailController;
 use App\Http\Controllers\dashboard\AboutUsController;
+use App\Http\Controllers\dashboard\ContactUsController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\NoticeController;
 use App\Http\Controllers\dashboard\PublicationController;
@@ -105,6 +106,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('aboutUs', [AboutUsController::class, 'index'])->name('about-us.index');
         Route::post('aboutUs', [AboutUsController::class, 'store'])->name('about-us.store');
         Route::put('aboutUs/{about_us}', [AboutUsController::class, 'update'])->name('about-us.update');
+        Route::get('contactUs', [ContactUsController::class, 'index'])->name('contact-us.index');
+        Route::post('contactUs', [ContactUsController::class, 'store'])->name('contact-us.store');
+        Route::put('contactUs/{contact_us}', [ContactUsController::class, 'update'])->name('contact-us.update');
         Route::resource('notice', NoticeController::class);
         Route::resource('Publication', PublicationController::class);
         Route::resource('agriculture-animal-detail', AgricultureAnimalDetailController::class);

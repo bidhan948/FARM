@@ -4,7 +4,7 @@
 <div class="card text-sm p-3 text-center">
     <div class="row">
         <div class="col-12">
-            {!! $aboutus->about_us !!}
+            {!! $aboutus->about_us ?? '' !!}
         </div>
     </div>
 </div>

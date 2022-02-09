@@ -212,6 +212,15 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{ route('contact-us.index') }}"
+                                            class="nav-link @yield('dashboard_contact_us')">
+                                          <span class="ml-3 child-icon">
+                                                    <i class="fas fa-level-up-alt nav-icon"></i>
+                                           </span>
+                                            <p class="px-2">{{ __('सम्पर्क') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{ route('notice.index') }}"
                                             class="nav-link @yield('dashboard_notice')">
                                            <span class="ml-3 child-icon">

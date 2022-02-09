@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\dashboard\about_us;
+use App\Models\dashboard\contact_us;
 use App\Models\dashboard\notice;
 use App\Models\dashboard\publication;
 use App\Models\dashboard\question;
@@ -31,12 +32,16 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function contactUs()
+    public function contactUs(): View
     {
-        return view('dashboard.dashboard_contact_us');
+        return view('dashboard.dashboard_contact_us', [
+            'contactus' => contact_us::query()
+                ->where('is_active', contact_us::STATUS_TRUE)
+                ->first()
+        ]);
     }
 
-    public function notice()
+    public function notice(): View
     {
         return view('dashboard.dashboard_notice', [
             'notices' => notice::query()
