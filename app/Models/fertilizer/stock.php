@@ -12,6 +12,17 @@ class stock extends Model
 {
     use HasFactory;
 
+    const SEED = 'seed';
+    const FERTILIZER = 'fertilizer';
+
+    protected $fillable = [
+        'quantity',
+        'unit_id',
+        'user_id',
+        'crop_id',
+        'stock_type'
+    ];
+
     public function User(): BelongsTo
     {
         return $this->belongsTo(User::class);

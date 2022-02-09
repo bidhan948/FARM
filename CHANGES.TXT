@@ -26,3 +26,5 @@ agriculture_technology
 above all is added on 2078-09-26 ✔️
 
 5 table related to roles and permission added
+
+stock table added
