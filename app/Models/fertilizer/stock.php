@@ -20,6 +20,7 @@ class stock extends Model
         'unit_id',
         'user_id',
         'crop_id',
+        'fertilizer_id',
         'stock_type'
     ];
 

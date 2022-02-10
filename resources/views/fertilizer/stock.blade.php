@@ -3,35 +3,35 @@
 @section('is_active_stock', 'active')
 @section('main_content')
 
-<div class="card text-sm ">
-    <div class="card-header my-2">
-        <div class="row my-1">
-            <div class="col-md-6" style="margin-bottom:-5px;">
-                <p class="">{{ __('STOCK') }}</p>
-            </div>
-            <div class="
+    <div class="card text-sm ">
+        <div class="card-header my-2">
+            <div class="row my-1">
+                <div class="col-md-6" style="margin-bottom:-5px;">
+                    <p class="">{{ __('STOCK') }}</p>
+                </div>
+                <div class="
                     col-md-6 text-right">
-                <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                    <i class="fas fa-plus px-2"></i> {{ __('STOCK थप्नुहोस') }}</a>
+                    <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
+                        <i class="fas fa-plus px-2"></i> {{ __('STOCK थप्नुहोस') }}</a>
+                </div>
             </div>
         </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">{{ __('क्र.स.') }}</th>
+                        <th class="text-center">{{ __('STOCK') }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+            </table>
+        </div>
+        <!-- /.card-body -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th class="text-center">{{ __('क्र.स.') }}</th>
-                    <th class="text-center">{{ __('STOCK') }}</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                
-        </table>
-    </div>
-    <!-- /.card-body -->
-</div>
 
     {{-- modal for adding category status --}}
     <div class="modal fade text-sm" id="modal-lg">
@@ -44,17 +44,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('stock.store') }}">
-                        @csrf
-                        @livewire('stock-add', ['crop_types' => $crop_types])
-                        <div class="row">
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary">पेश
-                                    गर्नुहोस्</button>
-                            </div>
-                        </div>
-
-                    </form>
+                    @livewire('stock-add', ['crop_types' => $crop_types,'units'=>$units])
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

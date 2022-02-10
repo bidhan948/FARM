@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\fertilizer\fertilizer;
+use App\Models\fertilizer\stock;
 use App\Models\setting\crop;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StockAdd extends Component
 {
@@ -12,16 +14,38 @@ class StockAdd extends Component
     public $crop_types;
     public $crop_type_id = '';
     public $stock_type = '';
-    public $crop_id = '';
-    public $fertilizer_id = '';
+    public $crop_id = null;
+    public $fertilizer_id = null;
+    public $unit_id = '';
+    public $quantity = '';
+    public $quantityMessage;
     public $is_crop = TRUE;
     public $is_fertilizer = FALSE;
     public $crops = [];
     public $fertilizers = [];
+    public $units = [];
+
+    // validating input 
+    protected $rules = [
+        'stock_type' => 'required', // Rule::in(['seed', 'fertilizer']),
+        'unit_id' => 'required',
+        'fertilizer_id' => 'required_if:stock_type,==,fertilizer|sometimes',
+        'crop_id' => 'required_if:stock_type,==,seed|sometimes',
+        'quantity' => 'required',
+    ];
 
     public function mount()
     {
         $this->fertilizers = fertilizer::query()->get();
+    }
+
+    public function updatedQuantity()
+    {
+        if ($this->quantity == '' || !is_numeric($this->quantity)) {
+            $this->quantityMessage = FALSE;
+        } else {
+            $this->quantityMessage = TRUE;
+        }
     }
 
     public function render()
@@ -32,7 +56,7 @@ class StockAdd extends Component
                     $this->fertilizers = fertilizer::query()->get();
                     $this->is_crop = false;
                     $this->is_fertilizer = TRUE;
-                }else{
+                } else {
                     if ($this->crop_type_id != '') {
                         $this->crops = crop::query()
                             ->where('crop_type_id', $this->crop_type_id)
@@ -44,5 +68,30 @@ class StockAdd extends Component
             }
         }
         return view('livewire.stock-add');
+    }
+
+    public function saveStock()
+    {
+        $validatedData = $this->validate();
+
+        $checkDataIfPresent = stock::query()
+            ->when($this->crop_id, function ($q) {
+                $q->where('crop_id', $this->crop_id)
+                    ->where('unit_id', $this->unit_id);
+            })
+            ->when($this->fertilizer_id, function ($q) {
+                $q->where('fertilizer_id', $this->fertilizer_id)
+                    ->where('unit_id', $this->unit_id);
+            })->first();
+
+        if ($checkDataIfPresent == null) {
+            stock::create($validatedData + ['user_id' => auth()->user()->id]);
+            Alert::success('STOCK added successfully');
+            return redirect()->route('stock.index');
+        } else {
+            $checkDataIfPresent->update(['quantity' => $this->quantity + $checkDataIfPresent->quantity]);
+            Alert::success('STOCK added successfully');
+            return redirect()->route('stock.index');
+        }
     }
 }
