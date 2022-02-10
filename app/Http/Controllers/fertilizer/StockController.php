@@ -9,6 +9,8 @@ use Illuminate\Contracts\View\View;
 
 class StockController extends Controller
 {
+    //-----------------store of stock is done on livewire called stockadd bcz it has many ajax call--------------------/
+
     public function index(SettingHelper $helper): View
     {
         $data = $helper->getSetting(['unit', 'crop_type']);

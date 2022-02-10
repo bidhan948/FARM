@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\fertilizer\fertilizer;
 use App\Models\fertilizer\stock;
+use App\Models\fertilizer\stock_log;
 use App\Models\setting\crop;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -84,14 +86,16 @@ class StockAdd extends Component
                     ->where('unit_id', $this->unit_id);
             })->first();
 
-        if ($checkDataIfPresent == null) {
-            stock::create($validatedData + ['user_id' => auth()->user()->id]);
-            Alert::success('STOCK added successfully');
-            return redirect()->route('stock.index');
-        } else {
-            $checkDataIfPresent->update(['quantity' => $this->quantity + $checkDataIfPresent->quantity]);
-            Alert::success('STOCK added successfully');
-            return redirect()->route('stock.index');
-        }
+        DB::transaction(function () use ($checkDataIfPresent, $validatedData) {
+            if ($checkDataIfPresent == null) {
+                stock::create($validatedData + ['user_id' => auth()->user()->id]);
+            } else {
+                $checkDataIfPresent->update(['quantity' => $this->quantity + $checkDataIfPresent->quantity]);
+            }
+            stock_log::create($validatedData + ['user_id' => auth()->user()->id]);
+        });
+        
+        Alert::success('STOCK added successfully');
+        return redirect()->route('stock.index');
     }
 }
