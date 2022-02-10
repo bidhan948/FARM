@@ -22,12 +22,24 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('STOCK') }}</th>
+                        <th class="text-center">{{ __('STOCK type') }}</th>
+                        <th class="text-center">{{ __('मल / बिरुवा') }}</th>
+                        <th class="text-center">{{ __('मात्रा') }}</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach ($stocks as $key => $stock)
+                        <tr>
+                            <td class="text-center">{{ Nepali($key + 1) }}</td>
+                            <td class="text-center">{{ $stock->stock_type == 'fertilizer' ? 'मल' : 'बिरुवा' }}</td>
+                            <td class="text-center">
+                                {{ $stock->Crop == null ? $stock->Fertilizer->name : $stock->Crop->name }}</td>
+                            <td class="text-center">{{ Nepali($stock->quantity)." ".($stock->Unit->name) }}</td>
+                            <td class="text-center"></td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
         <!-- /.card-body -->

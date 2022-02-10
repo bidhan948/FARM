@@ -3,6 +3,7 @@
 namespace App\Models\fertilizer;
 
 use App\Models\setting\crop;
+use App\Models\setting\unit;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,5 +38,10 @@ class stock extends Model
     public function Fertilizer(): BelongsTo
     {
         return $this->belongsTo(fertilizer::class);
+    }
+
+    public function Unit(): BelongsTo
+    {
+        return $this->belongsTo(unit::class);
     }
 }

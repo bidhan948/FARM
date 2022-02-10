@@ -17,6 +17,9 @@ class StockController extends Controller
 
         return view('fertilizer.stock', [
             'stocks' => stock::query()
+                ->with('Crop')
+                ->with('Fertilizer')
+                ->with('Unit')
                 ->get(),
             'units' => $data['unit'],
             'crop_types' => $data['crop_type']
