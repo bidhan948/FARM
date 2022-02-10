@@ -142,7 +142,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('FERTILIZE_CALCULATE')
+                        @can('STOCK')
                             <li class="nav-item ">
                                 <a href="{{ route('stock.index') }}" class="nav-link @yield('is_active_stock')">
                                     <i class="nav-icon fas fa-store"></i>

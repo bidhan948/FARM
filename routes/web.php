@@ -126,31 +126,33 @@ Route::group(['middleware' => 'auth'], function () {
 
     /****************************below route is all for fertilizer setting***************************************************************************/
     Route::prefix('fertilizer')->group(function () {
-        Route::resource('category',CategoryController::class)
-        ->except('edit','destroy','show','create')
-        ->middleware('can:SETTING_FORMULA');
+        Route::resource('category', CategoryController::class)
+            ->except('edit', 'destroy', 'show', 'create')
+            ->middleware('can:SETTING_FORMULA');
 
-        Route::resource('fertilizer',FertilizerController::class)
-        ->except('edit','destroy','show','create')
-        ->middleware('can:SETTING_FORMULA');
+        Route::resource('fertilizer', FertilizerController::class)
+            ->except('edit', 'destroy', 'show', 'create')
+            ->middleware('can:SETTING_FORMULA');
 
-        Route::resource('Crop',FertilizerCropController::class)
-        ->except('edit','destroy','show','create')
-        ->middleware('can:SETTING_FORMULA');
+        Route::resource('Crop', FertilizerCropController::class)
+            ->except('edit', 'destroy', 'show', 'create')
+            ->middleware('can:SETTING_FORMULA');
 
-        Route::view('calculate','fertilizer.fertilizer_calculator')
-        ->name('fertilize_calculate')
-        ->middleware('can:FERTILIZE_CALCULATE');
+        Route::view('calculate', 'fertilizer.fertilizer_calculator')
+            ->name('fertilize_calculate')
+            ->middleware('can:FERTILIZE_CALCULATE');
     });
     /****************************end route all for fertilizer setting*******************************************************************************/
 
     /****************************below route is all for fertilizer disturbation****************************************************************/
-    Route::resource('/stock',StockController::class)->except('upadte','edit','delete','create');
+    Route::resource('/stock', StockController::class)
+        ->except('upadte', 'edit', 'delete', 'create')
+        ->middleware('can:STOCK');
     /****************************end route is all for fertilizer disturbation****************************************************************/
 
 
     /****************************Below route is all for role & permission***********************************************************/
-    Route::resource('user', UserController::class)->except('edit','show','destroy');
+    Route::resource('user', UserController::class)->except('edit', 'show', 'destroy');
     Route::post('password-change/{user}', [UserController::class, 'passwordChange'])->name('user.change');
     Route::get('manage-permission/{role}', [RoleAndPermissionController::class, 'managePermission'])
         ->name('role.permission')

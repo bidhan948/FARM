@@ -9,11 +9,13 @@
                 <div class="col-md-6" style="margin-bottom:-5px;">
                     <p class="">{{ __('STOCK') }}</p>
                 </div>
-                <div class="
-                    col-md-6 text-right">
-                    <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        <i class="fas fa-plus px-2"></i> {{ __('STOCK थप्नुहोस') }}</a>
-                </div>
+                @can('ADD_STOCK')
+                    <div class="
+                        col-md-6 text-right">
+                        <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
+                            <i class="fas fa-plus px-2"></i> {{ __('STOCK थप्नुहोस') }}</a>
+                    </div>
+                @endcan
             </div>
         </div>
         <!-- /.card-header -->
