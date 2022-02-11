@@ -8,7 +8,7 @@
                         <tr>
                             <td class="text-center bg-success">Current Stock :</td>
                             <td class="bg-danger"><span
-                                    class="badge font-weight-bold">{{ Nepali($currentStock->quantity) }}</span></td>
+                                    class="badge font-weight-bold">{{ Nepali($currentStock == null ? 0 : $currentStock->quantity ) }}</span></td>
                         </tr>
                         <tr>
                             <td class="text-center bg-success">Remain Stock :</td>
@@ -156,7 +156,7 @@
                         {{ __('मात्रा') }} <span class="text-danger px-1 font-weight-bold">*</span>
                     </span>
                 </div>
-                <input type="number" value="{{ old('quantity') }}" wire:model="quantity"
+                <input  step=".5" type="number" value="{{ old('quantity') }}" wire:model="quantity"
                     class="form-control {{ $quantityMessage ? 'is-valid' : 'is-invalid' }}  @error('quantity') is-invalid @enderror">
                 @error('quantity')
                     <p class="invalid-feedback mb-0" style="font-size: 0.9rem">

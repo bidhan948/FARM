@@ -2,6 +2,7 @@
 
 namespace App\Models\fertilizer;
 
+use App\Models\land\land_owner;
 use App\Models\setting\crop;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +14,18 @@ class stock_log extends Model
 {
     use HasFactory;
 
+    const ASSIGN = 1;
+    const IN = 0;
+
     protected $fillable = [
         'quantity',
         'unit_id',
         'user_id',
         'crop_id',
         'fertilizer_id',
-        'stock_type'
+        'stock_type',
+        'is_out',
+        'land_owner_id'
     ];
 
     public function User(): BelongsTo
@@ -35,5 +41,10 @@ class stock_log extends Model
     public function Fertilizer(): BelongsTo
     {
         return $this->belongsTo(fertilizer::class);
+    }
+
+    public function landOwner(): BelongsTo
+    {
+        return $this->belongsTo(land_owner::class);
     }
 }

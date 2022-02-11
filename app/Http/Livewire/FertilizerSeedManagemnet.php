@@ -4,11 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Models\fertilizer\fertilizer;
 use App\Models\fertilizer\stock;
+use App\Models\fertilizer\stock_log;
 use App\Models\land\land_owner;
 use App\Models\setting\crop;
 use App\Models\setting\crop_type;
 use App\Models\setting\unit;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FertilizerSeedManagemnet extends Component
 {
@@ -36,6 +39,7 @@ class FertilizerSeedManagemnet extends Component
     // validating input 
     protected $rules = [
         'stock_type' => 'required', // Rule::in(['seed', 'fertilizer']),
+        'land_owner_id' => 'required',
         'unit_id' => 'required',
         'fertilizer_id' => 'required_if:stock_type,==,fertilizer|sometimes',
         'crop_id' => 'required_if:stock_type,==,seed|sometimes',
@@ -97,13 +101,13 @@ class FertilizerSeedManagemnet extends Component
                     ->where('unit_id', $this->unit_id)
                     ->first();
 
-                $this->remainStock = $this->currentStock->quantity - $this->quantity;
+                $this->remainStock = ($this->currentStock == null ? 0 : $this->currentStock->quantity) - $this->quantity;
                 
-                if ($this->currentStock->quantity < $this->quantity) {
+                if ($this->remainStock < 0) {
                     $this->quantityMessage = False;
                     $this->messageForQuantity = true;
                 } else {
-                    $this->messageForQuantity =False;
+                    $this->messageForQuantity = False;
                     $this->quantityMessage = TRUE;
                 }
                 $this->showStock = TRUE;
@@ -114,6 +118,25 @@ class FertilizerSeedManagemnet extends Component
     public function assignStock()
     {
         $validatedData = $this->validate();
-        dd($validatedData);
+
+        DB::transaction(function () use ($validatedData) {
+            stock::query()
+                ->when($this->crop_id,function($q){
+                    $q->where('crop_id',$this->crop_id);
+                })
+                ->when($this->fertilizer_id,function($q){
+                    $q->where('fertilizer_id',$this->fertilizer_id);
+                })
+                ->where('unit_id', $this->unit_id)
+                ->update(['quantity' => $this->currentStock->quantity - $this->quantity]);
+            
+            stock_log::create($validatedData + ['is_out'=> stock_log::ASSIGN]);
+        });
+
+         
+        Alert::success('STOCK assign successfully');
+        return redirect()->route('stock.index');
     }
 }
+
+// CODE SEEMS HANDY RIGHT ? BUT IT IS WORTH IT :)
