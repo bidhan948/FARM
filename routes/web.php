@@ -20,6 +20,7 @@ use App\Http\Controllers\facility\FacilityDetailController;
 use App\Http\Controllers\fertilizer\CategoryController;
 use App\Http\Controllers\fertilizer\FertilizerController;
 use App\Http\Controllers\fertilizer\FertilizerCropController;
+use App\Http\Controllers\fertilizer\FertilizerSeedManagementController;
 use App\Http\Controllers\fertilizer\StockController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\land\LandController;
@@ -125,6 +126,10 @@ Route::group(['middleware' => 'auth'], function () {
     /****************************end route for dashboard setting*******************************************************************************************/
 
     /****************************below route is all for fertilizer setting***************************************************************************/
+    Route::resource('fertilizer-seed-management', FertilizerSeedManagementController::class)
+        ->except('edit', 'destroy', 'show', 'create')
+        ->middleware('can:fertilizer-seed-management');
+
     Route::prefix('fertilizer')->group(function () {
         Route::resource('category', CategoryController::class)
             ->except('edit', 'destroy', 'show', 'create')

@@ -142,6 +142,16 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('SEED_FERTILIZER_MANAGEMENT')
+                            <li class="nav-item">
+                                <a href="{{ route('fertilizer-seed-management.index') }}" class="nav-link @yield('is_active_fertilizer_seed_management')">
+                                    <i class="nav-icon fas fa-seedling"></i>
+                                    <p>
+                                        {{ __('मल / बिरुवा व्यबस्थापन') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
                         @can('STOCK')
                             <li class="nav-item ">
                                 <a href="{{ route('stock.index') }}" class="nav-link @yield('is_active_stock')">
