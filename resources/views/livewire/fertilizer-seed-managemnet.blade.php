@@ -1,6 +1,24 @@
 <form method="post" wire:submit.prevent="assignStock">
     @csrf
     <div class="row">
+        @if ($showStock)
+            <div class="col-12 my-2">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="text-center bg-success">Current Stock :</td>
+                            <td class="bg-danger"><span
+                                    class="badge font-weight-bold">{{ Nepali($currentStock->quantity) }}</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center bg-success">Remain Stock :</td>
+                            <td class="bg-danger"><span
+                                    class="badge font-weight-bold">{{ Nepali($remainStock) }}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @endif
         <div class="col-6">
             <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
@@ -145,12 +163,19 @@
                         {{ __('मात्राको फिल्ड खाली छ ') }}
                     </p>
                 @enderror
+                @if ($messageForQuantity)
+                    <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                        {{ __('अपर्याप्त STOCK') }}
+                    </p>
+                @endif
             </div>
         </div>
-        <div class="col-4 my-2 ">
-            <button type="submit" class="btn btn-sm btn-primary">पेश
-                गर्नुहोस्</button>
-        </div>
+        @if ($quantityMessage)
+            <div class="col-4 my-2 ">
+                <button type="submit" class="btn btn-sm btn-primary">पेश
+                    गर्नुहोस्</button>
+            </div>
+        @endif
     </div>
 
 </form>
