@@ -21,6 +21,7 @@ class FertilizerSeedManagemnet extends Component
     public $crop_type_id = '';
     public $stock_type = '';
     public $land_owner_id = '';
+    public $remark = '';
     public $crop_id = null;
     public $fertilizer_id = null;
     public $unit_id = '';
@@ -44,6 +45,7 @@ class FertilizerSeedManagemnet extends Component
         'fertilizer_id' => 'required_if:stock_type,==,fertilizer|sometimes',
         'crop_id' => 'required_if:stock_type,==,seed|sometimes',
         'quantity' => 'required',
+        'remark' => 'present'
     ];
 
     public function mount()

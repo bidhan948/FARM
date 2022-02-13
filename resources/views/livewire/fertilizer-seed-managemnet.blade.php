@@ -8,7 +8,8 @@
                         <tr>
                             <td class="text-center bg-success">Current Stock :</td>
                             <td class="bg-danger"><span
-                                    class="badge font-weight-bold">{{ Nepali($currentStock == null ? 0 : $currentStock->quantity ) }}</span></td>
+                                    class="badge font-weight-bold">{{ Nepali($currentStock == null ? 0 : $currentStock->quantity) }}</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-center bg-success">Remain Stock :</td>
@@ -156,7 +157,7 @@
                         {{ __('मात्रा') }} <span class="text-danger px-1 font-weight-bold">*</span>
                     </span>
                 </div>
-                <input  step=".5" type="number" value="{{ old('quantity') }}" wire:model="quantity"
+                <input step=".5" type="number" value="{{ old('quantity') }}" wire:model="quantity"
                     class="form-control {{ $quantityMessage ? 'is-valid' : 'is-invalid' }}  @error('quantity') is-invalid @enderror">
                 @error('quantity')
                     <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
@@ -168,6 +169,16 @@
                         {{ __('अपर्याप्त STOCK') }}
                     </p>
                 @endif
+            </div>
+        </div>
+        <div class="col-6 my-2">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        {{ __('कैफियत') }}
+                    </span>
+                </div>
+                <textarea wire:model="remark" class="form-control form-control-sm"></textarea>
             </div>
         </div>
         @if ($quantityMessage)

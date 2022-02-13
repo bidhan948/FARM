@@ -24,13 +24,25 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
+                        <th class="text-center">{{ __('कृषकको नाम') }}</th>
                         <th class="text-center">{{ __('STOCK type') }}</th>
                         <th class="text-center">{{ __('मल / बिरुवा') }}</th>
                         <th class="text-center">{{ __('मात्रा') }}</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($fertilizer_seeds as $key => $fertilizerSeed)
+                        <tr>
+                            <td class="text-center">{{ $key + 1 }}</td>
+                            <td class="text-center">{{ $fertilizerSeed->landOwner->name_nepali }}</td>
+                            <td class="text-center">{{ $fertilizerSeed->stock_type == 'fertilizer' ? 'मल' : 'बिरुवा' }}
+                            </td>
+                            <td class="text-center">
+                                {{ $fertilizerSeed->Crop == null ? $fertilizerSeed->Fertilizer->name : $fertilizerSeed->Crop->name }}
+                            </td>
+                            <td class="text-center">{{ Nepali($fertilizerSeed->quantity) . ' ' . $fertilizerSeed->Unit->name }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

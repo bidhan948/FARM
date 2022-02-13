@@ -4,11 +4,11 @@ namespace App\Models\fertilizer;
 
 use App\Models\land\land_owner;
 use App\Models\setting\crop;
+use App\Models\setting\unit;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
 
 class stock_log extends Model
 {
@@ -25,7 +25,8 @@ class stock_log extends Model
         'fertilizer_id',
         'stock_type',
         'is_out',
-        'land_owner_id'
+        'land_owner_id',
+        'remark'
     ];
 
     public function User(): BelongsTo
@@ -41,6 +42,11 @@ class stock_log extends Model
     public function Fertilizer(): BelongsTo
     {
         return $this->belongsTo(fertilizer::class);
+    }
+
+    public function Unit(): BelongsTo
+    {
+        return $this->belongsTo(unit::class);    
     }
 
     public function landOwner(): BelongsTo
