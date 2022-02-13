@@ -6,12 +6,14 @@ use App\Models\fertilizer\fertilizer;
 use App\Models\fertilizer\stock;
 use App\Models\fertilizer\stock_log;
 use App\Models\setting\crop;
+use App\Traits\AuditTraitTrait;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class StockAdd extends Component
 {
+    use AuditTraitTrait;
 
     public $crop_types;
     public $crop_type_id = '';
@@ -88,13 +90,16 @@ class StockAdd extends Component
 
         DB::transaction(function () use ($checkDataIfPresent, $validatedData) {
             if ($checkDataIfPresent == null) {
-                stock::create($validatedData + ['user_id' => auth()->user()->id]);
+                $auditValue = stock::create($validatedData + ['user_id' => auth()->user()->id]);
+                $this->storeAudit('App\Models\fertilizer\stock', $auditValue);
             } else {
+                $oldValue = $checkDataIfPresent;
                 $checkDataIfPresent->update(['quantity' => $this->quantity + $checkDataIfPresent->quantity]);
+                $this->updateAudit('App\Models\fertilizer\stock', $oldValue, $checkDataIfPresent->getChanges());
             }
             stock_log::create($validatedData + ['user_id' => auth()->user()->id]);
         });
-        
+
         Alert::success('STOCK added successfully');
         return redirect()->route('stock.index');
     }
