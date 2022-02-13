@@ -9,13 +9,17 @@
                 <div class="col-md-6" style="margin-bottom:-5px;">
                     <p class="">{{ __('STOCK') }}</p>
                 </div>
-                @can('ADD_STOCK')
-                    <div class="
+                <div class="
                         col-md-6 text-right">
+                    @can('ADD_STOCK')
                         <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
                             <i class="fas fa-plus px-2"></i> {{ __('STOCK थप्नुहोस') }}</a>
-                    </div>
-                @endcan
+                    @endcan
+                    @can('STOCK_LOG')
+                        <a href="{{route('stock.log')}}" class="btn text-white btn-sm btn-success">
+                            <i class="fas fa-eye px-2"></i> {{ __('STOCK log') }}</a>
+                    @endcan
+                </div>
             </div>
         </div>
         <!-- /.card-header -->
@@ -27,7 +31,6 @@
                         <th class="text-center">{{ __('STOCK type') }}</th>
                         <th class="text-center">{{ __('मल / बिरुवा') }}</th>
                         <th class="text-center">{{ __('मात्रा') }}</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,8 +40,7 @@
                             <td class="text-center">{{ $stock->stock_type == 'fertilizer' ? 'मल' : 'बिरुवा' }}</td>
                             <td class="text-center">
                                 {{ $stock->Crop == null ? $stock->Fertilizer->name : $stock->Crop->name }}</td>
-                            <td class="text-center">{{ Nepali($stock->quantity)." ".($stock->Unit->name) }}</td>
-                            <td class="text-center"></td>
+                            <td class="text-center">{{ Nepali($stock->quantity) . ' ' . $stock->Unit->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

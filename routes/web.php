@@ -129,6 +129,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('fertilizer-seed-management', FertilizerSeedManagementController::class)
         ->except('edit', 'destroy', 'show', 'create')
         ->middleware('can:SEED_FERTILIZER_MANAGEMENT');
+    
+    Route::get('stock-log',[StockController::class,'showLog'])
+    ->name('stock.log')
+    ->middleware('can:STOCK_LOG');
 
     Route::prefix('fertilizer')->group(function () {
         Route::resource('category', CategoryController::class)
