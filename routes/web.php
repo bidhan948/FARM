@@ -128,7 +128,7 @@ Route::group(['middleware' => 'auth'], function () {
     /****************************below route is all for fertilizer setting***************************************************************************/
     Route::resource('fertilizer-seed-management', FertilizerSeedManagementController::class)
         ->except('edit', 'destroy', 'show', 'create')
-        ->middleware('can:fertilizer-seed-management');
+        ->middleware('can:SEED_FERTILIZER_MANAGEMENT');
 
     Route::prefix('fertilizer')->group(function () {
         Route::resource('category', CategoryController::class)

@@ -102,7 +102,7 @@ class FertilizerSeedManagemnet extends Component
                     ->first();
 
                 $this->remainStock = ($this->currentStock == null ? 0 : $this->currentStock->quantity) - $this->quantity;
-                
+
                 if ($this->remainStock < 0) {
                     $this->quantityMessage = False;
                     $this->messageForQuantity = true;
@@ -121,22 +121,22 @@ class FertilizerSeedManagemnet extends Component
 
         DB::transaction(function () use ($validatedData) {
             stock::query()
-                ->when($this->crop_id,function($q){
-                    $q->where('crop_id',$this->crop_id);
+                ->when($this->crop_id, function ($q) {
+                    $q->where('crop_id', $this->crop_id);
                 })
-                ->when($this->fertilizer_id,function($q){
-                    $q->where('fertilizer_id',$this->fertilizer_id);
+                ->when($this->fertilizer_id, function ($q) {
+                    $q->where('fertilizer_id', $this->fertilizer_id);
                 })
                 ->where('unit_id', $this->unit_id)
                 ->update(['quantity' => $this->currentStock->quantity - $this->quantity]);
-            
-            stock_log::create($validatedData + ['is_out'=> stock_log::ASSIGN]);
+
+            stock_log::create($validatedData + ['is_out' => stock_log::ASSIGN, 'user_id' => auth()->user()->id]);
         });
 
-         
+
         Alert::success('STOCK assign successfully');
         return redirect()->route('stock.index');
     }
 }
 
-// CODE SEEMS HANDY RIGHT ? BUT IT IS WORTH IT :)
+// CODE SEEMS HANDY RIGHT ?? BUT IT IS WORTH IT :)
