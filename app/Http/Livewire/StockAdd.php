@@ -17,6 +17,7 @@ class StockAdd extends Component
 
     public $crop_types;
     public $crop_type_id = '';
+    public $source = '';
     public $stock_type = '';
     public $crop_id = null;
     public $fertilizer_id = null;
@@ -36,6 +37,7 @@ class StockAdd extends Component
         'fertilizer_id' => 'required_if:stock_type,==,fertilizer|sometimes',
         'crop_id' => 'required_if:stock_type,==,seed|sometimes',
         'quantity' => 'required',
+        'source'=>'required'
     ];
 
     public function mount()

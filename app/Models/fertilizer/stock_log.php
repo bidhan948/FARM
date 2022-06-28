@@ -26,7 +26,8 @@ class stock_log extends Model
         'stock_type',
         'is_out',
         'land_owner_id',
-        'remark'
+        'remark',
+        'source'
     ];
 
     public function User(): BelongsTo

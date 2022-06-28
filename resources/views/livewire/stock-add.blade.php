@@ -121,6 +121,22 @@
                 @enderror
             </div>
         </div>
+        <div class="col-6 my-2">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        {{ __('श्रोत') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                    </span>
+                </div>
+                <input type="text" value="{{ old('source') }}" wire:model="source"
+                    class="form-control @error('source') is-invalid @enderror">
+                @error('source')
+                    <p class="invalid-feedback mb-0" style="font-size: 0.9rem">
+                        {{ __('श्रोतको फिल्ड खाली छ ') }}
+                    </p>
+                @enderror
+            </div>
+        </div>
         <div class="col-4 my-2 ">
             <button type="submit" class="btn btn-sm btn-primary">पेश
                 गर्नुहोस्</button>

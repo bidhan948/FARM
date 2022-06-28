@@ -478,6 +478,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.sarathitechnosoft.budhiganga.np" class="nav-link text-center">
+                                <img class="mt-3" src="{{asset('farm/qrcode.png')}}" style="min-width:80px; max-width:140px; width:100%">
+                                <br>
+                                <br>
+                                <span class="pt-4"><i class="fas fa-mobile px-1"></i>Get it on playstore</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

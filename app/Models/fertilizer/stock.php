@@ -22,7 +22,8 @@ class stock extends Model
         'user_id',
         'crop_id',
         'fertilizer_id',
-        'stock_type'
+        'stock_type',
+        'source'
     ];
 
     public function User(): BelongsTo
