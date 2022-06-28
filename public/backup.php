@@ -1,9 +1,9 @@
 <?php
     //ENTER THE RELEVANT INFO BELOW
-    $mysqlUserName      = "sarathit_krisibd";
-    $mysqlPassword      = "wy)YP~i])-,q";
+    $mysqlUserName      = "sarathit_krishi";
+    $mysqlPassword      = "v3YNvrMfgGMh";
     $mysqlHostName      = "localhost";
-    $DbName             = "sarathit_budhiganga_krishi";
+    $DbName             = "sarathit_krishi";
     $backup_name        = "mybackup.sql";
     $tables             = array("user", "failed_jobs", "migrations");
 

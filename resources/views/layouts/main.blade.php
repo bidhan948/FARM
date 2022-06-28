@@ -199,15 +199,6 @@
                                                 <p class="px-2">{{ __('Crops (बाली)') }}</p>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('fertilizer.index') }}"
-                                                class="nav-link @yield('fertilizer')">
-                                                <span class="ml-3 child-icon">
-                                                    <i class="fas fa-level-up-alt nav-icon"></i>
-                                                </span>
-                                                <p class="px-2">{{ __('मल') }}</p>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
                             @endcan
