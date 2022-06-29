@@ -92,12 +92,12 @@ class DashboardController extends Controller
     public function downloadPublication($document)
     {
         // $publicationDocuments = $publication->load('publicationDocument');
-        $imagePath = config('constant.PUBLICATION_PATH');
+        // $imagePath = config('constant.PUBLICATION_PATH');
 
         // foreach ($publicationDocuments->publicationDocument as $key => $document) {
         //     return Storage::download($imagePath . "/" . $document->document);
         // }
-        return Storage::download($imagePath . "/" . $document);
+        return Storage::download(asset('storage/publication/'.$document));
     }
 
     public function farmer(): View

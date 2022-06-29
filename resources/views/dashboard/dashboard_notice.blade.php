@@ -25,7 +25,7 @@
                                 @foreach ($notices as $notice)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{config('constant.NOTICE_PATH').$notice->noticeDocument[0]->document}}" class="font-weight-bold text-danger">{{ $notice->notice }}</a>
+                                            <a href="{{asset('storage/notice/'.$notice->noticeDocument[0]->document)}}" class="font-weight-bold text-danger">{{ $notice->notice }}</a>
                                         </td>
                                         <td class="text-center">
                                             जारी म्याद : {{ Nepali($notice->start_date) }} <br>
